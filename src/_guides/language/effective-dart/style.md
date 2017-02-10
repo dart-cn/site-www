@@ -31,7 +31,7 @@ Dart 中的标识符有三种风格。
 *   `lowercase_with_underscores` 风格只使用小写字母，即使是首字符缩略词也是这样，然后使用下划线 `_` 把每个单词分割开。
 
 
-### 要 使用 `UpperCamelCase` 风格来命名类型名称
+### **要** 使用 `UpperCamelCase` 风格来命名类型名称
 
 Classes（类名字）、 enums（枚举类型）、 typedefs（类型定义）、以及 type parameters（类型参数）应该把每个单词的首字母都大写，
 (包含第一个单词)并且没有其他分隔符。
@@ -75,7 +75,7 @@ class C { ... }
 </div>
 
 
-### 要 使用 `lowercase_with_underscores` 风格来命名库和文件名名字。
+### **要** 使用 `lowercase_with_underscores` 风格来命名库和文件名名字。
 
 由于某些文件系统不区分大小写，所以很多项目都要求文件名必须为小写字母。
 通过分隔符分开单词可以保证名字的可读性。使用下划线作为分隔符确保名字为
@@ -104,7 +104,7 @@ import 'SliderMenu.dart';
 文件中的 library 指令。
 
 
-### 要 使用 `lowercase_with_underscores` 风格命名导入的前缀。
+### **要** 使用 `lowercase_with_underscores` 风格命名导入的前缀。
 
 <div class="good">
 {% prettify dart %}
@@ -125,7 +125,7 @@ import 'package:js/js.dart' as JS;
 </div>
 
 
-### 要 使用 `lowerCamelCase` 风格来命名其他的标识符。
+### **要** 使用 `lowerCamelCase` 风格来命名其他的标识符。
 
 类成员变量、顶级定义（变量、函数等）、变量、参数以及命名参数等都应该
 使用 `lowerCamelCase` 这种类型的命名风格。
@@ -144,7 +144,7 @@ align(clearItems) {
 </div>
 
 
-### 推荐 使用 `lowerCamelCase` 来命名常量。
+### **推荐** 使用 `lowerCamelCase` 来命名常量。
 
 在新的代码中使用 `lowerCamelCase` 来命名常量，包括枚举的值。
 在已有的代码中你可以继续使用 `SCREAMING_CAPS` 风格来保持
@@ -191,7 +191,7 @@ class Dice {
 </aside>
 
 
-### 要 把超过两个字母的缩略词和首字母缩略词当做一般单词来对待。
+### **要** 把超过两个字母的缩略词和首字母缩略词当做一般单词来对待。
 
 首字母缩略词都大写比较难以阅读，特别是多个首字母缩略词连在一起的时候。
 例如 `HTTPSFTPConnection`、这种情况下你根本不知道到底是
@@ -230,7 +230,7 @@ Db
 每个部分之间通过空行来分割。
 
 
-### 要 把 "dart:" 导入语句放到其他导入语句之前。
+### **要** 把 "dart:" 导入语句放到其他导入语句之前。
 
 <div class="good">
 {% prettify dart %}
@@ -243,7 +243,7 @@ import 'package:foo/foo.dart';
 </div>
 
 
-### 要 把 "package:" 导入语句放到相对导入语句之前。
+### **要** 把 "package:" 导入语句放到相对导入语句之前。
 
 <div class="good">
 {% prettify dart %}
@@ -255,7 +255,7 @@ import 'a.dart';
 </div>
 
 
-### 推荐 把"第三方" "package:" 导入语句放到其他语句之前。
+### **推荐** 把"第三方" "package:" 导入语句放到其他语句之前。
 
 如果你使用了多个 "package:" 导入语句来导入自己项目中的文件和第三方的文件，
 推荐把自己的导入语句和其他的导入语句使用空行分开。
@@ -271,7 +271,7 @@ import 'package:myapp/util.dart';
 </div>
 
 
-### 要 把导出（export）语句放到所有导入语句之后的部分。
+### **要** 把导出（export）语句放到所有导入语句之后的部分。
 
 <div class="good">
 {% prettify dart %}
@@ -291,7 +291,7 @@ import 'src/string_source.dart';
 </div>
 
 
-### 要 按照字母顺序来排序每个部分中的语句。
+### **要** 按照字母顺序来排序每个部分中的语句。
 
 大部分 IDE 都可以自动完成这个操作。
 
@@ -330,7 +330,7 @@ Dart 中官方的空格处理规则由
 
 [dartfmt]: https://github.com/dart-lang/dart_style
 
-### 避免 每行长度超过 80 字符。
+### **避免** 每行长度超过 80 字符。
 
 阅读研究表明长文本眼睛需要费力的追踪文字换行，比较难以阅读。
 这就是为何报纸纸张这么大，但是每页纸都分成很多短列来显示
@@ -351,7 +351,7 @@ Dart 中官方的空格处理规则由
 这样可以方便搜索某一个路径下的代码文件。
 
 
-### 要 在所有的控制结构上使用大括号。
+### **要** 在所有的控制结构上使用大括号。
 
 这样可以避免 [dangling else][] （悬挂else）的问题。
 
@@ -387,14 +387,14 @@ if (parameter == null) parameter = defaultValue;
 </div>
 
 
-### 要 使用 `dartfmt` 来格式化您的代码
+### **要** 使用 `dartfmt` 来格式化您的代码
 
 [dartfmt][] 自动使用下面所有的规则格式化代码，并且
 还有其他的一些微妙的情况。自动化比手工要快很多并且还不会出错。
 **如果你每次都使用 dartfmt 的话，下面的所有规则都不用阅读了。**
 
 
-### 不要 使用 tabs 。
+### **不要** 使用 tabs 。
 
 使用空格确保在所有的编辑器下代码看起来都是一致的。
 并且还可以确保把代码发布到网站、博客等地方看起来也是一致的，
@@ -404,7 +404,7 @@ if (parameter == null) parameter = defaultValue;
 可以帮你处理空格的一致性问题。
 
 
-### 要 在每个语句或者声明后面添加一个空行。
+### **要** 在每个语句或者声明后面添加一个空行。
 
 <div class="good">
 {% prettify dart %}
@@ -418,7 +418,7 @@ anotherDeclaration() { ... }
 </div>
 
 
-### 不要 在声明函数名字、操作符(operator)和 setter 以及参数名字之间添加空格。
+### **不要** 在声明函数名字、操作符(operator)和 setter 以及参数名字之间添加空格。
 
 <div class="good">
 {% prettify dart %}
@@ -429,7 +429,7 @@ set contents(value) { ... }
 </div>
 
 
-### 要 在关键字 `operator` 后面添加一个空格。
+### **要** 在关键字 `operator` 后面添加一个空格。
 
 <div class="good">
 {% prettify dart %}
@@ -438,7 +438,7 @@ bool operator ==(other) => ...;
 </div>
 
 
-### 要 在二元和三元操作符之间添加空格。
+### **要** 在二元和三元操作符之间添加空格。
 
 注意， `<` 和 `>` 在表达式中使用的时候被当做二元操作符，
 当作为泛型使用的时候不是。`is` 和 `is!` 都被当做一个二元操作符。
@@ -455,7 +455,7 @@ optional([parameter = defaultValue]) { ... }
 </div>
 
 
-### 要 在 `,` 和 `:` 后面添加空格，当用作 map 和命名参数的情况下。
+### **要** 在 `,` 和 `:` 后面添加空格，当用作 map 和命名参数的情况下。
 
 <div class="good">
 {% prettify dart %}
@@ -466,7 +466,7 @@ function(a, b, named: c);
 </div>
 
 
-### 不要 在一元操作符前后添加空格。
+### **不要** 在一元操作符前后添加空格。
 
 <div class="good">
 {% prettify dart %}
@@ -476,7 +476,7 @@ index++
 </div>
 
 
-### 要在 `in` 关键字前后添加空格，在循环中的每个 `;` 后面也要添加空格。
+### **要**在 `in` 关键字前后添加空格，在循环中的每个 `;` 后面也要添加空格。
 
 <div class="good">
 {% prettify dart %}
@@ -487,7 +487,7 @@ for (final item in collection) ...
 </div>
 
 
-### 要 在流程控制关键字后面使用一个空格。
+### **要** 在流程控制关键字后面使用一个空格。
 
 这条和函数以及方法调用不同，函数和方法调用
 *无需*在名字和括号之间添加空格。
@@ -505,7 +505,7 @@ try {
 </div>
 
 
-### 不要在 `(`, `[`, 和 `{` 之后使用空格，也不要在 `)`, `]`, 和 `}` 之前使用空格。
+### **不要**在 `(`, `[`, 和 `{` 之后使用空格，也不要在 `)`, `]`, 和 `}` 之前使用空格。
 
 当 `<` 和 `>` 用于泛型的时候也不要使用空格。
 
@@ -516,7 +516,7 @@ var numbers = <int>[1, 2, (3 + 4)];
 </div>
 
 
-### 要 在函数和方法体的 `{` 之前添加一个空格。
+### **要** 在函数和方法体的 `{` 之前添加一个空格。
 
 当 `{` 用于方法或者函数参数后，在和参数结尾的  `)` 之间
 应该添加一个空格。
@@ -530,7 +530,7 @@ getEmptyFn(a) {
 </div>
 
 
-### 要 把开始的大括号 (`{`) 放到同一行上。
+### **要** 把开始的大括号 (`{`) 放到同一行上。
 
 <div class="good">
 {% prettify dart %}
@@ -547,7 +547,7 @@ class Foo {
 </div>
 
 
-### 要 把二元符合放到多行表达式的前面一行的结尾。
+### **要** 把二元符合放到多行表达式的前面一行的结尾。
 
 虽然使用哪种风格都可以，但是为了统一性，我们通常使用
 这种方式。
@@ -564,7 +564,7 @@ bobLikes() =>
 </div>
 
 
-### 要 把三元操作符放到多个表达式的下一行开始位置。
+### **要** 把三元操作符放到多个表达式的下一行开始位置。
 
 如果你在其中一个操作符之前分行，请在另外一个操作符之前也分行。
 
@@ -577,7 +577,7 @@ return someCondition
 </div>
 
 
-### 要 把 `.` 放到下一行开头当表达式换行的时候。
+### **要** 把 `.` 放到下一行开头当表达式换行的时候。
 
 <div class="good">
 {% prettify dart %}
@@ -587,7 +587,7 @@ someVeryLongVariable.withAVeryLongProperty
 </div>
 
 
-### 要 把构造函数初始化列表中的每个参数和值都放到同一行。
+### **要** 把构造函数初始化列表中的每个参数和值都放到同一行。
 
 <div class="good">
 {% prettify dart %}
@@ -605,7 +605,7 @@ MyClass()
 六个空格）。
 
 
-### 推荐 当无法在一行写完集合的时候，把每个元素都用集合定义的方式来表达。（PREFER splitting every element in a collection literal if it does not fit on one line.）
+### **推荐** 当无法在一行写完集合的时候，把每个元素都用集合定义的方式来表达。（PREFER splitting every element in a collection literal if it does not fit on one line.）
 
 在意味着在开始的括号之后和关闭括号之前以及每个
 元素之后的 `,`。
@@ -626,7 +626,7 @@ mapInsideList([
 </div>
 
 
-### 要 用两个空格来缩进代码块和集合体。
+### **要** 用两个空格来缩进代码块和集合体。
 
 <div class="good">
 {% prettify dart %}
@@ -643,7 +643,7 @@ if (condition) {
 </div>
 
 
-### 要 缩进 switch case 两个空格， case 体四个空格。
+### **要** 缩进 switch case 两个空格， case 体四个空格。
 
 <div class="good">
 {% prettify dart %}
@@ -660,7 +660,7 @@ switch (fruit) {
 </div>
 
 
-### 要 只少使用两个空格来缩进多行函数级联调用。
+### **要** 只少使用两个空格来缩进多行函数级联调用。
 
 <div class="good">
 {% prettify dart %}
@@ -672,7 +672,7 @@ buffer
 </div>
 
 
-### 推荐 使用四个空格来缩进同一行的换行。
+### **推荐** 使用四个空格来缩进同一行的换行。
 
 <div class="good">
 {% prettify dart %}
