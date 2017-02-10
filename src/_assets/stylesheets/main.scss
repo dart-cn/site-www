@@ -793,7 +793,7 @@ main .content {
   margin-bottom: 11px;
   @extend .alert-success;
   &:after {
-    content: 'good';
+    content: '好的范例';
     display: inline-block;
     position: absolute;
     top: 10px;
@@ -831,7 +831,7 @@ main .content {
   margin-bottom: 11px;
   @extend .alert-danger;
   &:after {
-    content: 'bad';
+    content: '坏的范例';
     display: inline-block;
     position: absolute;
     top: 10px;
