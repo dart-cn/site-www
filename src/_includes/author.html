@@ -9,12 +9,15 @@
         {% if page.author.twitter %}
           <li><a href="http://twitter.com/{{ page.author.twitter }}">@{{ page.author.twitter }}</a></li>
         {% endif %}
+        {% if page.author.weibo %}
+          <li><a href="http://weibo.com/{{ page.author.weibo }}">@{{ page.author.weibo }}</a></li>
+        {% endif %}
       </ul>
     </section>
   {% endif %}
 
   <section class="author-bio">
-    <h2>Bio</h2>
+    <h2>简介</h2>
     {{ bio }}
   </section>
 

@@ -28,4 +28,14 @@ Check out the following Dart language resources:
     <h3><a href="/resources/authors">Authors</a></h3>
     <p>Bios for some of the authors who have contributed to this site.</p>
   </div>
+
+  <div class="card">
+    <h3><a href="/resources/translators">翻译人员</a></h3>
+    <p>参与本站中文翻译人员介绍。</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="/resources/translators/join">如何参与翻译本网站</a></h3>
+    <p>如何参与翻译 Dart 资料以及如何开始翻译。</p>
+  </div>
 </div>
