@@ -1,21 +1,21 @@
 ---
 layout: guide
-title: "Effective Dart: Documentation"
-description: "Clear, helpful comments and documentation."
+title: "Effective Dart: 文档"
+description: "清晰的、有帮助的注释和文档。"
 
 nextpage:
   url: /guides/language/effective-dart/usage
-  title: "Usage"
+  title: "最佳实践"
 prevpage:
   url: /guides/language/effective-dart/style
-  title: "Style"
+  title: "代码风格"
 ---
 
-It's easy to think your code is obvious today without realizing how much you
-rely on context already in your head. People new to your code, and
-even your forgetful future self won't have that context. A concise, accurate
-comment only takes a few seconds to write but can save one of those people
-hours of time.
+如果您已经知道了代码的上下文信息，则更容易理解代码。
+但是当新手阅读您的代码或者很久以后您再次阅读您的代码，
+代码的上下文信息可能已经不记得了。编写精炼的、准确的注释
+只需要几秒钟，但是以后可能节省其他人几个小时
+的时间来读懂您的代码。
 
 We all know code should be self-documenting and not all comments are helpful.
 But the reality is that most of us don't write as many comments as we should.
