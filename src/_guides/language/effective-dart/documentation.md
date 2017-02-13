@@ -17,20 +17,20 @@ prevpage:
 只需要几秒钟，但是以后可能节省其他人几个小时
 的时间来读懂您的代码。
 
-We all know code should be self-documenting and not all comments are helpful.
-But the reality is that most of us don't write as many comments as we should.
-It's like exercise: you technically *can* do too much, but it's a lot more
-likely that you're doing too little. Try to step it up.
+我们已经知道代码应该自我说明（代码就是最好的文档）并且并非所有的注释都是有用的。
+但是，真实情况是大家都把应该写的评论给省略了。
+和练习一样：从技术上你**可以**做很多，但是实际上你
+只做了一点点。尝试着逐步提高。
 
 * TOC
 {:toc}
 
-## Comments
+## 注释
 
-The following tips apply to comments that you don't want included in the
-generated documentation.
+下面的说明应用于不包含在生成的
+代码文档中的注释。
 
-### DO format comments like sentences.
+### **要** 按照句子的格式来格式化评论。
 
 <div class="good">
 {% prettify dart %}
@@ -39,11 +39,11 @@ if (_chunks.isEmpty) return false;
 {% endprettify %}
 </div>
 
-Capitalize the first word unless it's a case-sensitive identifier. End it with a
-period (or "!" or "?", I suppose). This is true for all comments: doc comments,
-inline stuff, even TODOs. Even if it's a sentence fragment.
+如果第一个单词不是大小写相关的标识符，则首字母要大写。使用标点符号结尾
+（句号、感叹号、问号）。对于所有的注释都是这样要求的：文档注释、
+行内注释、甚至 TODO 注释。即使是一句话的一半也需要如此。
 
-### DON'T use block comments for documentation.
+### **不要** 使用块注释作为解释说明。
 
 <div class="good">
 {% prettify dart %}
@@ -63,22 +63,22 @@ greet(name) {
 {% endprettify %}
 </div>
 
-You can use a block comment (`/* ... */`) to temporarily comment out a section
-of code, but all other comments should use `//`.
+你可以使用块注释 (`/* ... */`) 来临时的注释掉一些代码，
+但是其他的所有注释都应该使用 `//`。
 
-## Doc comments
+## 文档注释
 
-Doc comments are especially handy because [dartdoc][] parses them and generates
-[beautiful doc pages][docs] from them. A doc comment is any comment that appears
-before a declaration and uses the special `///` syntax that dartdoc looks for.
+文档注释非常有用，[dartdoc][] 解析这些注释并生成
+[漂亮的文档网页][docs] 。出现在定义语句（变量定义、函数声明、类定义 等）之前并且使用
+ `///` 语法的都是文档注释。
 
 [dartdoc]: https://github.com/dart-lang/dartdoc
 [docs]: {{site.dart_api}}
 
-### DO use `///` doc comments to document members and types.
+### **要** 使用 `///` 文档注释来注释成员和类型。
 
-Using a doc comment instead of a regular comment enables [dartdoc][] to find it
-and generate documentation for it.
+使用文档注释可以让 [dartdoc][] 来为你生成
+代码 API 文档。
 
 <div class="good">
 {% prettify dart %}
@@ -94,30 +94,30 @@ int get length => ...
 {% endprettify %}
 </div>
 
-For historical reasons, dartdoc supports two syntaxes of doc comments: `///`
-("C# style") and `/** ... */` ("JavaDoc style"). We prefer `///` because it's
-more compact. `/**` and `*/` add two content-free lines to a multiline doc
-comment. The `///` syntax is also easier to read in some situations, such as
-when a doc comment contains a bulleted list that uses `*` to mark list items.
+由于历史原因，dartdoc 支持两种格式的文档注释：
+`///` ("C# 格式") 和 `/** ... */` ("JavaDoc 格式")。我们推荐使用 `///` 
+是因为其更加简洁。`/**` 和 `*/` 在多行注释中间添加了开头和结尾的两行多余
+内容。 `///` 在一些情况下也更加易于阅读，例如
+当注释文档中包含有使用 `*` 标记的列表内容的时候。
 
-If you stumble onto code that still uses the JavaDoc style, consider cleaning it
-up.
+如果你现在还在使用 JavaDoc 风格格式，请考虑
+使用新的格式。
 
-### PREFER writing doc comments for public APIs.
+### **推荐** 为公开发布的 API 编写注释文档。
 
-You don't have to document every single top-level variable, type, and member,
-but you should document most of them.
+你没必要为所有顶级的变量、类型、成员 都提供注释文档，但是
+对于公开的成员则应该提供注释文档。
 
-### CONSIDER writing doc comments for private APIs.
+### **考虑** 为私有 API 编写注释文档。
 
-Doc comments aren't just for external consumers of your library's public API.
-They can also be helpful for understanding private members that are called from
-other parts of the library.
+文档不仅仅为了使用你的类的用户所编写。
+也可以用来帮助理解你的类是如何调用其他
+类的。
 
-### DO make the first sentence a standalone paragraph.
+### **要** 把第一个语句定义为一个段落。
 
-The first paragraph of any doc comment is a brief, user-oriented description
-ending with a period. As you can see below, it is often not a complete sentence.
+注释文档中的第一个段落应该是简洁的、面向用户的注释。例如下面的示例，
+通常不是一个完成的语句。
 
 <div class="good">
 {% prettify dart %}
@@ -137,13 +137,13 @@ ChunkBuilder startBlock() { ... }
 {% endprettify %}
 </div>
 
-The description should help the reader understand whether this API might
-be useful to them, compared to similar-sounding APIs. Don't just repeat the API
-name&mdash;tell the reader something they don't already know.
+描述部分应该告诉读者这个 API 可以提供哪些功能，和类似的 API 标示
+其区别。不要只是
+重复 API 的名字，要告诉读者一些他们不知道的信息。
 
-### PREFER starting function or method comments with third-person verbs.
+### **推荐** 用第三人称来开始函数或者方法的文档注释。
 
-The doc comment should focus on what the code *does*.
+注释应该关注于代码 *所实现的* 功能。
 
 <div class="good">
 {% prettify dart %}
@@ -155,11 +155,11 @@ void start() { ... }
 {% endprettify %}
 </div>
 
-### PREFER starting variable, getter, or setter comments with noun phrases.
+### **推荐** 使用名词短语来开始变量、getter、setter 的注释。
 
-The doc comment should stress what the property *is*. This is true even for
-getters which may do calculation or other work. What the caller cares about is
-the *result* of that work, not the work itself.
+注释文档应该表述这个属性*是*什么。虽然 getter 函数会做些计算，
+ 但是也要求这样，调用者关心的是其*结果*而
+ 不是如何计算的。
 
 <div class="good">
 {% prettify dart %}
@@ -171,15 +171,15 @@ int get checkedCount { ... }
 {% endprettify %}
 </div>
 
-If there's both a setter and a getter, comment only the getter. That way,
-dartdoc will treat it like a variable.
+如果同时有 getter 和 setter，只需要在 getter 上添加注释。
+这样 dartdoc 会按照变量来对待 getter 和 setter。
 
-### PREFER starting library or type comments with noun phrases.
+### **推荐** 使用名词短语来开始库和类型注释。
 
-Doc comments for classes are often the most important documentation in your
-program. They describe the type's invariants, establish the terminology it uses,
-and provide context to the other doc comments for the class's members. A little
-extra effort here can make all of the other members simpler to document.
+在程序中，类的注释通常是最重要的文档。
+类的注释描述了类型的不变性、介绍其使用的术语、
+提供类成员使用的上下文信息。为类提供一些注释可以让
+其他类成员的注释更易于理解和编写。
 
 <div class="good">
 {% prettify dart %}
@@ -190,7 +190,7 @@ class Chunk { ... }
 {% endprettify %}
 </div>
 
-### CONSIDER including code samples in doc comments.
+### **考虑** 在文档注释中添加示例代码。
 
 <div class="good">
 {% prettify dart %}
@@ -201,13 +201,13 @@ num min(num a, num b) { ... }
 {% endprettify %}
 </div>
 
-Humans are great at generalizing from examples, so even a single code sample
-makes an API easier to learn.
+人类非常擅长从示例中抽象出实质内容，所以即使提供
+一行最简单的示例代码都可以让 API 更易于理解。
 
-### DO use square brackets in doc comments to refer to in-scope identifiers.
+### **要** 使用方括号在文档注释中引用作用域内的标识符。
 
-If you surround things like variable, method, or type names in square brackets,
-then dartdoc will look up the name and link to its docs.
+如果把变量、函数、类型名字放到方括号里面，则 dartdoc
+在生成文档的时候会链接到这些成员。
 
 <div class="good">
 {% prettify none %}
@@ -217,7 +217,7 @@ similar to [anotherMethod], but ...
 {% endprettify %}
 </div>
 
-You can also link to constructors using `new` followed by the constructor:
+在标识符前面添加 new 关键字可以链接构造函数。
 
 <div class="good">
 {% prettify none %}
@@ -225,10 +225,10 @@ To create a point, call [new Point] or use [new Point.polar] to ...
 {% endprettify %}
 </div>
 
-### DO use prose to explain parameters, return values, and exceptions.
+### **要** 使用散文的方式来描述参数、返回值以及异常信息。
 
-Other languages use verbose tags and sections to describe what the parameters
-and returns of a method are.
+其他语言使用各种标签和额外的注释来描述参数和
+返回值。
 
 <div class="bad">
 {% prettify dart %}
@@ -243,8 +243,8 @@ Flag addFlag(String name, String abbr) { ... }
 {% endprettify %}
 </div>
 
-The convention in Dart is to integrate that into the description of the method
-and highlight parameters using square brackets.
+而 Dart 把参数、返回值等描述放到文档注释中，并使用方括号来引用
+以及高亮这些参数和返回值。
 
 <div class="good">
 {% prettify dart %}
@@ -256,15 +256,15 @@ Flag addFlag(String name, String abbr) { ... }
 {% endprettify %}
 </div>
 
-### AVOID redundantly mentioning types in doc comments.
+### **避免** 在注释文档中提供冗余的类型信息。
 
-Users reading your doc comments can also see the type, return type, parameter
-types, etc. of the construct you're documenting. Dartdoc already provides links
-to them. There's no need to also state the type in the prose.
+用户在阅读文档注释的时候可以查看类型、返回值类型以及参数类型。并且在文档中
+还可以跳转到变量的定义地方。所以
+根本没必要在注释中加上额外的类型信息。
 
-Tell the reader something they *don't* already know.
+要告诉读者他们 *不知道* 的信息。
 
-### DO put doc comments before metadata annotations.
+### **要** 把注释文档放到注解之前。
 
 <div class="good">
 {% prettify dart %}
@@ -285,15 +285,15 @@ oldMethod();
 
 ## Markdown
 
-You are allowed to use most [markdown][] formatting in your doc comments and
-dartdoc will process it accordingly using the [markdown package][].
+在注释文档中可以使用大部分 [markdown][] 格式，
+dartdoc 会使用 [markdown package][] 来格式化这些内容。
 
 [markdown]: https://daringfireball.net/projects/markdown/
 [markdown package]: https://pub.dartlang.org/packages/markdown
 
-There are tons of guides out there already to introduce you to Markdown. Its
-universal popularity is why we chose it. Here's just a quick example to give you
-a flavor of what's supported:
+现在到处都有介绍 Markdown 的文档，以及到处都是使用
+Markdown。所以我们选择了支持它。
+下面是一个 Markdown 语法的快速预览。
 
 {% prettify dart %}
 /// This is a paragraph of regular text.
@@ -339,42 +339,41 @@ a flavor of what's supported:
 /// #### If you need this many levels of headers, you're doing it wrong
 {% endprettify %}
 
-### AVOID using markdown excessively.
+### **避免** 过度使用 markdown。
 
-When in doubt, format less. Formatting exists to illuminate your content, not
-replace it. Words are what matters.
+当你不确定的时候，就不要使用文字格式。文字格式是为了更好的表达你的意图，
+而不是替代你的文字内容。 文字内容才是最重要的。
 
-### AVOID using HTML for formatting.
+### **避免** 使用 HTML 来格式化文字。
 
-It *may* be useful to use it in rare cases for things like tables, but in almost
-all cases, if it's too complex too express in Markdown, you're better off not
-expressing it.
+在极少数情况下使用HTML *可能是* 有用的。比如显示表格。但是在大部分
+ 情况下都没必要使用它。和 Markdown 相比太复杂了，最好
+ 不要使用 HTML。
 
-## Writing
+## 如何写注释
 
-We think of ourselves as programmers, but most of the characters in a source
-file are intended primarily for humans to read. English is the language we code
-in to modify the brains of our coworkers. As for any programming language, it's
-worth putting effort into improving your proficiency.
+虽然我们认为我们是程序员，但是大部分情况下源代码中的内容都是为了
+让人类更易于阅读和理解代码。对于
+任何编程语言，都值得
+努力练习来提高您的熟练程度。
 
-This section lists a few guidelines for our docs. You can learn more about
-best practices for technical writing, in general, from articles such as
-[Technical writing style](https://en.wikiversity.org/wiki/Technical_writing_style).
+下面列举了一些编写文档的指导原则。在
+[技术写作风格](https://en.wikiversity.org/wiki/Technical_writing_style) 中你可以了解
+技术写作的最佳实践。
 
-### PREFER brevity.
+### **推荐** 简洁.
 
-Be clear and precise, but also terse.
+要清晰和准确，同时还要简洁。
 
-### AVOID abbreviations and acronyms unless they are obvious.
+### **避免** 缩写和首字母缩略词（非常流行的除外）。
 
-Many people don't know what "i.e.", "e.g." and "et. al." mean. That acronym
-that you're sure everyone in your field knows may not be as widely known as you
-think.
+大部分人都不知道 "i.e."、 "e.g." 和 "et. al." 的意思。你所在领域的
+首字母缩略词对于其他人可能并不了解。
 
-### PREFER using "this" instead of "the" to refer to a member's instance.
+### **推荐** 使用 "this" 而不是 "the" 来引用实例成员。
 
-When documenting a member for a class, you often need to refer back to the
-object the member is being called on. Using "the" can be ambiguous.
+当提及到类的成员，通常是指被调用的对象实例的成员。
+使用 "the" 可能会导致混淆。
 
 <div class="good">
 {% prettify dart %}

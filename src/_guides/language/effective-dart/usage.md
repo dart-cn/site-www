@@ -1,34 +1,34 @@
 ---
 layout: guide
-title: "Effective Dart: Usage"
-description: "Guidelines for using language features to write maintainable code."
+title: "Effective Dart: 最佳实践"
+description: "使用语言特性来编写可维护代码的指导手册。"
 
 nextpage:
   url: /guides/language/effective-dart/design
-  title: "Design"
+  title: "设计"
 prevpage:
   url: /guides/language/effective-dart/documentation
-  title: "Documentation"
+  title: "文档"
 ---
 
-This is the most "blue-collar" guide in Effective Dart. You'll apply the
-guidelines here every day in the bodies of your Dart code. *Users* of your
-library may not be able to tell that you've internalized the ideas here, but
-*maintainers* of it sure will.
+这部分是 Effective Dart 中最重要的内容。
+在你的 Dart 代码中会一直使用这些指导原则。
+使用你编写的库的*用户*可能不太注意到其中的问题，
+但是*维护*你类库的人一定会发现其中的问题。
 
 * TOC
 {:toc}
 
 ## Strings
 
-Here are some best practices to keep in mind when composing strings in Dart.
+下面是 Dart 语言中和字符串相关的一些最佳实践。
 
-### DO use adjacent strings to concatenate string literals.
+### **要** 使用相邻的字符串字面量定义来链接字符串。
 
-If you have two string literals&mdash;not values, but the actual quoted literal
-form&mdash;you do not need to use `+` to concatenate them. Just like in C and
-C++, simply placing them next to each other does it. This is a good way to make
-a single long string that doesn't fit on one line.
+如果有两个字符串字面量定义&mdash;不是变量，而是实际的放到引号内的字符串
+&mdash;你不用使用 `+` 来链接字符串。和 C 以及
+C++ 一样，只要把他们放到一起即可。
+ 这种方式非常适合比较长的字符串定义，不能放到一行的情况。
 
 <div class="good">
 {% prettify dart %}
@@ -46,11 +46,11 @@ raiseAlarm(
 {% endprettify %}
 </div>
 
-### PREFER using interpolation to compose strings and values.
+### **推荐** 使用插值的形式来组合字符串和值。
 
-If you're coming from other languages, you're used to using long chains of `+`
-to build a string out of literals and other values. That does work in Dart, but
-it's almost always cleaner and shorter to use interpolation:
+如果你之前使用过其他语言，可能会遇到使用大量 `+` 来组合字符串的情况。
+这种情况在 Dart 中也可以使用，但是使用字符串插值会让代码看起来
+更加简洁和简短。
 
 <div class="good">
 {% prettify dart %}
@@ -64,10 +64,10 @@ it's almost always cleaner and shorter to use interpolation:
 {% endprettify %}
 </div>
 
-### AVOID using curly braces in interpolation when not needed.
+### **避免** 在字符串插值中使用多余的大括号。
 
-If you're interpolating a simple identifier not immediately followed by more
-alphanumeric text, the `{}` should be omitted.
+如果求值的只是一个简单的变量，并且后面没有紧跟随在其他字母文本，
+则 `{}` 应该省略。
 
 <div class="good">
 {% prettify dart %}
@@ -84,21 +84,21 @@ alphanumeric text, the `{}` should be omitted.
 {% endprettify %}
 </div>
 
-## Collections
+## 集合
 
-Out of the box, Dart supports four collection types: lists, maps, queues, and sets.
-The following best practices apply to collections.
+Dart 天生支持四种集合类型： lists、 maps、 queues、 和 sets。
+下面的最佳实践是针对集合的。
 
-### DO use collection literals when possible.
+### **要** 尽可能的使用集合字面量来定义集合。
 
-There are two ways to make an empty growable list: `[]` and `new List()`.
-Likewise, there are three ways to make an empty linked hash map: `{}`, `new
-Map()`, and `new LinkedHashMap()`.
+有两种方式可以定义一个空的可变的 list：`[]` 和 `new List()`。
+类似的，有三种方式可以定义一个空的 linked hash map： `{}`、 `new
+Map()`、 和 `new LinkedHashMap()`。
 
-If you want to create a non-growable list, or some other custom collection type
-then, by all means, use a constructor. Otherwise, use the nice literal syntax.
-The core library exposes those constructors to ease adoption, but idiomatic Dart
-code does not use them.
+如果你想创建一个不可变的 list，或者其他自定义类型的集合，你可以使用构造函数。
+否则，使用优雅的字面量语法更加合理。
+核心库中暴露这些构造函数易于扩展，但是通常在 Dart 代码
+中并不使用构造函数。
 
 <div class="good">
 {% prettify dart %}
@@ -114,7 +114,7 @@ var addresses = new Map();
 {% endprettify %}
 </div>
 
-You can even provide a type argument for them if that matters.
+如果有必要还可以提供泛型类型。
 
 <div class="good">
 {% prettify dart %}
@@ -130,21 +130,21 @@ var addresses = new Map<String, Address>();
 {% endprettify %}
 </div>
 
-Note that this doesn't apply to the *named* constructors for those classes.
-`List.from()`, `Map.fromIterable()`, and friends all have their uses. Likewise,
-if you're passing a size to `new List()` to create a non-growable one, then it
-makes sense to use that.
+对于集合类的 *命名* 构造函数则不适用上面的规则。
+`List.from()`、 `Map.fromIterable()` 都有其使用场景。 
+如果需要一个固定长度的结合，
+使用 `new List()` 来创建一个固定长度的 list 也是合理的。
 
-### DON'T use `.length` to see if a collection is empty.
+### **不要** 使用 `.length` 来判断集合是否为空。
 
-The [Iterable][] contract does not require that a collection know its length or
-be able to provide it in constant time. Calling `.length` just to see if the
-collection contains *anything* can be painfully slow.
+[Iterable][] 锲约并不要求集合知道其长度，也没要求
+ 在遍历的时候其长度不能改变。通过调用 `.length`  来判断
+ 集合是否包含内容是非常低效率的。
 
 [iterable]: {{site.dart_api}}/dart-core/Iterable-class.html
 
-Instead, there are faster and more readable getters: `.isEmpty` and
-`.isNotEmpty`. Use the one that doesn't require you to negate the result.
+相反，Dart 提供了更加高效率和易用的 getter 函数：
+`.isEmpty` 和`.isNotEmpty`。使用这些函数并不需要对结果再次取非。
 
 <div class="good">
 {% prettify dart %}
@@ -160,14 +160,14 @@ if (!words.isEmpty) return words.join(' ');
 {% endprettify %}
 </div>
 
-### CONSIDER using higher-order methods to transform a sequence.
+### **考虑** 使用高阶（higher-order）函数来转换集合数据。
 
-If you have a collection and want to produce a new modified collection from it,
-it's often shorter and more declarative to use `.map()`, `.where()`, and the
-other handy methods on `Iterable`.
+如果你有一个集合并且想要修改里面的内容转换为另外一个集合，
+使用 `.map()`、 `.where()` 以及 `Iterable` 提供的其他函数会
+让代码更加简洁。
 
-Using those instead of an imperative `for` loop makes it clear that your intent
-is to produce a new sequence and not to produce side effects.
+使用这些函数替代 `for` 循环会让代码更加可以表述你的意图，
+生成一个新的集合系列并不具有副作用。
 
 <div class="good">
 {% prettify dart %}
@@ -177,15 +177,15 @@ var aquaticNames = animals
 {% endprettify %}
 </div>
 
-At the same time, this can be taken too far. If you are chaining or nesting
-many higher-order methods, it may be clearer to write a chunk of imperative
-code.
+如果你串联或者嵌套调用很多高阶函数，则使用
+一些命令式代码可能会
+更加清晰。
 
-### AVOID using `Iterable.forEach()` with a function literal.
+### **避免** 在 `Iterable.forEach()` 中使用函数声明形式。
 
-`forEach()` functions are widely used in JavaScript because the built in
-`for-in` loop doesn't do what you usually want. In Dart, if you want to iterate
-over a sequence, the idiomatic way to do that is using a loop.
+`forEach()` 方法通常在 JavaScript 中使用，原因是系统内置的 `for-in` 
+ 循环并不能提供期望的结果。
+ 相反，在 Dart 中如果需要遍历一个集合，通常使用循环语句。
 
 <div class="good">
 {% prettify dart %}
@@ -203,8 +203,8 @@ people.forEach((person) {
 {% endprettify %}
 </div>
 
-The exception is if all you want to do is invoke some already existing function
-on each element. In that case, `forEach()` is handy.
+如果你只想在每个集合元素上调用一个已经定义好的函数，则可以使用
+`forEach()` 函数。
 
 <div class="good">
 {% prettify dart %}
@@ -212,20 +212,20 @@ people.forEach(print);
 {% endprettify %}
 </div>
 
-## Functions
+## 方法(Functions)
 
-In Dart, even functions are objects. Here are some best practices
-involving functions.
+在 Dart 中，方法都是对象。下面是关于调用方法的
+一些最佳实践。
 
-### DO use a function declaration to bind a function to a name.
+### **要** 用方法声明的形式来给方法起个名字。
 
-Modern languages have realized how useful local nested functions and closures
-are. It's common to have a function defined inside another one. In many cases,
-this function is used as a callback immediately and doesn't need a name. A
-function expression is great for that.
+现代的编程语言都意识到局部嵌套方法以及闭包是非常有用的。
+通常是在一个方法中定义另外一个方法。在大部分情况下，
+这些嵌套的方法都用作回调函数并且不需要名字。
+一个方法表达式非常擅长这种情况。
 
-But, if you do need to give it a name, use a function declaration statement
-instead of binding a lambda to a variable.
+但是，如果你确实需要给方法一个名字，请使用方法定义而不是把
+lambda 赋值给一个变量。
 
 <div class="good">
 {% prettify dart %}
@@ -247,14 +247,14 @@ void main() {
 {% endprettify %}
 </div>
 
-### DON'T create a lambda when a tear-off will do.
+### **不要** 使用 lambda 表达式来替代 tear-off。
 
-If you refer to a method on an object but omit the parentheses, Dart gives you
-a "tear-off"&mdash;a closure that takes the same parameters as the method and
-invokes it when you call it.
+如果你在一个对象上调用函数并省略了括号， Dart 称之为
+ "tear-off"&mdash;一个和函数使用同样参数的闭包，当你调用他的时候就执行
+ 这个函数。
 
-If you have a function that invokes a method with the same arguments as are
-passed to it, you don't need to manually wrap the call in a lambda.
+如果你有一个方法使用该方法同样的参数调用一个函数，
+你无需手工的把该函数调用包装为一个 lambda 表达式。
 
 <div class="good">
 {% prettify dart %}
@@ -270,16 +270,16 @@ names.forEach((name) {
 {% endprettify %}
 </div>
 
-## Variables
+## 变量
 
-The following best practices describe how to best use variables in Dart.
+下面的最佳实践是关于如何在 Dart 中使用变量的。
 
-### DON'T explicitly initialize variables to `null`.
+### **不要** 显式的把变量初始化为 `null`。
 
-In Dart, a variable or field that is not explicitly initialized automatically
-gets initialized to `null`. This is reliably specified by the language. There's
-no concept of "uninitialized memory" in Dart. Adding `= null` is redundant and
-unneeded.
+在 Dart 中没有初始化的变量和域会自动的
+初始化为 `null`。在语言基本就保证了该行为的可靠性。
+在 Dart 中没有 “未初始化的内存”这个概念。所以添加 
+`= null` 是多余的。
 
 <div class="good">
 {% prettify dart %}
@@ -316,11 +316,11 @@ class LazyId {
 </div>
 
 
-### AVOID storing what you can calculate.
+### **避免** 保存可以计算的结果。
 
-When designing a class, you often want to expose multiple views into the same
-underlying state. Often you see code that calculates all of those views in the
-constructor and then stores them:
+在设计类的时候，你常常希望暴露底层状态的多个表现属性。
+常常你会发现在类的构造函数中计算这些属性，然后保存
+起来：
 
 <div class="bad">
 {% prettify dart %}
@@ -337,18 +337,17 @@ class Circle {
 {% endprettify %}
 </div>
 
-This code has two things wrong with it. First, it's likely wasting memory. The
-area and circumference, strictly speaking, are *caches*. They are stored
-calculations that we could recalculate from other data we already have. They are
-trading increased memory for reduced CPU usage. Do we know we have a performance
-problem that merits that trade-off?
+上面的代码有两个不妥之处。首先，浪费了内存。
+严格来说 面积和周长 是*缓存*对象。他们保存的结果
+可以通过已知的数据计算出来。他们主要用来减少 CPU 消耗而增加了内存消耗。
+我们是否知道这里有一个需要权衡的性能问题？
 
-Worse, the code is *wrong*. The problem with caches is *invalidation*&mdash;how
-do you know when the cache is out of date and needs to be recalculated? Here, we
-never do, even though `radius` is mutable. You can assign a different value and
-the `area` and `circumference` will retain their previous, now incorrect values.
+更坏的情况是，上面的代码是 *错的*。上面的缓存是 *无效的*&mdash;你如何
+知道何时缓存失效了需要重新计算？这里我们无从得知，
+但是 `radius`  确是可变的。你可以给 `radius`  设置一个不同的值，但是
+ `area` 和 `circumference` 还是之前的值。
 
-To correctly handle cache invalidation, we need to do this:
+为了避免缓存失效，我们需要这样做：
 
 <div class="bad">
 {% prettify dart %}
@@ -378,8 +377,8 @@ class Circle {
 {% endprettify %}
 </div>
 
-That's an awful lot of code to write, maintain, debug, and read. Instead, your
-first implementation should be:
+这需要编写、维护、调试以及阅读更多的代码。
+如果你一开始这样写代码：
 
 <div class="good">
 {% prettify dart %}
@@ -394,23 +393,23 @@ class Circle {
 {% endprettify %}
 </div>
 
-This code is shorter, uses less memory, and is less error-prone. It stores the
-minimal amount of data needed to represent the circle. There are no fields to
-get out of sync because there is only a single source of truth.
+上面的代码更加简洁、使用更少的内存、减少出错的可能性。只是
+保存了尽可能少的数据，这样无需更新缓存，因为就没有缓存，面积和周长
+是通过计算得来的。
 
-In some cases, you may need to cache the result of a slow calculation, but only
-do that after you know you have a performance problem, do it carefully, and
-leave a comment explaining the optimization.
+在某些情况下，当计算结果比较费时的时候可能需要缓存，但是只有当你发现
+这样引起性能问题的时候才去缓存它，并且仔细的考虑实现方式并留下
+对应的注释来解释你所做的优化。
 
 
-### CONSIDER omitting the types for local variables.
+### **考虑** 省略局部变量的类型。
 
-Method bodies in modern code tend to be short, and the types of local variables
-are almost always trivially inferrable from the initializing expression, so
-explicit type annotations are usually just visual noise.
+现代的代码趋势是保持函数体尽可能的短，而局部变量的类型
+通常都可以通过初始化语句推算出来，所以
+显式的定义局部变量类型通常都是制造视觉噪音。
 
-Dart comes with powerful static analysis tools that will infer the type of local
-variables and still provide the auto-complete and tooling support you expect.
+Dart 具有强大的静态分析工具，可以推断出局部变量的
+ 类型并且仍然可以提供代码自动补全以及你所期望的工具支持。
 
 <div class="good">
 {% prettify dart %}
@@ -439,23 +438,23 @@ Map<int, List<Person>> groupByZip(Iterable<Person> people) {
 </div>
 
 
-## Members
+## 成员
 
-In Dart, objects have members which can be functions (methods) or data (instance
-variables). The following best practices apply to an object's members.
+在 Dart 中， 对象的成员可以是 方法（函数）或者 数据（实例变量）。
+下面的最佳实践是关于对象成员的。
 
-### DON'T wrap a field in a getter and setter unnecessarily.
+### **不要** 创建没必要的 getter 和 setter。
 
-In Java and C#, it's common to hide all fields behind getters and setters (or
-properties in C#), even if the implementation just forwards to the field. That
-way, if you ever need to do more work in those members, you can without needing
-to touch the callsites. This is because calling a getter method is different
-than accessing a field in Java, and accessing a property isn't binary-compatible
-with accessing a raw field in C#.
+在Java 和 C# 中通常为了隐藏成员变量而使用一个空的
+  getter 和 setter 函数。
+ 如果你通过 getter 访
+ 问成员变量和
+ 直接访问成员
+ 变量是不一样的。
 
-Dart doesn't have this limitation. Fields and getters/setters are completely
-indistinguishable. You can expose a field in a class and later wrap it in a
-getter and setter without having to touch any code that uses that field.
+Dart 语言没有这种区别。 成员变量和 getter/setter 是完全一样的。
+你可以一开始暴露一个成员变量，以后再使用 getter 和 setter 来修改
+其相关的逻辑，而调用你类的代码不用做任何修改。
 
 <div class="good">
 {% prettify dart %}
@@ -478,10 +477,10 @@ class Box {
 </div>
 
 
-### PREFER using a `final` field to make a read-only property.
+### **推荐** 使用 `final` 关键字来限定只读属性。
 
-If you have a field that outside code should be able to see but not assign to, a
-simple solution that works in many cases is to simply mark it `final`.
+如果你有个变量其他人只能读取，
+而不能修改其值，最简单的做法就是使用 `final` 关键字来标记这个变量。
 
 <div class="good">
 {% prettify dart %}
@@ -500,16 +499,16 @@ class Box {
 {% endprettify %}
 </div>
 
-Of course, if you need to internally assign to the field outside of the
-constructor, you may need to do the "private field, public getter" pattern, but
-don't reach for that until you need to.
+当然了，如果你确实需要在构造函数以为内部赋值变量的值，
+你可以需要这种“私有成员变量，公开访问函数”的模式，
+但是，如非必要，请不要使用这种模式。
 
 
-### CONSIDER using `=>` for short members whose body is a single return statement.
+### **考虑** 用 `=>` 来实现只有一个单一返回语句的函数。
 
-In addition to using `=>` for function expressions, Dart also lets you define
-members with them. They are a good fit for simple members that just calculate
-and return a value.
+除了可以使用 `=>` 作为方法表达式以外， Dart 也允许使用其
+ 定义成员函数。对于简单的计算并返回的情况非常
+ 合适。
 
 <div class="good">
 {% prettify dart %}
@@ -519,23 +518,23 @@ containsValue(String value) => getValues().contains(value);
 {% endprettify %}
 </div>
 
-Members that don't fit on one line can still use `=>`, but if you find yourself
-cramming a single expression into several continued lines, it is probably
-cleaner to just use a curly body with an explicit `return`.
+虽然多行代码也可以使用 `=>`，但是为了
+表述的简洁，对于多行代码还是尽量使用
+普通的花括号函数体并使用明显的 `return` 语句。
 
-It's *not* a good idea to use this for `void` members. Readers expect `=>` to
-mean "returns a useful value", so even though it can be terse to use `=>` for
-a member that doesn't return anything, it's clearer to use `{ ... }`.
+对于 `void` 类型的成员则 *不是* 一种期望的使用场景。
+读者期望 `=>` 返回一个有用的值，所以对于没有返回值的情况，还是使用
+`{ ... }` 使代码更加清晰。
 
 
-### DON'T use `this.` when not needed to avoid shadowing.
+### **不要** 使用 `this.` ，除非遇到了变量冲突的情况。
 
-JavaScript requires an explicit `this.` to refer to members on the object whose
-method is currently being executed, but Dart&mdash;like C++, Java, and
-C#&mdash;doesn't have that limitation.
+JavaScript 需要使用 `this.` 来引用对象的成员变量，但是
+Dart&mdash;和 C++, Java, 以及
+C#&mdash;没有这种限制。
 
-The only time you need to use `this.` is when a local variable with the same
-name shadows the member you want to access.
+只有当局部变量和成员变量名字一样的时候，你才需要使用 `this.`
+ 来访问成员变量。
 
 <div class="bad">
 {% prettify dart %}
@@ -569,8 +568,8 @@ class Box {
 {% endprettify %}
 </div>
 
-Note that constructor parameters never shadow fields in constructor
-initialization lists:
+注意：构造函数参数在初始化参数列表中从来
+不会出现参数冲突的情况。
 
 <div class="good">
 {% prettify dart %}
@@ -585,15 +584,15 @@ class Box extends BaseBox {
 {% endprettify %}
 </div>
 
-This looks surprising, but works like you want. Fortunately, code like this is
-relatively rare thanks to initializing formals.
+上面的代码看起来有点奇怪，但是其是按照你期望的方式工作的。
+幸运的是，由于初始化规则的特殊性，上面的代码很少见到。
 
 
-### DO initialize fields at their declaration when possible.
+### **要** 尽可能的在定义变量的时候初始化其值。
 
-If a field doesn't depend on any constructor parameters, it can and should be
-initialized at its declaration. It takes less code and makes sure you won't
-forget to initialize it if the class has multiple constructors.
+如果一个变量不依赖于构造函数中的参数，则应该在定义
+变量的时候就初始化其值。这样可以减少需要的代码并可以确保
+在有多个构造函数的时候你不会忘记初始化该变量。
 
 <div class="bad">
 {% prettify dart %}
@@ -619,17 +618,17 @@ class Folder {
 {% endprettify %}
 </div>
 
-Of course, if a field depends on constructor parameters, or is initialized
-differently by different constructors, then this guideline does not apply.
+当然，对于变量取值依赖构造函数参数的情况以及
+不同的构造函数取值也不一样的情况，则不适合本条规则。
 
 
-## Constructors
+## 构造函数
 
-The following best practices apply to declaring constructors for a class.
+下面的最佳实践应用于类的构造函数
 
-### DO use initializing formals when possible.
+### **要** 尽可能的使用初始化形式。
 
-Many fields are initialized directly from a constructor parameter, like:
+很多变量都直接使用构造函数参数来初始化，例如：
 
 <div class="bad">
 {% prettify dart %}
@@ -643,7 +642,7 @@ class Point {
 {% endprettify %}
 </div>
 
-We've got to type `x` _four_ times here define a field. Lame. We can do better:
+为了初始化一个值，我们需要写四次 `x` 。我们可以做的更优雅：
 
 <div class="good">
 {% prettify dart %}
@@ -654,16 +653,17 @@ class Point {
 {% endprettify %}
 </div>
 
-This `this.` syntax before a constructor parameter is called an "initializing
-formal". You can't always take advantage of it. In particular, using it means
-the parameter is not visible in the initialization list. But, when you can, you
-should.
+这里的位于构造函数参数之前的 `this.` 语法被称之为
+初始化形式（initializing formal）。
+有些情况下这无法使用这种形式。特别是，这种形式下无法在
+初始化列表中看到变量。 如果能使用该方式就尽量
+使用吧。
 
 
-### DON'T type annotate initializing formals.
+### **不要** 在初始化形式上定义类型。
 
-If a constructor parameter is using `this.` to initialize a field, then the type
-of the parameter is understood to be the same type as the field.
+如果构造函数使用 `this.` 来初始化成员变量，则参数的类型
+一定是和变量的类型是一样的。
 
 <div class="good">
 {% prettify dart %}
@@ -684,10 +684,10 @@ class Point {
 </div>
 
 
-### DO use `;` instead of `{}` for empty constructor bodies.
+### **要** 用 `;` 来替代空函数体的构造函数 `{}`。
 
-In Dart, a constructor with an empty body can be terminated with just a
-semicolon. (In fact, it's required for const constructors.)
+在 Dart 中，没有具体函数体的构造函数可以使用分号结尾。
+（事实上，这是不可变构造函数的要求。）
 
 <div class="good">
 {% prettify dart %}
@@ -708,17 +708,18 @@ class Point {
 </div>
 
 
-### DO place the `super()` call last in a constructor initialization list.
+### **要** 把 `super()` 调用放到构造函数初始化列表之后调用。
 
-Field initializers are evaluated in the order that they appear in the
-constructor initialization list. If you place a `super()` call in the middle of
-an initializer list, the superclass's initializers will be evaluated right then
-before evaluating the rest of the subclass's initializers.
+成员变量初始化是按照他们出现在构造函数初始化列表的顺序来初始化的。
+如果你把 `super()` 调用放到初始化列表中间，则
+超类的变量初始化会在之类初始化完成之前
+调用。
 
-What it *doesn't* mean is that the superclass's *constructor body* is executed
-then. That always happens after all initializers are run regardless of where
-`super()` appears. Placing the `super()` elsewhere is confusing and almost never
-useful. In fact, [DDC][] *requires* that it appear last.
+但是这并不意味着超类的构造函数体就会执行。
+不管你在何处调用`super()` ，
+超类的构造函数只有在所有成员初始化完成后才会执行。
+把 `super()`  放到其他地方则只有让代码看起来比较费解。
+实际上，[DDC][] *要求*其出现在最后。 
 
 [ddc]: https://github.com/dart-lang/dev_compiler
 
@@ -739,31 +740,31 @@ View(Style style, List children)
 </div>
 
 
-## Error handling
+## 错误处理
 
-Dart uses exceptions when an error occurs in your program. The following
-best practices apply to catching and throwing exceptions.
+Dart 使用异常表示程序出现了错误。
+下面的最佳实践是关于如何捕获和抛出异常的。
 
-### AVOID catches without `on` clauses.
+### **避免** 使用没有 `on` 语句的 catch。
 
-A catch clause with no `on` qualifier catches *anything* thrown by the code in
-the try block. [Pokémon exception handling][pokemon] is very likely not what you
-want. Does your code correctly handle [StackOverflowError][] or
-[OutOfMemoryError][]? If you incorrectly pass the wrong argument to a method in
-that try block do you want to have your debugger point you to the mistake or
-would you rather that helpful [ArgumentError][] get swallowed? Do you want any
-`assert()` statements inside that code to effectively vanish since you're
-catching the thrown [AssertionError][]s?
+一个没有 `on` 限定的 catch 语句会捕获 try catch 快内的 *任何* 异常。
+ [Pokémon exception handling][pokemon] 不是你所希望的行为。
+你的代码是否正确的处理 [StackOverflowError][] 或者
+[OutOfMemoryError][] 异常了？如果你使用错误的参数调用函数，
+你是期望调试器定位出你的错误使用情况还是
+把这个有用的 [ArgumentError][] 给吞噬了？
+由于你捕获了 [AssertionError][] 异常，导致
+所有 try 块内的 `assert()` 语句都失效了，这是你需要的结果吗？
 
-The answer is probably "no", in which case you should filter the types you
-catch. In most cases, you should have an `on` clause that limits you to the
-kinds of runtime failures you are aware of and are correctly handling.
+答案和可能是 "no"，这种情况下你需要过滤捕获的列表。
+大部分情况下你都需要使用 `on` 来限定捕获的具体异常
+类型。
 
-In rare cases, you may wish to catch any runtime error. This is usually in
-framework or low-level code that tries to insulate arbitrary application code
-from causing problems. Even here, it is usually better to catch [Exception][]
-than to catch all types. Exception is the base class for all *runtime* errors
-and excludes errors that indicate *programmatic* bugs in the code.
+在极少数情况下，你可能希望捕获所有运行时异常。这通常用在框架中
+或者底层的代码中尝试隔离应用的代码
+来避免产生问题。即使如何，通常 catch [Exception][] 比 catch 所有异常要好。
+Exception 是所有 *运行时* 异常的基类，而不包含
+可能是代码中编码的 bug 的异常。
 
 [pokemon]: https://blog.codinghorror.com/new-programming-jargon/
 [StackOverflowError]: {{site.dart_api}}/dart-core/StackOverflowError-class.html
@@ -773,44 +774,45 @@ and excludes errors that indicate *programmatic* bugs in the code.
 [Exception]: {{site.dart_api}}/dart-core/Exception-class.html
 
 
-### DON'T discard errors from catches without `on` clauses.
+### **不要** 丢弃没有使用 `on` 语句捕获的异常。
 
-If you really do feel you need to catch *everything* that can be thrown from a
-region of code, *do something* with what you catch. Log it, display it to the
-user or rethrow it, but do not silently discard it.
-
-
-### DO throw objects that implement `Error` only for programmatic errors.
-
-The [Error][] class is the base class for *programmatic* errors. When an object
-of that type or one of its subinterfaces like [ArgumentError][] is thrown, it
-means there is a *bug* in your code. When your API wants to report to a caller
-that it is being used incorrectly throwing an Error sends that signal clearly.
-
-Conversely, if the exception is some kind of runtime failure that doesn't
-indicate a bug in the code, then throwing an Error is misleading. Instead, throw
-one of the core Exception classes or some other type.
+如果你真的期望捕获一段代码内的 *所有* 异常，请
+*在捕获异常的地方做些事情*。 记录下来并显示给用户，或者
+重新抛出（rethrow）异常信息，记得不要默默的丢弃该异常信息。
 
 
-### DON'T explicitly catch `Error` or types that implement it.
+### **要** 只在代表编程错误的情况下才抛出实现了 `Error` 的异常。
 
-This follows from the above. Since an Error indicates a bug in your code, it
-should unwind the entire callstack, halt the program, and print a stack trace so
-you can locate and fix the bug.
+[Error][] 类是所有 *编码* 错误的基类。当一个该类型或者其子
+类型 例如 [ArgumentError][] 对象被抛出了，这意味着是
+你代码中的一个 *bug*。当你的 API 想要告诉调用者使用错误的时候
+ 可以抛出一个 Error 来表明你的意图。
+
+同样的，如果一个异常表示为运行时异常而不是代码 bug， 则抛出 
+Error 则会误导调用者。
+应该抛出核心定义的 Exception 类
+或者其他类型。
+
+
+### **不要** 显示的捕获 `Error` 或者其子类。
+
+本条衔接上一天内容。既然 Error 表示代码中的 bug，则需要修复
+该问题而不是
+捕获该问题。
 
 [error]: {{site.dart_api}}/Error-class.html
 
-Catching errors of these types breaks that process and masks the bug. Instead of
-*adding* error-handling code to deal with this exception after the fact, go back
-and fix the code that is causing it to be thrown in the first place.
+捕获这类错误打破了处理流程并且代码中有 bug。
+不要在这里使用错误处理代码，而是需要到
+导致该错误出现的地方修复你的代码。
 
 
-### DO use `rethrow` to rethrow a caught exception.
+### **要** 使用 `rethrow` 来重新抛出捕获的异常。
 
-If you decide to rethrow an exception, prefer using the `rethrow` statement
-instead of throwing the same exception object using `throw`.
-`rethrow` preserves the original stack trace of the exception. `throw` on the
-other hand resets the stack trace to the last thrown position.
+如果你想重新抛出一个异常，推荐使用 `rethrow` 语句。
+`rethrow` 保留了原来的异常堆栈信息。 
+而 `throw` 会把异常堆栈信息
+重置为最后抛出的位置。
 
 <div class="bad">
 {% prettify dart %}
@@ -835,18 +837,18 @@ try {
 </div>
 
 
-## Asynchrony
+## 异步
 
-Dart has several language features to support asynchronous programming.
-The following best practices apply to asynchronous coding.
+Dart 具有几个语言特性来支持异步编程。
+下面的最佳实践是针对异步编程的。
 
-### PREFER async/await over using raw futures.
+### **推荐** 使用 async/await 而不是直接使用底层的特性。
 
-Explicit asynchronous code is notoriously hard to read and debug, even when
-using a nice abstraction like futures. This is why we added `async`/`await` to
-the language. They make a huge improvement in readability code and let you use
-all of the built-in control flow structures of the language within your
-asynchronous code.
+显式的异步代码是非常难以阅读和调试的，即使使用
+很好的抽象（比如 future）也是如此。这就是为何 Dart
+提供了 `async`/`await`。这样可以显著的提高代码的可读性并且让你可以在
+异步代码中使用
+语言提供的所有流程控制语句。
 
 <div class="good">
 {% prettify dart %}
@@ -875,11 +877,11 @@ Future<bool> doAsyncComputation() {
 {% endprettify %}
 </div>
 
-### DON'T use `async` when it has no useful effect.
+### **不要** 在没有有用效果的情况下使用 `async` 。
 
-It's easy to get in the habit of using `async` on any function that does
-anything related to asynchrony. But in some cases, it's extraneous. If you can
-omit the `async` without changing the behavior of the function, do so.
+当成为习惯之后，你可能会在所有和异步相关的
+函数使用 `async`。但是在有些情况下，
+如果可以忽略 `async`  而不改变方法的行为，则应该这么做：
 
 <div class="good">
 {% prettify dart %}
@@ -897,18 +899,18 @@ Future afterTwoThings(Future first, second) async {
 {% endprettify %}
 </div>
 
-Cases where `async` *is* useful include:
+下面这些情况 `async` 是有用的：
 
-* You are using `await`. (This is the obvious one.)
+* 你使用了 `await`。 (这是一个很明显的例子。)
 
-* You are returning an error asynchronously. `async` and then `throw` is shorter
-  than `return new Future.error(...)`.
+* 你在异步的抛出一个异常。 `async` 然后 `throw` 比
+  `return new Future.error(...)` 要简短很多。
 
-* You are returning a value and you want it implicitly wrapped in a future.
-  `async` is shorter than `new Future.value(...)`.
+* 你在返回一个值，但是你希望他显式的使用 Future。
+  `async` 比 `new Future.value(...)` 要简短很多。
 
-* You don't want any of the code to execute until after the event loop has taken
-  a turn.
+* 你不希望在事件循环发生事件之前执行
+   任何代码。
 
 <div class="good">
 {% prettify dart %}
@@ -926,17 +928,17 @@ Future asyncValue() async {
 {% endprettify %}
 </div>
 
-### CONSIDER using higher-order methods to transform a stream.
+### **考虑** 使用高阶函数来转换事件流（stream）
 
 This parallels the above suggestion on iterables. Streams support many of the
 same methods and also handle things like transmitting errors, closing, etc.
 correctly.
 
-### AVOID using Completer directly.
+### **避免** 直接使用 Completer  。
 
-Many people new to asynchronous programming want to write code that produces a
-future. The constructors in Future don't seem to fit their need so they
-eventually find the Completer class and use that.
+很多异步编程的新手想要编写生成一个 future 的代码。
+而 Future 的构造函数看起来并不满足他们的要求，然后他们就
+发现 Completer 类并使用它：
 
 <div class="bad">
 {% prettify dart %}
@@ -952,10 +954,10 @@ Future<bool> fileContainsBear(String path) {
 {% endprettify %}
 </div>
 
-Completer is needed for two kinds of low-level code: new asynchronous
-primitives, and interfacing with asynchronous code that doesn't use futures.
-Most other code should use async/await or [`Future.then()`][then], because
-they're clearer and make error handling easier.
+Completer 是用于两种底层代码的：
+新的异步原子操作和集成没有使用 Future 的异步代码。
+大部分的代码都应该使用 async/await 或者 [`Future.then()`][then]，
+ 这样代码更加清晰并且异常处理更加容易。
 
 [then]: {{site.dart_api}}/dart-async/Future/then.html
 
