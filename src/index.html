@@ -1,7 +1,7 @@
 ---
 layout: homepage
-title: "Dart programming language"
-description: "Dart is an application programming language that’s easy to learn, easy to scale, and deployable everywhere."
+title: "Dart 编程语言中文网"
+description: "Dart 是一种简单易学、易于扩展、并且可以部署到任何地方的应用编程语言。"
 image: https://www.dartlang.org/samples/images/frontpage-sample.png
 ---
 <section id="code-sample">
@@ -16,48 +16,48 @@ image: https://www.dartlang.org/samples/images/frontpage-sample.png
   <div class="row">
     <div class="col-sm-7 col-lg-6">
       <div class="content">
-        <a href="https://dartpad.dartlang.org/fb763a4a770b5cdd896982e10ccf4118" class='codesample__open-in-dartpad no-automatic-external' target='_blank'>Open in DartPad</a>
+        <a href="https://dartpad.dartlang.org/fb763a4a770b5cdd896982e10ccf4118" class='codesample__open-in-dartpad no-automatic-external' target='_blank'>在 DartPad 中打开</a>
 <pre class="prettyprint">
-<span class="frontpage-highlight" data-text="Dart has one canonical way to import libraries, and one canonical (and easy) way to install library packages.">import</span> &#x27;dart:async&#x27;;
-import &#x27;<span class="frontpage-highlight" data-text='The whole standard library is meticulously maintained. It has been called “well-crafted” by none other than Erik Meijer.'>dart:math</span>&#x27; show Random;
+<span class="frontpage-highlight" data-text="Dart 使用一种典型的方式导入库，还有一种典型（容易）的方式来安装第三方库。">import</span> &#x27;dart:async&#x27;;
+import &#x27;<span class="frontpage-highlight" data-text='整个标准库都被精心的维护着。 Erik Meijer 称之为“被精心打造的”。'>dart:math</span>&#x27; show Random;
 
-<span class="frontpage-highlight" data-text="The main() function is the single point of entry.">main()</span> async {
-  print(&#x27;Compute <span class="frontpage-highlight" data-text="Unicode support is baked in.">&#x3C0;</span> using the Monte Carlo method.&#x27;);
-  <span class="frontpage-highlight" data-text="Language-level asynchrony support makes you more productive when dealing with deeply asynchronous code (like most UI code, for example).">await</span> for (var estimate in computePi()) {
-    print(&#x27;&#x3C0; &#x2245; <span class="frontpage-highlight" data-text="String interpolation is easy. Just put ${expression} or $variable in your string literal.">$estimate</span>&#x27;);
+<span class="frontpage-highlight" data-text="这个 main() 函数是 Dart 程序唯一的入口。">main()</span> async {
+  print(&#x27;Compute <span class="frontpage-highlight" data-text="并且直接支持 Unicode 编码。">&#x3C0;</span> using the Monte Carlo method.&#x27;);
+  <span class="frontpage-highlight" data-text="语言本身就支持异步操作可以提高你的生产率，特别是当需要和底层的异步代码打交道的时候（例如大部分的 UI 代码）。">await</span> for (var estimate in computePi()) {
+    print(&#x27;&#x3C0; &#x2245; <span class="frontpage-highlight" data-text="字符串求值（插值）非常容易。只需要把 ${expression} 或者 $variable 放到字符串中去即可。">$estimate</span>&#x27;);
   }
 }
 
-<span class="frontpage-highlight" data-text="Add doc comments like this to flesh out the API reference docs that the SDK’s dartdoc tool generates.">///</span> Generates a stream of increasingly accurate estimates of &#x3C0;.
-Stream<span class="frontpage-highlight" data-text="Generics are optional but extremely useful in large codebases.">&#x3C;double&#x3E;</span> computePi(<span class="frontpage-highlight" data-text="Named parameters make call sites more readable.">{int batch: 1000000}</span>) <span class="frontpage-highlight" data-text="Dart has language-level support for asynchronous generators.">async*</span> {
-  <span class="frontpage-highlight" data-text="The type is inferred in this variable declaration. Note: no JavaScript-style hoisting.">var</span> total = 0;
+<span class="frontpage-highlight" data-text="通过这种方式来添加文档注释，然后 SDK 提供的 dartdoc 工具可以自动生成 API 参考文档。">///</span> 生成一系列精度愈来愈准确的 &#x3C0; 值。
+Stream<span class="frontpage-highlight" data-text="泛型是可选的，但是在代码量非常大的项目中，使用泛型非常有帮助。">&#x3C;double&#x3E;</span> computePi(<span class="frontpage-highlight" data-text="命名参数让调用函数的代码更易阅读。">{int batch: 1000000}</span>) <span class="frontpage-highlight" data-text="Dart 在语言级别就支持异步发生器。">async*</span> {
+  <span class="frontpage-highlight" data-text="这个变量类型在声明的时候被推测出来具体类型。注意：没有 JavaScript 的变量声明提升(hoisting)效果。">var</span> total = 0;
   var count = 0;
-  <span class="frontpage-highlight" data-text="Because generators are lazy, we can safely do this.">while (true)</span> {
-    var points = generateRandom().<span class="frontpage-highlight" data-text="Synchronous generators produce (lazy) Iterables, and Iterables have a well-crafted API.">take</span>(batch);
-    var inside = points.where((p) <span class="frontpage-highlight" data-text="The optional arrow syntax makes simple functions more readable.">=&#x3E;</span> p.isInsideUnitCircle);
+  <span class="frontpage-highlight" data-text="由于生成器是延迟异步执行的，所以我们可以这样写代码。">while (true)</span> {
+    var points = generateRandom().<span class="frontpage-highlight" data-text="同步生成器(延迟)输出 Iterables，并且 Iterables 的 API 是经过精心设计的。">take</span>(batch);
+    var inside = points.where((p) <span class="frontpage-highlight" data-text="支持箭头语法让简单的函数更易于阅读。">=&#x3E;</span> p.isInsideUnitCircle);
     total += batch;
-    count += inside.<span class="frontpage-highlight" data-text="Since the Iterable is lazy, the program doesn’t actually iterate over it until it’s needed by the length getter. No new array will be constructed.">length</span>;
+    count += inside.<span class="frontpage-highlight" data-text="由于 Iterable 是延时（lazy）生成的，直到调用获取长度的 getter 函数之前，程序并没有遍历整个集合。这种操作并没有创建新的数组。">length</span>;
     var ratio = count / total;
-    // Area of a circle is A = &#x3C0;&#x22C5;r&#xB2;, therefore &#x3C0; = A/r&#xB2;.
-    // So, when given random points with x &#x2208; &#x3C;0,1&#x3E;,
-    // y &#x2208; &#x3C;0,1&#x3E;, the ratio of those inside a unit circle
-    // should approach &#x3C0; / 4. Therefore, the value of &#x3C0;
-    // should be:
-    <span class="frontpage-highlight" data-text="In an async generator, yield takes care of sending the values through the stream (including the logic of suspending execution when needed).">yield</span> ratio * 4;
+    // 圆的面积 A 为： A = &#x3C0;&#x22C5;r&#xB2;， 因此 &#x3C0; = A/r&#xB2;。
+    // 所以，对于一个随机的点(x,y) 的取值： x &#x2208; &#x3C;0,1&#x3E;、
+    // y &#x2208; &#x3C;0,1&#x3E;， 该点落于单位面积为 1 的圆中的概率接近于
+    //  &#x3C0; / 4。所以 &#x3C0; 的取值
+    // 应该为:
+    <span class="frontpage-highlight" data-text="在一个异步发生器中， yield 负责在数据流中发射数据 （当需要的时候也会暂停代码执行）。">yield</span> ratio * 4;
   }
 }
 
-<span class="frontpage-highlight" data-text="Iterable is a core type extended by all iterable collections, which makes for some elegant Dart code.">Iterable</span>&#x3C;Point&#x3E; generateRandom(<span class="frontpage-highlight" data-text="Optional parameters make call sites cleaner.">[int seed]</span>) <span class="frontpage-highlight" data-text="Dart has language-level support for synchronous generators, too.">sync*</span> {
-  <span class="frontpage-highlight" data-text="Variables and fields can be final. Any attempt to change them later in the code will produce a static error.">final</span> random = new Random(seed);
+<span class="frontpage-highlight" data-text="Iterable 是一个集合的超类，被其他所有的可遍历集合实现，使用该接口可以写出优雅的 Dart 代码。">Iterable</span>&#x3C;Point&#x3E; generateRandom(<span class="frontpage-highlight" data-text="可选的参数让函数定义更加清晰。">[int seed]</span>) <span class="frontpage-highlight" data-text="Dart 在语言级别也支持同步发生器。">sync*</span> {
+  <span class="frontpage-highlight" data-text="变量和内部变量可以为 final 的。 在后面的代码如何尝试修改该变量会导致一个静态错误。">final</span> random = new Random(seed);
   while (true) {
-    <span class="frontpage-highlight" data-text="Producing lazy Iterables through yield is readable and corresponds nicely with the same concept in asynchronous generators.">yield</span> new Point(random.nextDouble(), random.nextDouble());
+    <span class="frontpage-highlight" data-text="通过使用 yield 来生成延迟的 Iterables ，让代码更易于阅读并且和异步生成器代码风格一致。">yield</span> new Point(random.nextDouble(), random.nextDouble());
   }
 }
 
-<span class="frontpage-highlight" data-text="Dart is purely object-oriented and class-based, with mixin-based inheritance.">class</span> Point {
-  final <span class="frontpage-highlight" data-text="Although Dart can compile to JavaScript, it doesn’t lack the distinction between double and int.">double</span> x, y;
-  <span class="frontpage-highlight" data-text="Constructors can be constant.">const</span> Point(<span class="frontpage-highlight" data-text="Initializing fields through this shorthand syntax is both easier and more readable.">this.x</span>, this.y);
-  bool <span class="frontpage-highlight" data-text="Language-level support for getters means you can freely switch between properties and methods without changing the API.">get</span> isInsideUnitCircle =&#x3E; x * x + y * y &#x3C;= 1;
+<span class="frontpage-highlight" data-text="Dart 是纯粹的面向对象语音并且基于类机制的，并且支持基于 mixin 的继承机制。">class</span> Point {
+  final <span class="frontpage-highlight" data-text="尽管 Dart 语言可以编译为 JavaScript，但 Dart 语言中的 double 和 int 还是有区别的。">double</span> x, y;
+  <span class="frontpage-highlight" data-text="构造函数可以是不变的（constant）">const</span> Point(<span class="frontpage-highlight" data-text="通过这种缩写语法来初始化类成员变量让代码更加易于读写。">this.x</span>, this.y);
+  bool <span class="frontpage-highlight" data-text="在语言基本就支持 getter 函数，意味着你可以自由的切换 API 是使用成员变量还是 getter 函数而不用修改其调用代码。">get</span> isInsideUnitCircle =&#x3E; x * x + y * y &#x3C;= 1;
 }
 </pre>
       </div>
@@ -67,20 +67,20 @@ Stream<span class="frontpage-highlight" data-text="Generics are optional but ext
         <div class="frontpage-slogan-with-footnotes">
           <div class="frontpage-slogan">
             <h3>
-              Dart is an
-              <span class="frontpage-highlight" data-text="Dart is focused on client-side programming, be it in the browser or on mobile.">application</span> programming
-              <span class="frontpage-highlight" data-text="But it’s not just a language. Dart comes with well-crafted core libraries, a package manager, static analysis tools, and more.">language</span> that’s
-              <span class="frontpage-highlight" data-text="The syntax feels familiar, and the semantics are clean and consistent. No nasty surprises.">easy to learn</span>,
-              <span class="frontpage-highlight" data-text="Google alone has over 2 million lines of production Dart code. Apps can reach hundreds of thousands of lines of code.">easy to scale</span>, and deployable
-              <span class="frontpage-highlight" data-text="Dart runs fast in every modern browser, on the command line, on servers, and on mobile.">everywhere</span>.
+              Dart 是一种
+              <span class="frontpage-highlight" data-text="熟悉的语法，清晰一致的语义。并没有出人意料的惊喜特性。">易于学习</span>、
+              <span class="frontpage-highlight" data-text="Google 已经编写了超过 200万 行的正式产品 Dart 代码。应用可以有成千上万行代码。">易于扩展</span>、并且可以部署到
+              <span class="frontpage-highlight" data-text="Dart 在现代浏览器中运行非常快，还能在命令行、服务器以及移动环境中运行。">任何地方</span> 的
+              <span class="frontpage-highlight" data-text="Dart 聚焦于客户端产品编程，但是也可以使用在浏览器或者移动平台上。">应用</span> 编程
+              <span class="frontpage-highlight" data-text="但是其不仅仅是一个编程语言。 Dart 还具有精心设计的核心类库、一个包管理器、静态分析工具、以及其他开发者工具。">语言</span>。
             </h3>
             <h3>
-              Google depends on Dart to make
-              <span class="frontpage-highlight" data-text="For example, the next generation of AdWords (Google’s foremost money-making app) runs on Dart.">very large apps</span>.
+              Google 使用 Dart 来开发
+              <span class="frontpage-highlight" data-text="例如，下一代的 AdWords (Google 知名的赚钱的应用) 就使用 Dart。">大型应用</span>。
             </h3>
-            <p><a href="/guides/get-started" class="frontpage-slogan__get-started btn btn-default btn-lg">Get Started</a> <a href="/install" class="btn btn-lg">Install Dart</a></p>
+            <p><a href="/guides/get-started" class="frontpage-slogan__get-started btn btn-default btn-lg">开始入门</a> <a href="/install" class="btn btn-lg">安装 Dart</a></p>
           <div id="code-display">
-            <p>[&nbsp;Click underlined text or code to learn more.&nbsp;]</p>
+            <p>[&nbsp;点击下划线的文字或者代码来了解更多信息。&nbsp;]</p>
           </div>
         </div>
       </div>
@@ -97,28 +97,28 @@ Stream<span class="frontpage-highlight" data-text="Generics are optional but ext
         <div class="content">
           <div class="chip-grid">
             <a href="http://news.dartlang.org/" class="chip no-automatic-external">
-              <h3>News</h3>
-              <p>Follow the latest.</p>
+              <h3>新闻</h3>
+              <p>追踪最新变化。</p>
             </a>
             <a href="https://api.dartlang.org/" class="chip no-automatic-external">
               <h3>API</h3>
-              <p>Browse core libraries.</p>
+              <p>查看核心类库。</p>
             </a>
             <a href="https://pub.dartlang.org/" class="chip no-automatic-external">
               <h3>Pub</h3>
-              <p>Find packages.</p>
+              <p>查找第三方类库。</p>
             </a>
             <a href="{{site.webdev}}" class="chip no-automatic-external">
               <h3>Dart webdev</h3>
-              <p>Build browser apps.</p>
+              <p>开发浏览器应用。</p>
             </a>
             <a href="https://flutter.io/" class="chip no-automatic-external">
               <h3>Flutter</h3>
-              <p>Build mobile apps.</p>
+              <p>开发移动应用。</p>
             </a>
             <a href="/dart-vm" class="chip no-automatic-external">
               <h3>Dart VM</h3>
-              <p>Build scripts, servers.</p>
+              <p>开发脚本或者服务器应用。</p>
             </a>
           </div>
         </div>
@@ -132,22 +132,22 @@ Stream<span class="frontpage-highlight" data-text="Generics are optional but ext
     <div class="row">
       <div class="col-sm-5 col-lg-4">
         <div class="content">
-          <h1>Core goals</h1>
+          <h1>核心目标</h1>
           <p class="lead">
-            Dart is an ambitious, long-term project. These are the core goals that drive our design decisions.
+            Dart 是一个长期的野心勃勃的项目。这些核心目标驱动着我们的设计和决策。
           </p>
         </div>
       </div>
       <div class="col-sm-7 col-lg-8">
         <div class="content">
-          <h2 class="core-goals__first">Provide a solid foundation of libraries and tools</h2>
-          <p>A programming language is nothing without its core libraries and tools. Dart’s have been powering very large apps for years now.</p>
-          <h2>Make common programming tasks easy</h2>
-          <p>Application programming comes with a set of common problems and common errors. Dart is designed to make those problems easier to tackle, and errors easier to catch. This is why we have <code>async/await</code>, generators, string interpolation, earlier error detection and much more.</p>
-          <h2>Don’t surprise the programmer</h2>
-          <p>There should be a direct correspondence between what you type and what’s going to happen. Magic (automatic type coercion, hoisting, “helper” globals, &hellip;) doesn’t mix well with large apps.</p>
-          <h2>Be the stable, pragmatic solution for real apps</h2>
-          <p>Dart might seem boring to some. We prefer the terms <em>productive</em> and <em>stable</em>. We work closely with our core customers&mdash;the developers who build large applications with Dart&mdash;to make sure we’re here for the long run.</p>
+          <h2 class="core-goals__first">通过核心库和工具打造一个坚固的基石</h2>
+          <p>编程语言离开的核心库和工具是难成大器的。Dart 近年来已经支持很多大型项目了。</p>
+          <h2>让编写通用功能的代码更加容易</h2>
+          <p>应用编程通常遇到常见的问题和异常。 Dart 在设计的时候就考虑这些常见的异常情况，让通用的问题易于解决、常见的异常易于捕获。这就是为何 Dart 支持 <code>async/await</code>、 generators（发生器）、 string interpolation（字符串插值）、 异常检测以及其他功能。</p>
+          <h2>不要给程序员提供惊喜</h2>
+          <p>程序员写的代码以及如何执行应该具有直接的对应关系。魔术(自动的类型纠正、变量作用域提升hoisting、“helper” globals, &hellip;) 功能在大型应用中并不是非常友好。</p>
+          <h2>为真实的应用提供稳定务实的解决方案</h2>
+          <p>Dart 可能看起来比较无聊。我们称之为 <em>有效率</em> 和 <em>稳定</em>。我们和使用 Dart 来开发应用的程序员紧密合作来确保我们的决策都是为了长期的运行下去。</p>
         </div>
       </div>
     </div>
