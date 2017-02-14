@@ -5,7 +5,7 @@ description: "使用语言特性来编写可维护代码的指导手册。"
 
 nextpage:
   url: /guides/language/effective-dart/design
-  title: "设计"
+  title: "API 设计"
 prevpage:
   url: /guides/language/effective-dart/documentation
   title: "文档"

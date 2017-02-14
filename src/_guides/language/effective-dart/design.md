@@ -1,62 +1,65 @@
 ---
 layout: guide
-title: "Effective Dart: Design"
-description: "Design consistent, usable libraries."
+title: "Effective Dart: API 设计"
+description: "设计一致的可用的库。"
 
 nextpage:
   url:
   title:
 prevpage:
   url: /guides/language/effective-dart/usage
-  title: "Usage"
+  title: "最佳实践"
 ---
 
-Here are some guidelines for writing consistent, usable APIs for libraries.
+下面的指南将指导你如何编写一致的可用的库 API。
 
 * TOC
 {:toc}
 
-## Names
+> 译者注：Dart 中的方法和函数（function 和 method）是不同的概念。函数是指一个类中的成员，也就是 Java 中的函数。而
+> 方法是指非类中的函数。方法在 Dart 中也是继承至 Object，是一个对象。
 
-Naming is an important part of writing readable, maintainable code.
-The following best practices can help you achieve that goal.
+## 命名
 
-### DO use terms consistently.
+命名是编写易于阅读的、可维护代码的关键之一。
+下面的最佳实践可以帮助你实现这个目标。
 
-Use the same name for the same thing, throughout your code. If a precedent
-already exists outside your API that your API's users are likely to know, follow
-that precedent.
+### **要** 使用一致的术语。
+
+对于同样的东西要一直使用同样的名字。
+如果在你的库之外已经存在一个广为人知的名字了，
+请继续使用这个名字。
 
 <div class="good">
 {% prettify dart %}
-pageCount         // A field.
-updatePageCount() // Consistent with pageCount.
-toSomething()     // Consistent with Iterable's toList().
-asSomething()     // Consistent with List's asMap().
-Point             // A familiar concept.
+pageCount         // 一个成员变量
+updatePageCount() // 和 pageCount 名字一致。
+toSomething()     // 和 Iterable 的 toList() 一致。
+asSomething()     // 和 List 的 asMap() 一致。
+Point             // 广为人知的概念。
 {% endprettify %}
 </div>
 
 <div class="bad">
 {% prettify dart %}
-renumberPages()      // Confusingly different from pageCount.
-convertToSomething() // Inconsistent with toX() precedent.
-wrappedAsSomething() // Inconsistent with asX() precedent.
-Cartesian            // Unfamiliar to most users.
+renumberPages()      // 和 pageCount 不一致，导致混乱。
+convertToSomething() // 和广为人知的 toX() 不一致。
+wrappedAsSomething() // 和广为人知的 asX() 不一致。
+Cartesian            // 对大多数用户来说都不知道笛卡尔坐标是啥。
 {% endprettify %}
 </div>
 
-The goal is to take advantage of what the user already knows. This includes
-their knowledge of the problem domain itself, the conventions of the core
-libraries, and other parts of your own API. By building on top of those, you
-reduce the amount of new knowledge they have to acquire before they can be
-productive.
+目标是尽量利用用户已知的内容。包括他们所熟知的领域、
+核心库的习惯用法、
+以及你的 API 的其他部分的使用习惯。在这些熟知的基础之上命名你的代码，
+可以减少你的用户使用你的库的学习成本，
+提高他们的生产效率。
 
 
-### AVOID abbreviations.
+### **避免** 缩写。
 
-Unless the abbreviation is more common than the unabbreviated term, don't
-abbreviate. If you do abbreviate, [capitalize them correctly][caps].
+只使用广为人知的缩写，对于特有领域的缩写，请进来不要使用。
+如果要使用，请 [正确的指定首字母大小写][caps]。
 
 [caps]: /guides/language/effective-dart/style#identifiers
 
@@ -79,10 +82,10 @@ HypertextTransferProtocolRequest
 </div>
 
 
-### PREFER putting the most descriptive noun last.
+### **推荐** 把最具描述性的名词放到最后。
 
-The last word should be the most descriptive of what the thing is. You can
-prefix it with other words, such as adjectives, to further describe the thing.
+最后一个单词应该可以描述所代表的东西。
+你可以在之前添加其他前缀来进一步详细描述，例如 其他形容词。
 
 <div class="good">
 {% prettify dart %}
@@ -102,10 +105,10 @@ RuleFontFaceCss           // Not a CSS.
 </div>
 
 
-### CONSIDER making the code read like a sentence.
+### **考虑** 尽量让代码看起来像普通的句子。
 
-When in doubt about naming, write some code that uses your API, and try to read
-it like a sentence.
+当你不知道如何命名 API 的时候，尝试着用你的 API 写一些代码，
+尽量让你写的代码看起来像普通的句子一样。
 
 <div class="good">
 {% prettify dart %}
@@ -133,9 +136,9 @@ monsters.filter((monster) => monster.hasClaws);
 {% endprettify %}
 </div>
 
-It's helpful to try out your API and see how it "reads" when used in code, but
-you can go too far. It's not helpful to add articles and other parts of speech
-to force your names to *literally* read like a grammatically correct sentence.
+尝试着使用你自己的 API，并且阅读以下写出来的代码，可以帮助你提高命名的技能。
+添加其他文学和语法修饰让代码看起来更像语法正确的句子
+是不必要的。
 
 <div class="bad">
 {% prettify dart %}
@@ -146,11 +149,11 @@ monsters.producesANewSequenceWhereEach((monster) => monster.hasClaws);
 </div>
 
 
-### PREFER a noun phrase for a non-boolean property or variable.
+### **推荐** 使用名词短语来命名不是布尔类型的变量和属性。
 
-The reader's focus is on *what* the property is. If the user cares more about
-*how* a property is determined, then it should probably be a method with a
-verb phrase name.
+读者关注属性是*什么*。如果用户更关心
+*如何*确定一个属性，则很可能应该是一个函数，
+并使用动词短语命名该函数。
 
 <div class="good">
 {% prettify dart %}
@@ -167,38 +170,38 @@ list.deleteItems
 </div>
 
 
-### PREFER a non-imperative verb phrase for a boolean property or variable.
+### **推荐** 使用非命令式动词短语命名布尔类型的变量和属性。
 
-Boolean names are often used as conditions in control flow, so you want a name
-that reads well there. Compare:
+布尔名称通常用在控制语句中当做条件，所以你需要让他在
+控制条件中语感很好。比较下面的两个：
 
 {% prettify dart %}
-if (window.closeable) { ... }   // Adjective.
-if (window.canClose) { ... }    // Verb.
+if (window.closeable) { ... }   // 形容词
+if (window.canClose) { ... }    // 动词
 {% endprettify %}
 
-Good names tend to start with one of a few kinds of verbs:
+好的名字一般都使用如下类型的动词：
 
-*   a form of "to be": `isEnabled`, `wasShown`, `willFire`. These are, by far,
-    the most common.
+*   "to be" 形式： `isEnabled`, `wasShown`, `willFire`。这是
+    最常见的的形式。
 
-*   an [auxiliary verb][]: `hasElements`, `canClose`,
+*   一个 [辅助动词][]： `hasElements`, `canClose`,
     `shouldConsume`, `mustSave`.
 
-*   an active verb: `ignoresInput`, `wroteFile`. These are rare because they are
-    usually ambiguous. `loggedResult` is a bad name because it could mean
-    "whether or not a result was logged" or "the result that was logged".
-    Likewise, `closingConnection` could be "whether the connection is closing"
-    or "the connection that is closing". Active verbs are allowed when the name
-    can *only* be read as a predicate.
+*   一个主动动词： `ignoresInput`, `wroteFile`. 由于经常引起歧义，所以这种形式比较少见。
+    `loggedResult` 不是一个好名字，原因在于他有两种解释：
+    "whether or not a result was logged" 或者 "the result that was logged"。
+    同样， `closingConnection` 也可以是 "whether the connection is closing"
+    或者 "the connection that is closing"。 *只有* 当名字可以预期的时候
+    才使用主动动词。
 
 [auxiliary verb]: https://en.wikipedia.org/wiki/Auxiliary_verb
 
-What separates all these verb phrases from method names is that they are not
-*imperative*. A boolean name should never sound like a command to tell the
-object to do something, because accessing a property doesn't change the object.
-(If the property *does* modify the object in a meaningful way, it should be a
-method.)
+可以使用命令式动词来区分布尔变量名字和函数名字。
+一个布尔变量的名字不应该看起来像一个命令，告诉这个对象做什么事情。
+原因在于访问一个变量的属性并没有修改对象的状态。
+如果这个属性*确实*修改了对象的状态，则他应该
+是一个函数。
 
 <div class="good">
 {% prettify dart %}
@@ -223,10 +226,10 @@ showPopup     // Sounds like it shows the popup.
 </div>
 
 
-### CONSIDER omitting the verb for a named boolean *parameter*.
+### **考虑** 省略命名布尔*参数*的动词。
 
-This refines the previous rule. For named parameters that are boolean, the name
-is often just as clear without the verb and it reads better at the callsite.
+提炼于上一条规则。对于命名布尔参数，没有动词的
+名称通常看起来更加舒服。
 
 <div class="good">
 {% prettify dart %}
@@ -237,15 +240,15 @@ new RegExp(pattern, caseSensitive: false)
 </div>
 
 
-### PREFER an imperative verb phrase for a function or method whose main purpose is a side effect.
+### **推荐** 使用命令式动词短语来命名带有副作用的函数或者方法。
 
-Callable members can return a result to the caller and perform other work or
-side effects. In an imperative language like Dart, members are often called
-mainly for their side effect: they may change an object's internal state,
-produce some output, or talk to the outside world.
+函数通常返回一个结果给调用者，并且执行一些任务或者带有副作用。
+在像 Dart 这种命令式语言中，调用函数通常为了实现其副作用：
+可能改变了对象的内部状态、
+产生一些输出内容、或者和外部世界沟通等。
 
-Those kinds of members should be named using an imperative verb phrase that
-clarifies the work the member performs.
+这种类型的成员应该使用命令式动词短语来命名，强调
+该成员所执行的任务。
 
 <div class="good">
 {% prettify dart %}
@@ -256,19 +259,19 @@ connection.downloadData()
 {% endprettify %}
 </div>
 
-This way, an invocation reads like a command to do that work.
+这样调用的代码看起来就像是要执行某个任务的命令。
 
-### CONSIDER a noun phrase or non-imperative verb phrase for a function or method if returning a value is its primary purpose.
+### **考虑** 使用名词短语或者非命令式动词短语命名返回数据为主要功能的方法或者函数。
 
-Other callable members have few side effects but return a useful result to the
-caller. If the member needs no parameters to do that, it should generally be a
-getter. But, sometimes a logical "property" needs some parameters. For example,
-`elementAt()` returns a piece of data from a collection, but it needs a
-parameter to know *which* piece of data to return.
+虽然这些函数可能也有副作用，但是其主要目的是返回一个数据给调用者。
+如果该函数无需参数通常应该是一个 getter 。
+有时候获取一个属性则需要一些参数，比如，
+`elementAt()` 从集合中返回一个数据，但是需要一个
+指定返回那个数据的参数。
 
-This means the member is *syntactically* a method, but *conceptually* it is a
-property, and should be named as such using a phrase that describes *what* the
-member returns.
+在*语法*上看这是一个函数，其实*严格来说*其返回的是集合中的一个属性，
+应该使用一个能够表示该函数返回的是*什么*的词语
+来命名。
 
 <div class="good">
 {% prettify dart %}
@@ -277,19 +280,19 @@ string.codeUnitAt(4)
 {% endprettify %}
 </div>
 
-This guideline is deliberately softer than the previous one. Sometimes a method
-has no side effects but is still simpler to name with a verb phrase like
-`list.take()` or `string.split()`.
+这条规则比前一条要宽松一些。有时候一些
+函数没有副作用，但仍然使用一个动词短语来命名，例如：
+`list.take()` 或者 `string.split()`。
 
 
-### PREFER naming a method `to___()` if it copies the object's state to a new object.
+### **推荐** 使用 `to___()` 来命名把对象的状态转换到一个新的对象的函数。
 
-A "conversion" method is one that returns a new object containing a copy of
-almost all of the state of the receiver but usually in some different form or
-representation. The core libraries have a convention that these methods are
-named starting with `to` followed by the kind of result.
+一个转换函数返回一个新的对象，里面包含一些原对象的状态，
+可能还有稍微的修改。
+核心库中很多类似的函数命名为
+`toXXX` 。
 
-If you define a conversion method, it's helpful to follow that convention.
+如果你也定义了一个转换函数，最好也使用同样的命名方式。
 
 <div class="good">
 {% prettify dart %}
@@ -300,14 +303,14 @@ dateTime.toLocal()
 </div>
 
 
-### PREFER naming a method `as___()` if it returns a different representation backed by the original object.
+### **推荐** 使用 `as___()` 来命名把原来对象转换为另外一种表现形式的函数。
 
-Conversion methods are "snapshots". The resulting object has its own copy of the
-original object's state. There are other conversion-like methods that return
-*views*&mdash;they provide a new object, but that object refers back to the
-original. Later changes to the original object are reflected in the view.
+转换函数提供的是“快照功能”。返回的对象有自己的数据副本，修改原来对象的数据不会改变
+返回的对象中的数据。另外一种函数返回的是同一份数据的另外一种
+表现形式，返回的是一个新的对象，但是其内部引用的数据和原来对象引用的数据一样。
+修改原来对象中的数据，新返回的对象中的数据也一起被修改。
 
-The core library convention for you to follow is `as___()`.
+这种函数在核心库中被命名为 `as___()`。
 
 <div class="good">
 {% prettify dart %}
@@ -318,10 +321,10 @@ subscription.asFuture()
 </div>
 
 
-### AVOID describing the parameters in the function's or method's name.
+### **避免** 在方法或者函数名称中描述参数。
 
-The user will see the argument at the callsite, so it usually doesn't help
-readability to also refer to it in the name itself.
+在调用代码的时候可以看到参数，所以无需
+再次显示参数了。
 
 <div class="good">
 {% prettify dart %}
@@ -337,8 +340,8 @@ map.removeKey(key)
 {% endprettify %}
 </div>
 
-However, it can be useful to mention a parameter to disambiguate it from other
-similarly-named methods that take different types:
+但是，对于具有多个类似的函数的时候，使用参数名字可以消除歧义，
+这个时候应该带有参数名字。
 
 <div class="good">
 {% prettify dart %}
@@ -348,38 +351,38 @@ map.containsValue(value)
 </div>
 
 
-## Libraries
+## 库
 
-The underscore character ( `_` ) indicates that a member is private to its
-library. This distinction is enforced by the Dart tools.
+下划线 ( `_` ) 表明这个成员只能在库内部访问，是库私有成员。
+Dart 工具确保该规则生效。
 
-### PREFER making declarations private.
+### **推荐** 使用私有声明。
 
-A public declaration in a library&mdash;either top level or in a class&mdash;is
-a signal that other libraries can and should access that member. It is also a
-commitment on your library's part to support that and behave properly when it
-happens.
+库中的公开声明&mdash;顶级定义或者在类中定义&mdash;是一种信号，
+表示其他库可以并应该访问这些成员。
+同时公开声明也是一种你的库需要实现的契约，当
+使用这些成员的时候，应该实现其宣称的功能。
 
-If that's not what you intend, add the little `_` and be happy. Narrow public
-interfaces are easier for you to maintain and easier for users to learn.
+如果某个成员你不希望公开，则在成员名字之前添加一个 `_` 即可。
+减少公开的接口让你的库更容易维护，也让用户更加容易掌握你的库如何使用。
 
-As a nice bonus, the analyzer will tell you about unused private declarations so
-you can delete dead code. It can't do that if the member is public because it
-doesn't know if any code outside of its view is using it.
+另外，分析工具还可以分析出没有用到的私有成员定义，然后
+告诉你可以删除这些无用的代码。
+私有成员第三方代码无法调用而你自己在库中也没有使用，所以是无用的代码。
 
 
-## Types
+## 类型
 
-Dart supports a variety of built-in types and you can define your own types.
-Or, you can choose not to use types at all.
+Dart 支持很多内置的类型并且你还可以自定义自己的类型。当然
+你也可以选择不使用类型。
 
-### AVOID defining a one-member abstract class when a simple function will do.
+### **避免** 定义使用简单的方法可以替代的只有一个成员的抽象类。
 
-Unlike Java, Dart has first-class functions, closures, and a nice light syntax
-for using them. If all you need is something like a callback, just use a
-function. If you're defining a class and it only has a single abstract member
-with a meaningless name like `call` or `invoke`, there is a good chance you
-just want a function.
+和 Java 不同的是， Dart 支持一等方法（first-class functions）、闭包和优雅的语法来使用它们。
+如果你需要的只是一个回调函数，使用方法即可。
+如果你定义了一个类，里面只有一个名字无意义的函数，
+例如 `call` 或者 `invoke`，
+这种情况最好用方法替代。
 
 <div class="good">
 {% prettify dart %}
@@ -396,22 +399,22 @@ abstract class Predicate {
 </div>
 
 
-### AVOID defining a class that contains only static members.
+### **避免** 定义只包含静态成员的类。
 
-In Java and C#, every definition *must* be inside a class, so it's common to see
-"classes" that exist only as a place to stuff static members. Other classes are
-used as namespaces&mdash;a way to give a shared prefix to a bunch of members to
-relate them to each other or avoid a name collision.
+在 Java 和 C# 中，所有成员都必须定义到类中，所以
+常常可以看到一些类只包含一些静态常量。
+其他类使用这个类作为命名空间来使用里面的
+静态成员。
 
-Dart has top-level functions, variables, and constants, so you don't *need* a
-class just to define something. If what you want is a namespace, a library is a
-better fit. Libraries support import prefixes and show/hide combinators. Those
-are powerful tools that let the consumer of your code handle name collisions in
-the way that works best for *them*.
+Dart 具有顶级方法、变量和常量，所以你*无需*用一个类
+来定义一些常量。如果你只需要一个命名空间，
+则库是更好的一个选择。库支持导入前缀和显示/隐藏组合器（combinator）。
+这些都是用来防止命名冲突的工具，
+非常适合用来定义静态成员。
 
-If a function or variable isn't logically tied to a class, put it at the top
-level. If you're worried about name collisions, give it a more precise name or
-move it to a separate library that can be imported with a prefix.
+如果变量或者方法逻辑上不属于一个类，把它作为顶级成员定义即可。
+如果你担心命名冲突，指定一个更加精确的名字或者
+把这些代码移动到一个单独的库中 - 这样可以使用前缀导入这些成员。
 
 <div class="good">
 {% prettify dart %}
@@ -437,12 +440,12 @@ class _Favorites {
 {% endprettify %}
 </div>
 
-In idiomatic Dart, classes define *kinds of objects*. A type that is never
-instantiated is a code smell.
+在 Dart 世界中， 类是用来定义*一种对象*的。从来
+没有被初始化的对象通常意味着这个类是可以删除的。
 
-However, this isn't a hard rule. With constants and enum-like types, it may be
-natural to group them in a class. Even then, it's also reasonable to use a
-library instead.
+然后，这条规则并不是强制的。对于一些常量或者枚举型的类型，
+使用类来把相关的成员组织到一起可能也是合理的。当然，
+使用库也是同样合理的。
 
 <div class="good">
 {% prettify dart %}
@@ -457,77 +460,78 @@ class Color {
 </div>
 
 
-### AVOID extending a class that isn't intended to be subclassed.
+### **避免** 继承一个不打算被继承的类。
 
-If a constructor is changed from a generative constructor to a factory
-constructor, any subclass constructor calling that constructor will break.
-Also, if a class changes which of its own methods it invokes on `this`, that
-may break subclasses that override those methods and expect them to be called
-at certain points.
+如果类的构造函数修改为一个工厂构造函数了，
+该类的所有子类构造函数中调用这个构造函数的地方都会失败。
+另外，如果一个类修改了其中调用了 `this` 的函数，也有可能
+会导致子类中继承这些方法的方法无法正常工作，
+调用顺序得不到保障。
 
-Both of these mean that a class needs to be deliberate about whether or not it
-wants to allow subclassing. This can be communicated in a doc comment, or by
-giving the class an obvious name like `IterableBase`. If the author of the class
-doesn't do that, it's best to assume you should *not* extend the class.
-Otherwise, later changes to it may break your code.
-
-
-### DO document whether your class supports being extended.
-
-This is the corollary to the above rule. If you want to allow subclasses of your
-class, state that. Suffix the class name with `Base`, or mention it in the
-class's doc comment.
+上面这两点要求设计一个类的时候，就要考虑这个类是否是用来被子类化的。
+可以使用文档注释来说明这种情况，也可以使用一个
+显而易见的希望被继承的类名字，比如 `IterableBase`。
+如果类的作者没有注明，你最好认为作者并不打算让你继承这个类。
+否则的话，以后作者修改了这个类，可能会导致你的代码出问题。
 
 
-### AVOID mixing in a class that isn't intended to be a mixin.
+### **要** 在文档中表明你的类是否打算被继承。
 
-If a constructor is added to a class that previously did not define any, that
-breaks any other classes that are mixing it in. This is a seemingly innocuous
-change in the class and the restrictions around mixins aren't widely known. It's
-likely an author may add a constructor without realizing it will break your
-class that's mixing it in.
-
-Like with subclassing, this means a class needs to be deliberate about whether
-or not it wants to allow being used as a mixin. If the class doesn't have a doc
-comment or an obvious name like `IterableMixin`, you should assume you cannot
-mix in the class.
+这条承接上一条规则，如果你的类希望被继承，
+最好在文档中注明或者用 `Base` 作为
+类名的后缀。
 
 
-### DO document whether your class supports being used as a mixin.
+### **避免** 混入（mixin）一个不打算被混入的类。
 
-Mention in the class's doc comment whether the class can or must be used as a
-mixin. If your class is designed for use only as a mixin, then consider adding
-`Mixin` to the end of the class name.
+如果一个类之前没有定义构造函数，后来添加了一个构造函数，则所有
+之前混入到该类的代码都将不能正常使用。
+这在类中通常是无害的修改，
+但是原作者可能不知道你混入了这个类，
+导致你的代码不能继续使用。
+
+所以和继承一个类一样，这意味着你要用文档注明一个类是否可以当做 mixin 使用，
+也可以使用 mixin 后缀来表示该类可以当做 mixin 使用，例如 `IterableMixin`。
+如果既没有文档说明，类的后缀也不是 Mixin，则你最好不要
+把这个类用作 mixin。
 
 
-## Constructors
+### **要** 在文档中注明你的类是否打算当做 mixin 使用。
 
-Dart constructors are created by declaring a function with the same name
-as the class and, optionally, an additional identifier. These are called
-_named constructors_.
+在类文档中注明类是否可以当做 mixin 使用，还是只能当做 mixin 使用。
+如果你的类打算只当做 mixin 使用，最好考虑使用
+`Mixin` 作为类名字的结尾。
 
-### PREFER defining constructors instead of static methods to create instances.
 
-Constructors are invoked using `new` or `const`, which communicates
-that the main purpose of the call is to return an instance of the class
-(or at least something that implements its interface).
+## 构造函数
 
-You never _need_ to use a static method to create an instance. Named
-constructors let you clarify how the object is created, and factory
-constructors let you construct instances of subclasses or
-subinterfaces when appropriate.
+Dart 构造函数和类的名字是一样的方法，
+还可以添加其他标识符，这种被称之为
+_命名构造函数_.
 
-Still, some methods that technically create a new object don't feel
-"constructor-like". For example, [`Uri.parse()`][uri.parse] is a static method
-even though it creates a new URI from the given arguments. Likewise, classes
-implementing the [Builder pattern][] may read better using static methods.
+### **推荐** 使用构造函数而不是静态函数来创建对象。
+
+构造函数使用 `new` 或者 `const` 调用，表明该调用的
+主要目的是生成一个该类的实例，
+或者其他实现了该接口的类的实例。
+
+从来不 _必要_ 使用静态函数来创建实例。
+命名构造函数让你可以清晰的指定对象是如何被创建的，
+工厂构造函数可以让你构造子类或者对象的
+实现类实例。
+
+仍然有一些函数从本质上创建了一个新的对象但是使用的并不是构造函数风格。
+例如 [`Uri.parse()`][uri.parse] 是一个静态函数，
+从提供的参数中返回一个新的 URI 对象。同样，
+实现了 [Builder pattern][] 模式的类使用静态函数更易于
+阅读。
 
 [uri.parse]: {{site.dart_api}}/dart-core/Uri/parse.html
 [builder pattern]: http://en.wikipedia.org/wiki/Builder_pattern
 
-But, in most cases, you should use a constructor even though it's more verbose.
-When users want a new instance of your class, they expect a constructor to be
-the normal way to create one.
+但是，大部分情况下都应该使用构造函数。
+当用户想要创建一个新的实例的时候，他们期望使用构造函数来
+创建一个对象。
 
 <div class="good">
 {% prettify dart %}
@@ -555,50 +559,50 @@ class Point {
 </div>
 
 
-### CONSIDER making your constructor `const` if the class supports it.
+### **考虑** 让构造函数为 `const` 的。
 
-If you have a class where all the fields are final, and the constructor does
-nothing but initialize them, you can make that constructor `const`. That lets
-users create instances of your class in places where constants are
-required&mdash;inside other larger constants, switch cases, default parameter
-values, etc.
+如果你的类的所有变量都是 final 的，构造函数只是初始化这些变量，
+你可以把构造函数定义为 `const` 类型的。
+这样用户可以把你的类用于需要常量的地方
+&mdash;在其他大型常量内部、switch 语句、默认参数值 等
+地方。
 
-If you don't explicitly make it `const`, they aren't able to do that.
+如果你不定义为 `const` 的，则无法在上面提到的这种情况使用你的对象。
 
-Note, however, that a `const` constructor is a commitment in your public API. If
-you later change the constructor to non-`const`, it will break users that are
-calling it in constant expressions. If you don't want to commit to that, don't
-make it `const`. In practice, `const` constructors are most useful for simple,
-immutable data record sorts of classes.
-
-
-## Members
-
-A member belongs to an object and can be either methods or instance variables.
-
-### PREFER making fields and top-level variables `final`.
-
-State that is not *mutable*&mdash;that does not change over time&mdash;is
-easier for programmers to reason about. Classes and libraries that minimize the
-amount of mutable state they work with tend to be easier to maintain.
-
-Of course, it is often useful to have mutable data. But, if you don't need it,
-your default should be to make fields and top-level variables `final` when you
-can.
+注意：`const` 构造函数是公开 API 的契约，你一旦这样做了，就不要在以后修改为
+非 `const` 的。如果你修改了，调用你的类的代码将无法工作。
+如果你不想做这种保证，请不要声明构造函数为 `const` 的。
+在实际项目中，`const` 构造函数对于简单的、
+不可变的数据记录对象是很有用的。
 
 
-### DO use getters for operations that conceptually access properties.
+## 成员
 
-If the name of the method starts with `get` or is a noun phrase like `length` or
-`size` that's a sign you're better off using a getter. You
-should define a getter instead of a method when all of these are true:
+成员属于一个对象，可以是变量或者函数。
 
-  * **Does not take any arguments.**
-  * **Returns a value.**
-  * **Is side-effect free.** Invoking a getter shouldn't change any
-  externally-visible state (caching internally or lazy initialization is
-  OK). Invoking the same getter repeatedly should return the same value
-  unless the object is explicitly changed between calls.
+### **推荐** 把成员变量或者顶级变量定义为 `final` 类型。
+
+不可变的状态 &mdash; 不随着时间改变 &mdash; 让开发者的工作更加简单。
+类和库只包含最少的可变状态更
+易于维护。
+
+当然了，有时候使用可变的数据是非常有用的。但是，如果没必要，
+你应该默认的把可以定义为 `final` 的变量和顶级变量定义
+为 `final`。
+
+
+### **要** 使用 getter 来定义访问属性的操作。
+
+如果函数的名字带有 `get` 前缀，或者是一个像 `length` 或者 `size` 这样
+的名称，这种情况通常最好定义该函数为一个 getter。
+当全部满足下面的条件的时候，你应该使用一个 getter：
+
+  * **没有参数。**
+  * **返回一个值**
+  * **没有副作用** 调用一个 getter 不应该改变对象外部可见的状态
+  (内部缓存和延时初始化的状态可以发生变化)
+  如果对象的状态在多次调用同一个 getter 之间没有发生变化，则
+  多次调用同一个 getter 应该返回同一个值。
 
 <div class="good">
 {% prettify dart %}
@@ -615,26 +619,26 @@ window.refresh; // Doesn't return a value.
 {% endprettify %}
 </div>
 
-Unlike other languages, in Dart we don't require getters to be particularly fast
-or have certain complexity guarantees. Calling `length` on an Iterable may be
-`O(n)`, and that's OK.
+和其他语言不通，Dart 并不要求 getter 执行的很快，或者具有一定的复杂度。
+调用 Iterable 的 `length` 函数时间复杂度可能是
+`O(n)`，这是可接受的。
 
 
-### DO use a setter for operations that conceptually change a property.
+### **要** 对于本质上为修改对象属性的函数要使用 setter。
 
-If the name of the method starts with `set` that's often a sign that it could be
-a setter. More specifically, use a setter instead of a method when it:
+如果函数的名字带有 `set`  前缀，通常意味着其应该是一个 setter。
+具体来说，当满足以下条件的时候应该使用 setter：
 
-*   **Takes a single argument.**
+*   **只有一个参数。**
 
-*   **Changes some state in the object.**
+*   **改变对象的某个状态。**
 
-*   **Has a corresponding getter.** It feels weird for users to have state that
-    they can modify but not see. (The converse is not true; it's fine to have
-    getters that don't have setters.)
+*   **有一个对应的 getter。** 对于用户可以修改但是无法查看的状态是比较奇怪的。
+    (反之则是正常的，只有 getter 没有
+    setter 是很常见的。)
 
-*   **Is idempotent.** Calling the same setter twice with the same value should
-    do nothing the second time.
+*   **是幂等的。** 用同样的值多次调用同一个 setter， 后面的调用
+    应该对对象没有不同的改变。
 
 <div class="good">
 {% prettify dart %}
@@ -644,17 +648,17 @@ button.visible = false;
 </div>
 
 
-### DON'T define a setter without a corresponding getter.
+### **不要** 定义没有对应 getter 的 setter 函数。
 
-Users think of getters and setters as visible properties of an object. A
-"dropbox" property that can be written to but not seen is confusing and
-confounds their intuition about how properties work. For example, a setter
-without a getter means you can use `=` to modify it, but not `+=`.
+用户认为 getter 和 setter 是一个对象可见的属性。
+一个可以写但是无法读的属性是比较奇怪的。
+比如，只有 setter 没有 getter 意味着可以
+使用 `=` 修改其值，但是使用 `+=` 则不行。
 
-This guideline does *not* mean you should add a getter just to permit the setter
-you want to add. Object's shouldn't generally expose more state than they need
-to. If you have some piece of an object's state that can be modified but not
-exposed in the same way, use a method instead.
+这条规则并不是告诉你需要添加一个 getter 只是因为你需要一个 setter。
+对象应该只暴露他们需要的属性。
+如果你有一些对象的状态可以修改但是无法获取，
+则请使用函数而不要使用 setter。
 
 <aside class="alert alert-info" markdown="1">
 
@@ -668,23 +672,23 @@ exposed in the same way, use a method instead.
 
 </aside>
 
-### AVOID returning `null` from members whose return type is `bool`, `double`, `int`, or `num`.
+### **避免** 在返回值类型为 `bool`, `double`, `int`, 或者 `num` 的函数中返回 `null`。
 
-Even though all types are nullable in Dart, users assume those types almost
-never contain `null`, and the lowercase names encourage a "Java primitive"
-mindset.
+尽管 Dart 中所有类型都可以为 null，用户所需要的数据通常是不包含  `null` 的，
+另外这些名字为小写字符也隐含其意义为 Java 中的原始
+类型类似，其值不为 null。
 
-It can be occasionally useful to have a "nullable primitive" type in your API,
-for example to indicate the absence of a value for some key in a map, but these
-should be rare.
+偶尔在你的 API 中使用 "nullable primitive" 类型也是有用的，
+例如，代表在 map 中确实某个 key 的值，但是
+这种情况比较少见。
 
-If you do have a member of this type that may return `null`, document it very
-clearly, including the conditions under which `null` will be returned.
+如果你有一些函数返回值为 `null`，请在
+文档中清晰的注明对应的解释，并且要包含在什么条件下会返回 `null`。
 
 
-### AVOID returning `this` from methods just to enable a fluent interface.
+### **避免** 在函数中返回 `this` 只是为了串联调用函数。
 
-Method cascades are a better solution for chaining method calls.
+对于这种情况， Dart 提供的函数级联调用是更好的选择。
 
 <div class="good">
 {% prettify dart %}
@@ -705,22 +709,22 @@ var buffer = new StringBuffer()
 </div>
 
 
-## Type annotations
+## 类型注解
 
-In Dart, adding static types to your variables is optional.
+在 Dart 中，为变量添加静态类型是可选的。
 
-### DO type annotate public APIs.
+### **要** 在公开的 API 上指定类型。
 
-Type annotations are important documentation for how a library should be used.
-Annotating the parameter and return types of public methods and functions helps
-users understand what the API expects and what it provides.
+类型注解是如何使用一个库的很重要的文档信息。
+注解参数类型和返回值类型可以帮助
+用户理解你的 API 所期望的参数以及所提供的功能。
 
-Note that if a public API accepts a range of values that Dart's type system
-cannot express, then it is acceptable to leave that untyped. In that case, the
-implicit `dynamic` *is* the correct type for the API.
+注意，如果一个公开的 API 需要一些参数在 Dart 类型系统中没有定义，
+则可以省略类型。这种情况下，隐含的
+ `dynamic` *是* 该 API 的正确类型。
 
-For code internal to a library (either private, or things like nested functions)
-annotate where you feel it helps, but don't feel that you *must* provide them.
+对于库内部使用的私有代码，你可以根据自己的
+需要来选择是否使用类型，这里并不是必要的。
 
 <div class="bad">
 {% prettify dart %}
@@ -730,8 +734,8 @@ install(id, destination) {
 {% endprettify %}
 </div>
 
-Here, it's unclear what `id` is. A string? And what is `destination`? A string
-or a `File` object? Is this method synchronous or asynchronous?
+上面的情况，对于 `id` 如何取值是不确定的。一个字符串？ `destination` 是什么意思呢？
+一个字符串或者一个 `File` 对象？这个函数是异步的呢还是同步的？
 
 <div class="good">
 {% prettify dart %}
@@ -741,12 +745,12 @@ Future<bool> install(PackageId id, String destination) {
 {% endprettify %}
 </div>
 
-With types, all of this is clarified.
+加上类型，这一切都清楚了。
 
 
-### DON'T specify a return type for a setter.
+### **不要** 为 setter 指定返回类型。
 
-The type system infers `void` for all setters automatically.
+类型系统自动认为所有的 setter 返回的都是 `void`。
 
 <div class="bad">
 {% prettify dart %}
@@ -761,12 +765,12 @@ set foo(Foo value) {...}
 </div>
 
 
-### PREFER type annotating private declarations.
+### **推荐** 为私有成员提供类型。
 
-Type annotations on your public API help *users* of your code. Nearly as
-important is guiding *maintainers* of your code. Adding type annotations to
-internal member and variable declarations can future readers of your code
-understand it, and help corral bugs.
+在公开的 API 上使用类型可以帮助使用你的库的用户。同样，
+是私有代码上使用类型，可以帮助你的你的同事或者代码维护者。
+另外，在私有成员上使用类型，对于将来自己查看代码
+也有帮助。
 
 <div class="good">
 {% prettify dart %}
@@ -782,12 +786,12 @@ class CallChainVisitor {
 </div>
 
 
-### AVOID annotating types on function expressions.
+### **避免** 在方法表达式上使用类型。
 
-The value of function expressions is their brevity. If a function is complex
-enough that types are needed to understand it, it should probably be a function
-statement or a method. Conversely, if it is short enough to be an expression, it
-likely doesn't need types.
+方法表达式通常非接简洁。如果一个方法表达式复杂到需要
+使用类型来表明其所做的功能，则应该使用一个方法或者函数来替代
+这个表达式。相反，如果一个表达式足够简洁，通常
+是不需要类型的。
 
 <div class="good">
 {% prettify dart %}
@@ -804,11 +808,11 @@ var names = people.map((Person person) {
 </div>
 
 
-### AVOID annotating with `dynamic` when not required.
+### **避免** 在没必要的地方使用 `dynamic` 类型。
 
-In most places in Dart, a type annotation can be omitted, in which case the type
-will automatically be `dynamic`. Thus, omitting the type annotation entirely is
-semantically equivalent but more terse.
+在大部分 Dart 代码中，类型可以忽略，这样该参数类型会自动设置为 `dynamic`。
+所以没必要手动指定类型为 `dynamic` 的，
+只需要省略类型即可。
 
 <div class="good">
 {% prettify dart %}
@@ -831,14 +835,14 @@ dynamic lookUpOrDefault(String name, Map map, dynamic defaultValue) {
 </div>
 
 
-### AVOID annotating with `Function`.
+### **避免** 使用 `Function` 类型。
 
-The `Function` type is barely more precise than using no annotation at all. If
-you're bothering to annotate, it's better to use a precise function type that
-describes the signature and return type of the function.
+`Function` 类型通常比不使用类型更加精确。
+如果你需要注解其类型，则最好使用一个能够描述其功能和返回值类型的方法
+作为其类型，而不是定义个 `Function` 然后使用这个 `Function` 作为类型。
 
-If you are annotating a field, this does mean you have to create a typedef, but
-that's usually worth doing.
+如果你在一个变量上使用注解，则意味着你需要创建一个 typedef，
+但是大部分情况下这样做都是没有意义的。
 
 <div class="good">
 {% prettify dart %}
@@ -852,25 +856,25 @@ bool isValidString(String value, Function predicate) { ... }
 {% endprettify %}
 </div>
 
-One exception is if the variable can be one of several different function types.
-For example, it may allow a function that takes one mandatory parameter or a
-function that takes two. Since we don't have union types, there's no way to
-precisely type that and you'd normally have to use `dynamic`. `Function` is at
-least a *little* more precise than that.
+有一种例外情况，如果变量可以取值为多种方法类型。
+例如，他可能需要具有一个强制性的参数的方法或者
+需要具有两个参数的方法。
+由于在 Dart 中没有联合（union）类型，所以没法准确
+的表示这种类型，通常只能使用 `dynamic`。 `Function` 会更加具体一点。
 
 
-### DO annotate with `Object` instead of `dynamic` to indicate any object is accepted.
+### **要** 使用 `Object` 来替代 `dynamic` 来表示可以接受任意对象。
 
-Some operations will work with any possible object. For example, a log method
-could take any object and call `toString()` on it. Two types in Dart permit all
-objects: `Object` and `dynamic`. However, they convey two different things.
+有些操作函数可以使用任意对象作为参数。比如一个 log 函数
+可以使用任意的对象并调用其 `toString()` 函数。
+在 Dart 中有两种表示所有对象的类型：`Object` 和 `dynamic`。但是表达的意义不同。
 
-The `Object` annotation says "I accept any object, and I only require it to have
-the methods that `Object` itself defines."
+`Object` 类型说明：可以接受任意对象，只需要这个对象定义了 `Object` 所定义的函数
+即可。
 
-A `dynamic` type annotation means that no type annotation can express what
-objects you actually allow. (Or maybe one could, but you don't care to write
-it.)
+而 `dynamic` 类型表达是意思是：没有一个类型可以表达你所期望的对象。
+（有可能有类型可以表达，但是你
+不在乎。）
 
 <div class="good">
 {% prettify dart %}
@@ -888,16 +892,16 @@ bool convertToBool(arg) {
 {% endprettify %}
 </div>
 
-## Parameters
+## 参数
 
-In Dart, optional parameters can be either positional or named, but not both.
+在 Dart 中可选参数可以为命名参数或者位置参数，但是不能同时有这两种类型的参数为可选参数。
 
-### AVOID positional boolean parameters.
+### **避免** 位置参数作为可选布尔参数。
 
-Unlike other types, booleans are usually used in literal form. Things like
-numbers are usually wrapped in named constants, but we usually just pass around
-`true` and `false` directly. That can make callsites unreadable if it isn't
-clear what the boolean represents:
+和其他类型不一样的是，布尔值通常使用字面量形式。
+其他成员通常都放到一个命名的常量中，但是布尔值我们通常都直接使用
+`true` 和 `false` 。如果起名不清晰的话，在使用布尔值调用的时候
+代码看起来可能非常难懂：
 
 <div class="bad">
 {% prettify dart %}
@@ -908,8 +912,8 @@ new Button(false);
 {% endprettify %}
 </div>
 
-Instead, consider using named arguments, named constructors, or named constants
-to clarify what the call is doing.
+考虑使用命名参数或者命名构造函数以及命名常量来清晰
+的表明您的意图：
 
 <div class="good">
 {% prettify dart %}
@@ -920,8 +924,8 @@ new Button(ButtonState.enabled);
 {% endprettify %}
 </div>
 
-Note that this doesn't apply to setters, where the name makes it clear what the
-value represents:
+注意，对于 setter 则没有这个要求，应为 setter 的名字已经明确的
+表明了值所代表的意义。
 
 <div class="good">
 {% prettify dart %}
@@ -930,12 +934,12 @@ button.isEnabled = false;
 {% endprettify %}
 </div>
 
-### AVOID optional positional parameters if the user may want to omit earlier parameters.
+### **避免** 把用户想要忽略的参数放到位置可选参数的前列。
 
-Optional positional parameters should have a logical progression such that
-earlier parameters are passed more often than later ones. Users should almost
-never need to explicitly pass a "hole" to omit an earlier positional argument to
-pass later one. You're better off using named arguments for that.
+位置可选参数应该把经常使用的参数放到参数列表前面。
+如果位置排列的不合理，则用户使用起来将很
+麻烦。
+对于拿不准的排序，请使用命名参数。
 
 <div class="good">
 {% prettify dart %}
@@ -960,15 +964,15 @@ Duration(
 {% endprettify %}
 </div>
 
-### AVOID mandatory parameters that permit nonce values.
+### **避免** 使用强制无意义的参数。
 
-If the user is logically omitting a parameter, prefer letting them actually omit
-it by making the parameter optional instead of forcing them to pass `null`, an
-empty string, or some other sentinel value that means "did not pass".
+如果用户可以省略一个参数调用函数，推荐让该参数为可选参数而不是强迫用户
+使用 `null` 来作为参数。空字符串 等类似
+的情况也适用这种情况。
 
-Omitting the parameter is more terse and helps prevent bugs where a sentinel
-value like `null` is accidentally passed when the user thought they were
-providing a real value.
+省略参数看起来更加简洁，
+有助于
+防止 bug。
 
 <div class="good">
 {% prettify dart %}
@@ -983,14 +987,14 @@ string.substring(start, null)
 </div>
 
 
-### DO use inclusive start and exclusive end parameters to accept a range.
+### **要** 使用包含开始位置并且不包含结束位置的范围参数。
 
-If you are defining a method or function that lets a user select a range of
-elements or items from some integer-indexed sequence, take a start index, which
-refers to the first item and a (likely optional) end index which is one greater
-than the index of the last item.
+如果你定义一个函数或者方法让用户从基于位置排序的集合中
+选择一些元素，需要一个开始位置索引和结束位置索引分别制定开始
+元素的位置以及结束元素的位置。结束位置通常是指
+大于最后一个元素的位置的值。
 
-This is consistent with core libraries that do the same thing.
+核心库就是这样定义的，所以最好和核心库保持一致。
 
 <div class="good">
 {% prettify dart %}
@@ -999,58 +1003,57 @@ This is consistent with core libraries that do the same thing.
 {% endprettify %}
 </div>
 
-It's particularly important to be consistent here because these parameters are
-usually unnamed. If your API takes a length instead of an end point, the
-difference won't be visible at all at the callsite.
+这种类型的参数保持一致是非常重要的，由于这种参数通常是位置参数，
+如果你的函数第二个参数所代表的意义为获取元素的个数而不是结束的位置，
+在调用的时候用户没法通过代码查看其区别。
 
 
-## Equality
+## 相等判断
 
-Implementing custom equality behavior for a class can be tricky. Users have deep
-intuition about how equality works that your objects need to match, and
-collection types like hash tables have subtle contracts that they expect
-elements to follow.
+为类实现自定义的相等判断可能比较麻烦。关于两个对象是否相等，
+用户有根深蒂固的直观感受，并且基于哈希的集合要求
+里面的对象满足一些微妙
+的协议。
 
-### DO override `hashCode` if you override `==`.
+### **要** 在覆写 `==` 的同时覆写 `hashCode` 。
 
-The default hash code implementation provides an *identity* hash&mdash;two
-objects generally only have the same hash code if they are the exact same
-object. Likewise, the default behavior for `==` is identity.
+默认的哈希函数实现了恒等式哈希&mdash;两个对象
+只有当其是同一个对象的时候哈希值才一样。
+否则的话，默认的 `==`  的行为不满足恒等式要求。
 
-If you are overriding `==`, it implies you may have different objects that are
-considered "equal" by your class. **Any two objects that are equal must have the
-same hash code.** Otherwise, maps and other hash-based collections will fail to
-recognize that the two objects are equivalent.
+如果你覆写了 `==` ，则表明你的对象可能和其他对象相等。
+**任何相等的两个对象都必须具有同样的哈希值。**
+否则的话，map 和其他基于哈希的集合将不知道这两个对象是相等的。
 
-### DO make your `==` operator obey the mathematical rules of equality.
+### **要** 安装算术相等要规则来实现你的 `==` 操作符。
 
-An equivalence relation should be:
+等价关系应该是这样的：
 
-* **Reflexive**: `a == a` should always return `true`.
+* **自反**: `a == a` 应该总是 `true`.
 
-* **Symmetric**: `a == b` should return the same thing as `b == a`.
+* **对称**: `a == b` 应该和 `b == a` 是一样的结果。
 
-* **Transitive**: If `a == b` and `b == c` both return `true`, then `a == c`
-  should too.
+* **传递**: 如果 `a == b` 和 `b == c` 都返回 `true`，则 `a == c`
+  也应该为 `true`。
 
-Users and code that uses `==` expect all of these laws to be followed. If your
-class can't obey these rules, then `==` isn't the right name for the operation
-you're trying to express.
+用户以及使用 `==`  的代码都期望遵守上面的规则。
+如果你的类无法满足这些要求，则 `==`  就不是你想
+表达的函数的正确名字。
 
-### AVOID defining custom equality for mutable classes.
+### **避免** 为可变对象自定义相等函数。
 
-When you define `==`, you also have to define `hashCode`. Both of those should
-take into account the object's fields. If those fields *change* then that
-implies the object's hash code can change.
+如果你定义了 `==` ，则你还应该定义 `hashCode` 函数。
+这两个函数都应该考虑对象的变量。如果这些变量发生了*变化*，则
+表明该对象的哈希值也应该变化。
 
-Most hash-based collections don't anticipate that&mdash;they assume an object's
-hash code will be the same forever and may behave unpredictably if that isn't
-true.
+大部分基于哈希的集合并不这样认为&mdash;这些集合
+认为对象的哈希值应该一直不变，如果不是这样的话，这些集合
+可能出现怪异的行为。
 
-### DON'T check for `null` in custom `==` operators.
+### **不要** 在自定义 `==` 操作符中判断 `null`。
 
-The language specifies that this check is done automatically and your `==`
-method is called only if the right-hand side is not `null`.
+语言规范表明了这种判断已经自动执行了，你的 `==` 自定义操作符只有当
+右侧对象不为 null 的时候才会执行。
 
 <div class="good">
 {% prettify dart %}
