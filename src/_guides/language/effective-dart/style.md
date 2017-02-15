@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: "Effective Dart: Style"
+title: "Effective Dart: 代码风格"
 description: "Formatting and naming rules for consistent, readable code."
 
 nextpage:
