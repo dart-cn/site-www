@@ -12,49 +12,49 @@
 ### Style
 
 
-**Identifiers**
+**标识符**
 
-* <a href='/guides/language/effective-dart/style#do-name-types-using-uppercamelcase'>DO name types using <code>UpperCamelCase</code>.</a>
-* <a href='/guides/language/effective-dart/style#do-name-libraries-and-source-files-using-lowercase_with_underscores'>DO name libraries and source files using <code>lowercase_with_underscores</code>.</a>
-* <a href='/guides/language/effective-dart/style#do-name-import-prefixes-using-lowercase_with_underscores'>DO name import prefixes using <code>lowercase_with_underscores</code>.</a>
-* <a href='/guides/language/effective-dart/style#do-name-other-identifiers-using-lowercamelcase'>DO name other identifiers using <code>lowerCamelCase</code>.</a>
-* <a href='/guides/language/effective-dart/style#prefer-using-lowercamelcase-for-constant-names'>PREFER using <code>lowerCamelCase</code> for constant names.</a>
-* <a href='/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words'>DO capitalize acronyms and abbreviations longer than two letters like words.</a>
+* <a href='/guides/language/effective-dart/style#uppercamelcase-'><strong>要</strong> 使用 <code>UpperCamelCase</code> 风格来命名类型名称</a>
+* <a href='/guides/language/effective-dart/style#lowercase_with_underscores-'><strong>要</strong> 使用 <code>lowercase_with_underscores</code> 风格来命名库和文件名名字。</a>
+* <a href='/guides/language/effective-dart/style#lowercase_with_underscores-'><strong>要</strong> 使用 <code>lowercase_with_underscores</code> 风格命名导入的前缀。</a>
+* <a href='/guides/language/effective-dart/style#lowercamelcase-'><strong>要</strong> 使用 <code>lowerCamelCase</code> 风格来命名其他的标识符。</a>
+* <a href='/guides/language/effective-dart/style#lowercamelcase-'><strong>推荐</strong> 使用 <code>lowerCamelCase</code> 来命名常量。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把超过两个字母的缩略词和首字母缩略词当做一般单词来对待。</a>
 
-**Ordering**
+**顺序**
 
-* <a href='/guides/language/effective-dart/style#do-place-dart-imports-before-other-imports'>DO place "dart:" imports before other imports.</a>
-* <a href='/guides/language/effective-dart/style#do-place-package-imports-before-relative-imports'>DO place "package:" imports before relative imports.</a>
-* <a href='/guides/language/effective-dart/style#prefer-placing-third-party-package-imports-before-other-imports'>PREFER placing "third-party" "package:" imports before other imports.</a>
-* <a href='/guides/language/effective-dart/style#do-specify-exports-in-a-separate-section-after-all-imports'>DO specify exports in a separate section after all imports.</a>
-* <a href='/guides/language/effective-dart/style#do-sort-sections-alphabetically'>DO sort sections alphabetically.</a>
+* <a href='/guides/language/effective-dart/style#dart-'><strong>要</strong> 把 "dart:" 导入语句放到其他导入语句之前。</a>
+* <a href='/guides/language/effective-dart/style#package-'><strong>要</strong> 把 "package:" 导入语句放到相对导入语句之前。</a>
+* <a href='/guides/language/effective-dart/style#package-'><strong>推荐</strong> 把"第三方" "package:" 导入语句放到其他语句之前。</a>
+* <a href='/guides/language/effective-dart/style#export'><strong>要</strong> 把导出（export）语句放到所有导入语句之后的部分。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 按照字母顺序来排序每个部分中的语句。</a>
 
-**Formatting**
+**格式化**
 
-* <a href='/guides/language/effective-dart/style#avoid-lines-longer-than-80-characters'>AVOID lines longer than 80 characters.</a>
-* <a href='/guides/language/effective-dart/style#do-use-curly-braces-for-all-flow-control-structures'>DO use curly braces for all flow control structures.</a>
-* <a href='/guides/language/effective-dart/style#do-format-your-code-using-dartfmt'>DO format your code using <code>dartfmt</code>.</a>
-* <a href='/guides/language/effective-dart/style#dont-use-tabs'>DON'T use tabs.</a>
-* <a href='/guides/language/effective-dart/style#do-place-a-newline-after-each-statement-or-declaration'>DO place a newline after each statement or declaration.</a>
-* <a href='/guides/language/effective-dart/style#dont-place-a-space-between-the-declared-name-of-a-method-operator-or-setter-and-its-parameter-list'>DON'T place a space between the declared name of a method, operator, or setter and its parameter list.</a>
-* <a href='/guides/language/effective-dart/style#do-place-a-space-after-the-operator-keyword'>DO place a space after the <code>operator</code> keyword.</a>
-* <a href='/guides/language/effective-dart/style#do-place-spaces-around-binary-and-ternary-operators'>DO place spaces around binary and ternary operators.</a>
-* <a href='/guides/language/effective-dart/style#do-place-spaces-after--and--when-used-in-a-map-or-named-parameter'>DO place spaces after <code>,</code> and <code>:</code> when used in a map or named parameter.</a>
-* <a href='/guides/language/effective-dart/style#dont-place-spaces-around-unary-operators'>DON'T place spaces around unary operators.</a>
-* <a href='/guides/language/effective-dart/style#do-place-spaces-around-in-and-after-each--in-a-loop'>DO place spaces around <code>in</code>, and after each <code>;</code> in a loop.</a>
-* <a href='/guides/language/effective-dart/style#do-use-a-space-after-flow-control-keywords'>DO use a space after flow-control keywords.</a>
-* <a href='/guides/language/effective-dart/style#dont-use-a-space-after---and--or-before---and-'>DON'T use a space after <code>(</code>, <code>[</code>, and <code>{</code>, or before <code>)</code>, <code>]</code>, and <code>}</code>.</a>
-* <a href='/guides/language/effective-dart/style#do-use-a-space-before--in-function-and-method-bodies'>DO use a space before <code>{</code> in function and method bodies.</a>
-* <a href='/guides/language/effective-dart/style#do-place-the-opening-curly-brace--on-the-same-line-as-what-it-follows'>DO place the opening curly brace (<code>{</code>) on the same line as what it follows.</a>
-* <a href='/guides/language/effective-dart/style#do-place-binary-operators-on-the-preceding-line-in-a-multi-line-expression'>DO place binary operators on the preceding line in a multi-line expression.</a>
-* <a href='/guides/language/effective-dart/style#do-place-ternary-operators-on-the-next-line-in-a-multi-line-expression'>DO place ternary operators on the next line in a multi-line expression.</a>
-* <a href='/guides/language/effective-dart/style#do-place-the--on-the-next-line-in-a-multi-line-expression'>DO place the <code>.</code> on the next line in a multi-line expression.</a>
-* <a href='/guides/language/effective-dart/style#do-format-constructor-initialization-lists-with-each-field-on-its-own-line'>DO format constructor initialization lists with each field on its own line.</a>
-* <a href='/guides/language/effective-dart/style#prefer-splitting-every-element-in-a-collection-literal-if-it-does-not-fit-on-one-line'>PREFER splitting every element in a collection literal if it does not fit on one line.</a>
-* <a href='/guides/language/effective-dart/style#do-indent-block-and-collection-bodies-two-spaces'>DO indent block and collection bodies two spaces.</a>
-* <a href='/guides/language/effective-dart/style#do-indent-switch-cases-two-spaces-and-case-bodies-four-spaces'>DO indent switch cases two spaces and case bodies four spaces.</a>
-* <a href='/guides/language/effective-dart/style#do-indent-multi-line-method-cascades-at-least-two-spaces'>DO indent multi-line method cascades at least two spaces.</a>
-* <a href='/guides/language/effective-dart/style#prefer-indenting-continued-lines-with-at-least-four-spaces'>PREFER indenting continued lines with at least four spaces.</a>
+* <a href='/guides/language/effective-dart/style#'><strong>避免</strong> 每行长度超过 80 字符。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 在所有的控制结构上使用大括号。</a>
+* <a href='/guides/language/effective-dart/style#dartfmt-'><strong>要</strong> 使用 <code>dartfmt</code> 来格式化您的代码</a>
+* <a href='/guides/language/effective-dart/style#tabs-'><strong>不要</strong> 使用 tabs 。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 在每个语句或者声明后面添加一个空行。</a>
+* <a href='/guides/language/effective-dart/style#operator-setter-'><strong>不要</strong> 在声明函数名字、操作符(operator)和 setter 以及参数名字之间添加空格。</a>
+* <a href='/guides/language/effective-dart/style#operator-'><strong>要</strong> 在关键字 <code>operator</code> 后面添加一个空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 在二元和三元操作符之间添加空格。</a>
+* <a href='/guides/language/effective-dart/style#map-'><strong>要</strong> 在 <code>,</code> 和 <code>:</code> 后面添加空格，当用作 map 和命名参数的情况下。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>不要</strong> 在一元操作符前后添加空格。</a>
+* <a href='/guides/language/effective-dart/style#in---'><strong>要</strong>在 <code>in</code> 关键字前后添加空格，在循环中的每个 <code>;</code> 后面也要添加空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 在流程控制关键字后面使用一个空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>不要</strong>在 <code>(</code>, <code>[</code>, 和 <code>{</code> 之后使用空格，也不要在 <code>)</code>, <code>]</code>, 和 <code>}</code> 之前使用空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 在函数和方法体的 <code>{</code> 之前添加一个空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把开始的大括号 (<code>{</code>) 放到同一行上。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把二元符合放到多行表达式的前面一行的结尾。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把三元操作符放到多个表达式的下一行开始位置。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把 <code>.</code> 放到下一行开头当表达式换行的时候。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 把构造函数初始化列表中的每个参数和值都放到同一行。</a>
+* <a href='/guides/language/effective-dart/style#prefer-splitting-every-element-in-a-collection-literal-if-it-does-not-fit-on-one-line'><strong>推荐</strong> 当无法在一行写完集合的时候，把每个元素都用集合定义的方式来表达。（PREFER splitting every element in a collection literal if it does not fit on one line.）</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 用两个空格来缩进代码块和集合体。</a>
+* <a href='/guides/language/effective-dart/style#switch-case--case-'><strong>要</strong> 缩进 switch case 两个空格， case 体四个空格。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>要</strong> 只少使用两个空格来缩进多行函数级联调用。</a>
+* <a href='/guides/language/effective-dart/style#'><strong>推荐</strong> 使用四个空格来缩进同一行的换行。</a>
 
 </div>
 <div class='effective_dart--summary_column' markdown='1'>
@@ -63,36 +63,36 @@
 ### Documentation
 
 
-**Comments**
+**注释**
 
-* <a href='/guides/language/effective-dart/documentation#do-format-comments-like-sentences'>DO format comments like sentences.</a>
-* <a href='/guides/language/effective-dart/documentation#dont-use-block-comments-for-documentation'>DON'T use block comments for documentation.</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 按照句子的格式来格式化评论。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>不要</strong> 使用块注释作为解释说明。</a>
 
-**Doc comments**
+**文档注释**
 
-* <a href='/guides/language/effective-dart/documentation#do-use--doc-comments-to-document-members-and-types'>DO use <code>///</code> doc comments to document members and types.</a>
-* <a href='/guides/language/effective-dart/documentation#prefer-writing-doc-comments-for-public-apis'>PREFER writing doc comments for public APIs.</a>
-* <a href='/guides/language/effective-dart/documentation#consider-writing-doc-comments-for-private-apis'>CONSIDER writing doc comments for private APIs.</a>
-* <a href='/guides/language/effective-dart/documentation#do-make-the-first-sentence-a-standalone-paragraph'>DO make the first sentence a standalone paragraph.</a>
-* <a href='/guides/language/effective-dart/documentation#prefer-starting-function-or-method-comments-with-third-person-verbs'>PREFER starting function or method comments with third-person verbs.</a>
-* <a href='/guides/language/effective-dart/documentation#prefer-starting-variable-getter-or-setter-comments-with-noun-phrases'>PREFER starting variable, getter, or setter comments with noun phrases.</a>
-* <a href='/guides/language/effective-dart/documentation#prefer-starting-library-or-type-comments-with-noun-phrases'>PREFER starting library or type comments with noun phrases.</a>
-* <a href='/guides/language/effective-dart/documentation#consider-including-code-samples-in-doc-comments'>CONSIDER including code samples in doc comments.</a>
-* <a href='/guides/language/effective-dart/documentation#do-use-square-brackets-in-doc-comments-to-refer-to-in-scope-identifiers'>DO use square brackets in doc comments to refer to in-scope identifiers.</a>
-* <a href='/guides/language/effective-dart/documentation#do-use-prose-to-explain-parameters-return-values-and-exceptions'>DO use prose to explain parameters, return values, and exceptions.</a>
-* <a href='/guides/language/effective-dart/documentation#avoid-redundantly-mentioning-types-in-doc-comments'>AVOID redundantly mentioning types in doc comments.</a>
-* <a href='/guides/language/effective-dart/documentation#do-put-doc-comments-before-metadata-annotations'>DO put doc comments before metadata annotations.</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 使用 <code>///</code> 文档注释来注释成员和类型。</a>
+* <a href='/guides/language/effective-dart/documentation#api-'><strong>推荐</strong> 为公开发布的 API 编写注释文档。</a>
+* <a href='/guides/language/effective-dart/documentation#api-'><strong>考虑</strong> 为私有 API 编写注释文档。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 把第一个语句定义为一个段落。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>推荐</strong> 用第三人称来开始函数或者方法的文档注释。</a>
+* <a href='/guides/language/effective-dart/documentation#gettersetter-'><strong>推荐</strong> 使用名词短语来开始变量、getter、setter 的注释。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>推荐</strong> 使用名词短语来开始库和类型注释。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>考虑</strong> 在文档注释中添加示例代码。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 使用方括号在文档注释中引用作用域内的标识符。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 使用散文的方式来描述参数、返回值以及异常信息。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>避免</strong> 在注释文档中提供冗余的类型信息。</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>要</strong> 把注释文档放到注解之前。</a>
 
 **Markdown**
 
-* <a href='/guides/language/effective-dart/documentation#avoid-using-markdown-excessively'>AVOID using markdown excessively.</a>
-* <a href='/guides/language/effective-dart/documentation#avoid-using-html-for-formatting'>AVOID using HTML for formatting.</a>
+* <a href='/guides/language/effective-dart/documentation#markdown'><strong>避免</strong> 过度使用 markdown。</a>
+* <a href='/guides/language/effective-dart/documentation#html-'><strong>避免</strong> 使用 HTML 来格式化文字。</a>
 
-**Writing**
+**如何写注释**
 
-* <a href='/guides/language/effective-dart/documentation#prefer-brevity'>PREFER brevity.</a>
-* <a href='/guides/language/effective-dart/documentation#avoid-abbreviations-and-acronyms-unless-they-are-obvious'>AVOID abbreviations and acronyms unless they are obvious.</a>
-* <a href='/guides/language/effective-dart/documentation#prefer-using-this-instead-of-the-to-refer-to-a-members-instance'>PREFER using "this" instead of "the" to refer to a member's instance.</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>推荐</strong> 简洁.</a>
+* <a href='/guides/language/effective-dart/documentation#'><strong>避免</strong> 缩写和首字母缩略词（非常流行的除外）。</a>
+* <a href='/guides/language/effective-dart/documentation#this--the-'><strong>推荐</strong> 使用 "this" 而不是 "the" 来引用实例成员。</a>
 
 </div>
 <div style='clear:both'></div>
@@ -104,57 +104,57 @@
 
 **Strings**
 
-* <a href='/guides/language/effective-dart/usage#do-use-adjacent-strings-to-concatenate-string-literals'>DO use adjacent strings to concatenate string literals.</a>
-* <a href='/guides/language/effective-dart/usage#prefer-using-interpolation-to-compose-strings-and-values'>PREFER using interpolation to compose strings and values.</a>
-* <a href='/guides/language/effective-dart/usage#avoid-using-curly-braces-in-interpolation-when-not-needed'>AVOID using curly braces in interpolation when not needed.</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 使用相邻的字符串字面量定义来链接字符串。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>推荐</strong> 使用插值的形式来组合字符串和值。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>避免</strong> 在字符串插值中使用多余的大括号。</a>
 
-**Collections**
+**集合**
 
-* <a href='/guides/language/effective-dart/usage#do-use-collection-literals-when-possible'>DO use collection literals when possible.</a>
-* <a href='/guides/language/effective-dart/usage#dont-use-length-to-see-if-a-collection-is-empty'>DON'T use <code>.length</code> to see if a collection is empty.</a>
-* <a href='/guides/language/effective-dart/usage#consider-using-higher-order-methods-to-transform-a-sequence'>CONSIDER using higher-order methods to transform a sequence.</a>
-* <a href='/guides/language/effective-dart/usage#avoid-using-iterableforeach-with-a-function-literal'>AVOID using <code>Iterable.forEach()</code> with a function literal.</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 尽可能的使用集合字面量来定义集合。</a>
+* <a href='/guides/language/effective-dart/usage#length-'><strong>不要</strong> 使用 <code>.length</code> 来判断集合是否为空。</a>
+* <a href='/guides/language/effective-dart/usage#higher-order'><strong>考虑</strong> 使用高阶（higher-order）函数来转换集合数据。</a>
+* <a href='/guides/language/effective-dart/usage#iterableforeach-'><strong>避免</strong> 在 <code>Iterable.forEach()</code> 中使用函数声明形式。</a>
 
-**Functions**
+**方法(Functions)**
 
-* <a href='/guides/language/effective-dart/usage#do-use-a-function-declaration-to-bind-a-function-to-a-name'>DO use a function declaration to bind a function to a name.</a>
-* <a href='/guides/language/effective-dart/usage#dont-create-a-lambda-when-a-tear-off-will-do'>DON'T create a lambda when a tear-off will do.</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 用方法声明的形式来给方法起个名字。</a>
+* <a href='/guides/language/effective-dart/usage#lambda--tear-off'><strong>不要</strong> 使用 lambda 表达式来替代 tear-off。</a>
 
-**Variables**
+**变量**
 
-* <a href='/guides/language/effective-dart/usage#dont-explicitly-initialize-variables-to-null'>DON'T explicitly initialize variables to <code>null</code>.</a>
-* <a href='/guides/language/effective-dart/usage#avoid-storing-what-you-can-calculate'>AVOID storing what you can calculate.</a>
-* <a href='/guides/language/effective-dart/usage#consider-omitting-the-types-for-local-variables'>CONSIDER omitting the types for local variables.</a>
+* <a href='/guides/language/effective-dart/usage#null'><strong>不要</strong> 显式的把变量初始化为 <code>null</code>。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>避免</strong> 保存可以计算的结果。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>考虑</strong> 省略局部变量的类型。</a>
 
-**Members**
+**成员**
 
-* <a href='/guides/language/effective-dart/usage#dont-wrap-a-field-in-a-getter-and-setter-unnecessarily'>DON'T wrap a field in a getter and setter unnecessarily.</a>
-* <a href='/guides/language/effective-dart/usage#prefer-using-a-final-field-to-make-a-read-only-property'>PREFER using a <code>final</code> field to make a read-only property.</a>
-* <a href='/guides/language/effective-dart/usage#consider-using--for-short-members-whose-body-is-a-single-return-statement'>CONSIDER using <code>=&gt;</code> for short members whose body is a single return statement.</a>
-* <a href='/guides/language/effective-dart/usage#dont-use-this-when-not-needed-to-avoid-shadowing'>DON'T use <code>this.</code> when not needed to avoid shadowing.</a>
-* <a href='/guides/language/effective-dart/usage#do-initialize-fields-at-their-declaration-when-possible'>DO initialize fields at their declaration when possible.</a>
+* <a href='/guides/language/effective-dart/usage#getter--setter'><strong>不要</strong> 创建没必要的 getter 和 setter。</a>
+* <a href='/guides/language/effective-dart/usage#final-'><strong>推荐</strong> 使用 <code>final</code> 关键字来限定只读属性。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>考虑</strong> 用 <code>=&gt;</code> 来实现只有一个单一返回语句的函数。</a>
+* <a href='/guides/language/effective-dart/usage#this-'><strong>不要</strong> 使用 <code>this.</code> ，除非遇到了变量冲突的情况。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 尽可能的在定义变量的时候初始化其值。</a>
 
-**Constructors**
+**构造函数**
 
-* <a href='/guides/language/effective-dart/usage#do-use-initializing-formals-when-possible'>DO use initializing formals when possible.</a>
-* <a href='/guides/language/effective-dart/usage#dont-type-annotate-initializing-formals'>DON'T type annotate initializing formals.</a>
-* <a href='/guides/language/effective-dart/usage#do-use--instead-of--for-empty-constructor-bodies'>DO use <code>;</code> instead of <code>{}</code> for empty constructor bodies.</a>
-* <a href='/guides/language/effective-dart/usage#do-place-the-super-call-last-in-a-constructor-initialization-list'>DO place the <code>super()</code> call last in a constructor initialization list.</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 尽可能的使用初始化形式。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>不要</strong> 在初始化形式上定义类型。</a>
+* <a href='/guides/language/effective-dart/usage#'><strong>要</strong> 用 <code>;</code> 来替代空函数体的构造函数 <code>{}</code>。</a>
+* <a href='/guides/language/effective-dart/usage#super-'><strong>要</strong> 把 <code>super()</code> 调用放到构造函数初始化列表之后调用。</a>
 
-**Error handling**
+**错误处理**
 
-* <a href='/guides/language/effective-dart/usage#avoid-catches-without-on-clauses'>AVOID catches without <code>on</code> clauses.</a>
-* <a href='/guides/language/effective-dart/usage#dont-discard-errors-from-catches-without-on-clauses'>DON'T discard errors from catches without <code>on</code> clauses.</a>
-* <a href='/guides/language/effective-dart/usage#do-throw-objects-that-implement-error-only-for-programmatic-errors'>DO throw objects that implement <code>Error</code> only for programmatic errors.</a>
-* <a href='/guides/language/effective-dart/usage#dont-explicitly-catch-error-or-types-that-implement-it'>DON'T explicitly catch <code>Error</code> or types that implement it.</a>
-* <a href='/guides/language/effective-dart/usage#do-use-rethrow-to-rethrow-a-caught-exception'>DO use <code>rethrow</code> to rethrow a caught exception.</a>
+* <a href='/guides/language/effective-dart/usage#on--catch'><strong>避免</strong> 使用没有 <code>on</code> 语句的 catch。</a>
+* <a href='/guides/language/effective-dart/usage#on-'><strong>不要</strong> 丢弃没有使用 <code>on</code> 语句捕获的异常。</a>
+* <a href='/guides/language/effective-dart/usage#error-'><strong>要</strong> 只在代表编程错误的情况下才抛出实现了 <code>Error</code> 的异常。</a>
+* <a href='/guides/language/effective-dart/usage#error-'><strong>不要</strong> 显示的捕获 <code>Error</code> 或者其子类。</a>
+* <a href='/guides/language/effective-dart/usage#rethrow-'><strong>要</strong> 使用 <code>rethrow</code> 来重新抛出捕获的异常。</a>
 
-**Asynchrony**
+**异步**
 
-* <a href='/guides/language/effective-dart/usage#prefer-asyncawait-over-using-raw-futures'>PREFER async/await over using raw futures.</a>
-* <a href='/guides/language/effective-dart/usage#dont-use-async-when-it-has-no-useful-effect'>DON'T use <code>async</code> when it has no useful effect.</a>
-* <a href='/guides/language/effective-dart/usage#consider-using-higher-order-methods-to-transform-a-stream'>CONSIDER using higher-order methods to transform a stream.</a>
-* <a href='/guides/language/effective-dart/usage#avoid-using-completer-directly'>AVOID using Completer directly.</a>
+* <a href='/guides/language/effective-dart/usage#asyncawait-'><strong>推荐</strong> 使用 async/await 而不是直接使用底层的特性。</a>
+* <a href='/guides/language/effective-dart/usage#async-'><strong>不要</strong> 在没有有用效果的情况下使用 <code>async</code> 。</a>
+* <a href='/guides/language/effective-dart/usage#stream'><strong>考虑</strong> 使用高阶函数来转换事件流（stream）</a>
+* <a href='/guides/language/effective-dart/usage#completer--'><strong>避免</strong> 直接使用 Completer  。</a>
 
 </div>
 <div class='effective_dart--summary_column' markdown='1'>
@@ -163,71 +163,71 @@
 ### Design
 
 
-**Names**
+**命名**
 
-* <a href='/guides/language/effective-dart/design#do-use-terms-consistently'>DO use terms consistently.</a>
-* <a href='/guides/language/effective-dart/design#avoid-abbreviations'>AVOID abbreviations.</a>
-* <a href='/guides/language/effective-dart/design#prefer-putting-the-most-descriptive-noun-last'>PREFER putting the most descriptive noun last.</a>
-* <a href='/guides/language/effective-dart/design#consider-making-the-code-read-like-a-sentence'>CONSIDER making the code read like a sentence.</a>
-* <a href='/guides/language/effective-dart/design#prefer-a-noun-phrase-for-a-non-boolean-property-or-variable'>PREFER a noun phrase for a non-boolean property or variable.</a>
-* <a href='/guides/language/effective-dart/design#prefer-a-non-imperative-verb-phrase-for-a-boolean-property-or-variable'>PREFER a non-imperative verb phrase for a boolean property or variable.</a>
-* <a href='/guides/language/effective-dart/design#consider-omitting-the-verb-for-a-named-boolean-parameter'>CONSIDER omitting the verb for a named boolean <em>parameter</em>.</a>
-* <a href='/guides/language/effective-dart/design#prefer-an-imperative-verb-phrase-for-a-function-or-method-whose-main-purpose-is-a-side-effect'>PREFER an imperative verb phrase for a function or method whose main purpose is a side effect.</a>
-* <a href='/guides/language/effective-dart/design#consider-a-noun-phrase-or-non-imperative-verb-phrase-for-a-function-or-method-if-returning-a-value-is-its-primary-purpose'>CONSIDER a noun phrase or non-imperative verb phrase for a function or method if returning a value is its primary purpose.</a>
-* <a href='/guides/language/effective-dart/design#prefer-naming-a-method-to___-if-it-copies-the-objects-state-to-a-new-object'>PREFER naming a method <code>to___()</code> if it copies the object's state to a new object.</a>
-* <a href='/guides/language/effective-dart/design#prefer-naming-a-method-as___-if-it-returns-a-different-representation-backed-by-the-original-object'>PREFER naming a method <code>as___()</code> if it returns a different representation backed by the original object.</a>
-* <a href='/guides/language/effective-dart/design#avoid-describing-the-parameters-in-the-functions-or-methods-name'>AVOID describing the parameters in the function's or method's name.</a>
+* <a href='/guides/language/effective-dart/design#'><strong>要</strong> 使用一致的术语。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 缩写。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 把最具描述性的名词放到最后。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>考虑</strong> 尽量让代码看起来像普通的句子。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 使用名词短语来命名不是布尔类型的变量和属性。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 使用非命令式动词短语命名布尔类型的变量和属性。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>考虑</strong> 省略命名布尔<em>参数</em>的动词。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 使用命令式动词短语来命名带有副作用的函数或者方法。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>考虑</strong> 使用名词短语或者非命令式动词短语命名返回数据为主要功能的方法或者函数。</a>
+* <a href='/guides/language/effective-dart/design#to___-'><strong>推荐</strong> 使用 <code>to___()</code> 来命名把对象的状态转换到一个新的对象的函数。</a>
+* <a href='/guides/language/effective-dart/design#as___-'><strong>推荐</strong> 使用 <code>as___()</code> 来命名把原来对象转换为另外一种表现形式的函数。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 在方法或者函数名称中描述参数。</a>
 
-**Libraries**
+**库**
 
-* <a href='/guides/language/effective-dart/design#prefer-making-declarations-private'>PREFER making declarations private.</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 使用私有声明。</a>
 
-**Types**
+**类型**
 
-* <a href='/guides/language/effective-dart/design#avoid-defining-a-one-member-abstract-class-when-a-simple-function-will-do'>AVOID defining a one-member abstract class when a simple function will do.</a>
-* <a href='/guides/language/effective-dart/design#avoid-defining-a-class-that-contains-only-static-members'>AVOID defining a class that contains only static members.</a>
-* <a href='/guides/language/effective-dart/design#avoid-extending-a-class-that-isnt-intended-to-be-subclassed'>AVOID extending a class that isn't intended to be subclassed.</a>
-* <a href='/guides/language/effective-dart/design#do-document-whether-your-class-supports-being-extended'>DO document whether your class supports being extended.</a>
-* <a href='/guides/language/effective-dart/design#avoid-mixing-in-a-class-that-isnt-intended-to-be-a-mixin'>AVOID mixing in a class that isn't intended to be a mixin.</a>
-* <a href='/guides/language/effective-dart/design#do-document-whether-your-class-supports-being-used-as-a-mixin'>DO document whether your class supports being used as a mixin.</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 定义使用简单的方法可以替代的只有一个成员的抽象类。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 定义只包含静态成员的类。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 继承一个不打算被继承的类。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>要</strong> 在文档中表明你的类是否打算被继承。</a>
+* <a href='/guides/language/effective-dart/design#mixin'><strong>避免</strong> 混入（mixin）一个不打算被混入的类。</a>
+* <a href='/guides/language/effective-dart/design#mixin-'><strong>要</strong> 在文档中注明你的类是否打算当做 mixin 使用。</a>
 
-**Constructors**
+**构造函数**
 
-* <a href='/guides/language/effective-dart/design#prefer-defining-constructors-instead-of-static-methods-to-create-instances'>PREFER defining constructors instead of static methods to create instances.</a>
-* <a href='/guides/language/effective-dart/design#consider-making-your-constructor-const-if-the-class-supports-it'>CONSIDER making your constructor <code>const</code> if the class supports it.</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 使用构造函数而不是静态函数来创建对象。</a>
+* <a href='/guides/language/effective-dart/design#const-'><strong>考虑</strong> 让构造函数为 <code>const</code> 的。</a>
 
-**Members**
+**成员**
 
-* <a href='/guides/language/effective-dart/design#prefer-making-fields-and-top-level-variables-final'>PREFER making fields and top-level variables <code>final</code>.</a>
-* <a href='/guides/language/effective-dart/design#do-use-getters-for-operations-that-conceptually-access-properties'>DO use getters for operations that conceptually access properties.</a>
-* <a href='/guides/language/effective-dart/design#do-use-a-setter-for-operations-that-conceptually-change-a-property'>DO use a setter for operations that conceptually change a property.</a>
-* <a href='/guides/language/effective-dart/design#dont-define-a-setter-without-a-corresponding-getter'>DON'T define a setter without a corresponding getter.</a>
-* <a href='/guides/language/effective-dart/design#avoid-returning-null-from-members-whose-return-type-is-bool-double-int-or-num'>AVOID returning <code>null</code> from members whose return type is <code>bool</code>, <code>double</code>, <code>int</code>, or <code>num</code>.</a>
-* <a href='/guides/language/effective-dart/design#avoid-returning-this-from-methods-just-to-enable-a-fluent-interface'>AVOID returning <code>this</code> from methods just to enable a fluent interface.</a>
+* <a href='/guides/language/effective-dart/design#final-'><strong>推荐</strong> 把成员变量或者顶级变量定义为 <code>final</code> 类型。</a>
+* <a href='/guides/language/effective-dart/design#getter-'><strong>要</strong> 使用 getter 来定义访问属性的操作。</a>
+* <a href='/guides/language/effective-dart/design#setter'><strong>要</strong> 对于本质上为修改对象属性的函数要使用 setter。</a>
+* <a href='/guides/language/effective-dart/design#getter--setter-'><strong>不要</strong> 定义没有对应 getter 的 setter 函数。</a>
+* <a href='/guides/language/effective-dart/design#bool-double-int--num--null'><strong>避免</strong> 在返回值类型为 <code>bool</code>, <code>double</code>, <code>int</code>, 或者 <code>num</code> 的函数中返回 <code>null</code>。</a>
+* <a href='/guides/language/effective-dart/design#this-'><strong>避免</strong> 在函数中返回 <code>this</code> 只是为了串联调用函数。</a>
 
-**Type annotations**
+**类型注解**
 
-* <a href='/guides/language/effective-dart/design#do-type-annotate-public-apis'>DO type annotate public APIs.</a>
-* <a href='/guides/language/effective-dart/design#dont-specify-a-return-type-for-a-setter'>DON’T specify a return type for a setter.</a>
-* <a href='/guides/language/effective-dart/design#prefer-type-annotating-private-declarations'>PREFER type annotating private declarations.</a>
-* <a href='/guides/language/effective-dart/design#avoid-annotating-types-on-function-expressions'>AVOID annotating types on function expressions.</a>
-* <a href='/guides/language/effective-dart/design#avoid-annotating-with-dynamic-when-not-required'>AVOID annotating with <code>dynamic</code> when not required.</a>
-* <a href='/guides/language/effective-dart/design#avoid-annotating-with-function'>AVOID annotating with <code>Function</code>.</a>
-* <a href='/guides/language/effective-dart/design#do-annotate-with-object-instead-of-dynamic-to-indicate-any-object-is-accepted'>DO annotate with <code>Object</code> instead of <code>dynamic</code> to indicate any object is accepted.</a>
+* <a href='/guides/language/effective-dart/design#api-'><strong>要</strong> 在公开的 API 上指定类型。</a>
+* <a href='/guides/language/effective-dart/design#setter-'><strong>不要</strong> 为 setter 指定返回类型。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>推荐</strong> 为私有成员提供类型。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 在方法表达式上使用类型。</a>
+* <a href='/guides/language/effective-dart/design#dynamic-'><strong>避免</strong> 在没必要的地方使用 <code>dynamic</code> 类型。</a>
+* <a href='/guides/language/effective-dart/design#function-'><strong>避免</strong> 使用 <code>Function</code> 类型。</a>
+* <a href='/guides/language/effective-dart/design#object--dynamic-'><strong>要</strong> 使用 <code>Object</code> 来替代 <code>dynamic</code> 来表示可以接受任意对象。</a>
 
-**Parameters**
+**参数**
 
-* <a href='/guides/language/effective-dart/design#avoid-positional-boolean-parameters'>AVOID positional boolean parameters.</a>
-* <a href='/guides/language/effective-dart/design#avoid-optional-positional-parameters-if-the-user-may-want-to-omit-earlier-parameters'>AVOID optional positional parameters if the user may want to omit earlier parameters.</a>
-* <a href='/guides/language/effective-dart/design#avoid-mandatory-parameters-that-permit-nonce-values'>AVOID mandatory parameters that permit nonce values.</a>
-* <a href='/guides/language/effective-dart/design#do-use-inclusive-start-and-exclusive-end-parameters-to-accept-a-range'>DO use inclusive start and exclusive end parameters to accept a range.</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 位置参数作为可选布尔参数。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 把用户想要忽略的参数放到位置可选参数的前列。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 使用强制无意义的参数。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>要</strong> 使用包含开始位置并且不包含结束位置的范围参数。</a>
 
-**Equality**
+**相等判断**
 
-* <a href='/guides/language/effective-dart/design#do-override-hashcode-if-you-override-'>DO override <code>hashCode</code> if you override <code>==</code>.</a>
-* <a href='/guides/language/effective-dart/design#do-make-your--operator-obey-the-mathematical-rules-of-equality'>DO make your <code>==</code> operator obey the mathematical rules of equality.</a>
-* <a href='/guides/language/effective-dart/design#avoid-defining-custom-equality-for-mutable-classes'>AVOID defining custom equality for mutable classes.</a>
-* <a href='/guides/language/effective-dart/design#dont-check-for-null-in-custom--operators'>DON'T check for <code>null</code> in custom <code>==</code> operators.</a>
+* <a href='/guides/language/effective-dart/design#hashcode-'><strong>要</strong> 在覆写 <code>==</code> 的同时覆写 <code>hashCode</code> 。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>要</strong> 安装算术相等要规则来实现你的 <code>==</code> 操作符。</a>
+* <a href='/guides/language/effective-dart/design#'><strong>避免</strong> 为可变对象自定义相等函数。</a>
+* <a href='/guides/language/effective-dart/design#null'><strong>不要</strong> 在自定义 <code>==</code> 操作符中判断 <code>null</code>。</a>
 
 </div>
 <div style='clear:both'></div>

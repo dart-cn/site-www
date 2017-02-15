@@ -1,70 +1,70 @@
 ---
 layout: default
-title: "Overview: The Dart Language"
+title: "Dart 语言概述"
 permalink: /guides/language
-short-title: "Dart Language"
+short-title: "Dart 语言"
 toc: false
 ---
 
-These two resources are popular with both beginning Dartisans and experts.
+下面两个资源不管是 Dart 初学者还是专家都非常喜欢。
 
 <div class="card-grid">
   <div class="card">
-    <h3><a href="/guides/language/language-tour">A Tour of the Dart Language</a></h3>
-    <p>A walk through all of Dart's major language features.</p>
+    <h3><a href="/guides/language/language-tour">Dart 语法预览</a></h3>
+    <p>帮你了解 Dart 语言的主要特性。</p>
   </div>
   <div class="card">
     <h3><a href="/guides/language/effective-dart">Effective Dart</a></h3>
-    <p>A set of guides that show you how how to write the best Dart code
-    possible. There are guides on Dart style, documentation, usage,
-    and design.</p>
+    <p>一系列指南告诉你如何编写最好的 Dart 代码。
+    这些指南涵盖了 Dart 代码风格、文档注释、最佳实践（代码使用方式）以及
+    如何设计 API。</p>
   </div>
 </div>
 
-## Other resources
+## 其他资源
 
 <ul markdown="1">
 <li markdown="1"> [Sound Dart](/guides/language/sound-dart)<br>
-    How and why to write sound Dart code, and how to use strong mode to
-    enable soundness.
+    如何以及为何要编写健壮的 Dart 代码，以及如何使用严格模式
+    来启用健壮模式。
 </li>
 
 <ul markdown="1">
 
 <li markdown="1"> [Sound Dart: FAQ](/guides/language/sound-faq)<br>
-    A list of common questions for those who are interested in stronger
-    static typing.
+    对严格静态类型比较感兴趣的用户会关心
+    的一些常见的问题。
 </li>
 
-<li markdown="1"> [Sound Dart: Fixing Common
-   Problems](/guides/language/sound-problems)<br>
-   How to fix errors and warnings you may encounter when writing sound
-   Dart code.
+<li markdown="1"> [Sound Dart: 解决
+   常见的问题](/guides/language/sound-problems)<br>
+   如何解决在编写健壮 Dart 代码的时候遇到的错误和
+   警告。
 </li>
 </ul>
 
-<li markdown="1"> [Customize Static Analysis](/guides/language/analysis-options)<br>
-    A guide on customizing the analyzer using an analysis_options file.
+<li markdown="1"> [自定义静态分析器](/guides/language/analysis-options)<br>
+    关于如何使用 analysis_options 文件来自定义分析器的文档。
 </li>
 
-<li markdown="1">Asynchronous programming
+<li markdown="1">异步编程
 
 <ul markdown="1">
 <li markdown="1">[Futures](/tutorials/language/futures)<br>
-    A beginner's guide to handling asynchronous programming in Dart.
+    在 Dart 中如何处理异步编程的入门指南。
 </li>
 
 <li markdown="1">[Streams](/tutorials/language/streams)<br>
-    A beginner's guide to handling sequences of asynchronous events.
+    如何使用异步事件流的入门指南。
 </li>
 </ul>
 </li>
 
-<li markdown="1">[Language articles](/articles/language)<br>
-    Articles about language features such as mixins and asynchrony support.
+<li markdown="1">[语言文章](/articles/language)<br>
+    关于语言特性的介绍文章，例如 mixin 和 异步 特性介绍。
 </li>
 
-<li markdown="1">[Specification](/guides/language/spec)<br>
-    A definitive, highly technical description of the Dart language.
+<li markdown="1">[语言规范](/guides/language/spec)<br>
+    Dart 语言的技术规范。
 </li>
 </ul>

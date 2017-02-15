@@ -1,31 +1,31 @@
 ---
 layout: default
-title: "Guides"
-description: "Read about the Dart language and libraries with this collection of guides."
+title: "指南"
+description: "阅读关于 Dart 语言和库的相关指南。"
 permalink: /guides
 toc: false
 ---
 
-Read these guides to learn about the Dart language and its libraries.
+阅读下面的指南来了解　Dart 语言和库。
 
-Also see:
+延伸阅读：
 
-* [webdev guides]({{site.webdev}}/guides)
-* [Flutter's developer guides]({{site.flutter}})
-* [Dart VM's Get Started tutorial](/tutorials/dart-vm/get-started)
+* [webdev 指南]({{site.webdev}}/guides)
+* [Flutter 开发者指南]({{site.flutter}})
+* [Dart VM 入门教程](/tutorials/dart-vm/get-started)
 
-The getting started guide helps you get up and running with Dart as quickly as possible.
+起步指南帮助你尽快的设置好 Dart 环境并可以运行 Dart 程序。
 
-* [Get Started](/guides/get-started)
+* [起步](/guides/get-started)
 
-The following guides teach you about the Dart language.
+下面的内容让你深入的了解 Dart 语言。
 
-* [Language Tour](/guides/language/language-tour)
+* [语法预览](/guides/language/language-tour)
 * [Effective Dart](/guides/language/effective-dart)
-* [Spec](/guides/language/spec)
+* [语言规范](/guides/language/spec)
 
-The following guides teach you about Dart's core libraries.
+下面的内容让你了解 Dart 的库信息。
 
-* [Library Tour](/guides/libraries/library-tour)
-* [Create Library Packages](/guides/libraries/create-library-packages)
-* [What Not to Commit](/guides/libraries/private-files)
+* [核心库预览](/guides/libraries/library-tour)
+* [创建库项目](/guides/libraries/create-library-packages)
+* [一些不需要提交到代码库中的文件](/guides/libraries/private-files)

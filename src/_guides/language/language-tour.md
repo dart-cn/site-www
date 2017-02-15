@@ -1,161 +1,161 @@
 ---
 layout: guide
-title: "A Tour of the Dart Language"
-description: "A tour of all of the major Dart language features."
-short-title: Language Tour
+title: "Dart 语法预览"
+description: "帮你了解 Dart 语言的主要特性。"
+short-title: 语法预览
 ---
 
-This page shows you how to use each major Dart feature, from
-variables and operators to classes and libraries, with the assumption
-that you already know how to program in another language.
+本页内容告诉你如何使用 Dart 语言的主要特性，从变量到操作符、
+从类到库，我们假定你在阅读本页内容之前已经
+了解过其他编程语言了。
 
-To learn more about Dart's core libraries, see
-[A Tour of the Dart Libraries](/guides/libraries/library-tour).
+关于 Dart 核心库的更多内容，请参考
+[Dart 核心库预览](/guides/libraries/library-tour)。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-You can play with most of these features using
-[DartPad](/tools/dartpad).
+**注意：**
+下面所介绍的大部分特性都可以在 
+[DartPad](/tools/dartpad) 中运行。
 </div>
 
-Consult the
-[Dart Language Specification](/guides/language/spec) whenever you want
-more details about a language feature.
+如果你需要了解语言特性的更详细的细节，
+请查看
+[Dart 语言规范](/guides/language/spec) 。
 
 
-## A basic Dart program
+## 一个最基本的 Dart 程序
 
-The following code uses many of Dart’s most basic features:
+下面的代码使用了很多 Dart 中最基本的特性：
 
 <!-- language-tour/basic-dart-program/bin/main.dart -->
 {% prettify dart %}
-// Define a function.
+// 定义个方法。
 printNumber(num aNumber) {
-  print('The number is $aNumber.'); // Print to console.
+  print('The number is $aNumber.'); // 在控制台打印内容。
 }
 
-// This is where the app starts executing.
+// 这是程序执行的入口。
 main() {
-  var number = 42; // Declare and initialize a variable.
-  printNumber(number); // Call a function.
+  var number = 42; // 定义并初始化一个变量。
+  printNumber(number); // 调用一个方法。
 }
 {% endprettify %}
-<a href="{{ site.custom.dartpad.direct-link }}" class='run-in-dartpad' target="_blank">Open Dartpad</a>
+<a href="{{ site.custom.dartpad.direct-link }}" class='run-in-dartpad' target="_blank">在 Dartpad 中运行</a>
 
-Here’s what this program uses that applies to all (or almost all) Dart
-apps:
+下面是上面代码中使用的一些可以应用到几乎所有 Dart 应用中的
+特性：
 
-<code>// <em>This is a comment.</em> </code>
+<code>// <em>这是一个注释。</em> </code>
 
-:   Use // to indicate that the rest of the line is a comment.
-    Alternatively, use /\* ... \*/. For details, see
-    [Comments](#comments).
+:   使用 // 表示后面的文字都是注释。
+    另外，你还可以使用 /\* ... \*/ 。详情请参考：
+    [注释](#comments)。
 
 `num`
 
-:   A type. Some of the other built-in types are String, int, and bool.
+:   一个类型。 String, int, 和 bool 是另外几种类型。
 
 `42`
 
-:   A number literal. Number literals are a kind of compile-time constant.
+:   一个数字字面量。数字字面量是编译时常量。
 
 `print()`
 
-:   A handy way to display output.
+:   一种打印内容的助手方法。
 
-`'...'` (or `"..."`)
+`'...'` (或者 `"..."`)
 
-:   A string literal.
+:   字符串字面量。
 
 <code>$<em>variableName</em></code> (or <code>${<em>expression</em>}</code>)
 
-:   String interpolation: including a variable or expression’s string
-    equivalent inside of a string literal. For more information, see
-    [Strings](#strings).
+:   字符串插值：在字符串字面量中引用变量或者表达式。
+    详情请参考：
+    [Strings](#strings)。
 
 `main()`
 
-:   The special, *required*, top-level function where app execution
-    starts. For more information, see
-    [The main() function](#the-main-function).
+:   Dart 程序执行的入口方法，每个程序都 *需要* 一个这样的方法。
+    详情请参考：
+    [main() 方法](#the-main-function)。
 
 `var`
 
-:   A way to declare a variable without specifying its type.
+:   一种不指定类型声明变量的方式。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-Our code follows the conventions in the
-[Dart Style Guide.](/guides/language/effective-dart/style).
-For example, we use two-space indentation.
+**注意：**
+我们的代码准守 
+[Dart 代码样式](/guides/language/effective-dart/style)中的规则。
+例如： 我们使用两个空格来缩进代码。
 </div>
 
 
-## Important concepts
+## 重要的概念
 
-As you learn about the Dart language, keep these facts and concepts in
-mind:
+在学习 Dart 的时候，请牢记下面一些事实和
+概念：
 
--   Everything you can place in a variable is an *object*, and every
-    object is an instance of a *class*. Even numbers, functions, and
-    `null` are objects. All objects inherit from the
-    [Object]({{site.dart_api}}/dart-core/Object-class.html) class.
+-   所有能够使用变量引用的都是*对象*，
+    每个对象都是一个*类*的实例。在 Dart 中
+    甚至连 数字、方法和 `null` 都是对象。所有的对象都继承于
+    [Object]({{site.dart_api}}/dart-core/Object-class.html) 类。
 
--   Specifying static types (such as `num` in the preceding example)
-    clarifies your intent and enables static checking by tools, but it’s
-    optional. (You might notice when you’re debugging your code that
-    variables with no specified type get a special type: `dynamic`.)
+-   使用静态类型(例如前面示例中的 `num` )
+    可以更清晰的表明你的意图，并且可以让静态分析工具来分析你的代码，
+    但这并不是牵制性的。（在调试代码的时候你可能注意到
+    没有指定类型的变量的类型为 `dynamic`。）
 
--   Dart parses all your code before running it. You can provide tips to
-    Dart—for example, by using types or compile-time constants—to catch
-    errors or help your code run faster.
+-   Dart 在运行之前会先解析你的代码。你可以通过使用
+    类型或者编译时常量来帮助 Dart 去捕获异常以及
+    让代码运行的更高效。
 
--   Dart supports top-level functions (such as `main()`), as well as
-    functions tied to a class or object (*static* and *instance
-    methods*, respectively). You can also create functions within
-    functions (*nested* or *local functions*).
+-   Dart 支持顶级方法 (例如 `main()`)，同时还支持在类中定义函数。
+    （静态函数和实例函数）。
+    你还可以在方法中定义方法
+    （嵌套方法或者局部方法）。
 
--   Similarly, Dart supports top-level *variables*, as well as variables
-    tied to a class or object (static and instance variables). Instance
-    variables are sometimes known as fields or properties.
+-   同样，Dart 还支持顶级变量，以及
+    在类中定义变量（静态变量和实例变量）。
+    实例变量有时候被称之为域（Fields）或者属性（Properties）。
 
--   Unlike Java, Dart doesn’t have the keywords `public`, `protected`,
-    and `private`. If an identifier starts with an underscore (\_), it’s
-    private to its library. For details, see
-    [Libraries and visibility](#libraries-and-visibility).
+-   和 Java 不同的是，Dart 没有 `public`、 `protected`、
+    和 `private` 关键字。如果一个标识符以 (\_) 开头，则该标识符
+    在库内是私有的。详情请参考：
+    [库和可见性](#libraries-and-visibility)。
 
--   *Identifiers* can start with a letter or \_, followed by any
-    combination of those characters plus digits.
+-   *标识符*可以以字母或者 \_ 下划线开头，后面可以是
+    其他字符和数字的组合。
 
--   Sometimes it matters whether something is an *expression* or a
-    *statement*, so we’ll be precise about those two words.
+-   有时候 *表达式 expression* 和
+    *语句 statement* 是有区别的，所以这种情况我们会分别指明每种情况。
 
--   Dart tools can report two kinds of problems: warnings and errors.
-    Warnings are just indications that your code might not work, but
-    they don’t prevent your program from executing. Errors can be either
-    compile-time or run-time. A compile-time error prevents the code
-    from executing at all; a run-time error results in an
-    [exception](#exceptions) being raised while the code executes.
+-   Dart 工具可以指出两种问题：警告和错误。
+    警告只是说你的代码可能有问题，
+    但是并不会阻止你的代码执行。
+    错误可以是编译时错误也可以是运行时错误。遇到编译时错误时，代码将
+    无法执行；运行时错误将会在运行代码的时候导致一个
+    [异常](#exceptions)。
 
 <ul>
   <li id="runtime-modes" class="no_toc" markdown="1">
-  Dart has two <em id="runtime-modes">runtime modes</em>:
-  production and checked. We recommend that
-  you develop and debug in checked mode, and deploy to production mode.
+  Dart 有两种运行模式 <em id="runtime-modes">运行时模式</em>：
+  生产模式和检查模式（checked mode）。我们建议你在
+  检查模式开发，在生产模式部署代码。
 
-  *Production mode* is the default runtime mode of a Dart program,
-  optimized for speed. Production mode ignores [assert
-  statements](#assert) and static types.
+  *生产模式* 是 Dart 程序运行的默认模式，
+  优化了其性能。生产模式 忽略 [assert
+  statements](#assert) 和静态类型检查。
 
-  *Checked mode* is a developer-friendly mode that helps you catch some
-  type errors during runtime. For example, if you assign a non-number to a
-  variable declared as a `num`, then checked mode throws an exception.
+  *检查模式* 是开发友好模式，可以帮助你检测一些运行时类型错误。
+  例如，如果你把一个非数字变量赋值了一个类型为
+  `num` 的变量，则在检查模式运行，将会抛出一个异常。
   </li>
 </ul>
 
-## Keywords
+## 关键字
 
-The following table lists the words that the Dart language treats specially.
+下表为 Dart 语言的关键字。
 
 {% assign bii = '&nbsp;<sup title="built-in-identifier" alt="built-in-identifier">1</sup>' %}
 {% assign lrw = '&nbsp;<sup title="limited reserved word" alt="limited reserved word">2</sup>' %}
@@ -173,42 +173,42 @@ The following table lists the words that the Dart language treats specially.
 | const             | factory{{bii}}    | library{{bii}}    | sync*{{lrw}}      | yield*{{lrw}}     |
 {:.table .table-striped .nowrap}
 
-<sup>1</sup> Words with the superscript **1**
-are *built-in identifiers*. Avoid using
-built-in identifiers as identifiers, and never use
-them for class or type names. Built-in identifiers exist to ease
-porting from JavaScript to Dart. For example,
-if some JavaScript code has a variable named `factory`, you don't have
-to rename it when you port the code to Dart.
+<sup>1</sup> 带有上标 **1** 的关键字是
+*内置关键字*。避免把内置关键字当做标识符使用。
+也不要把内置关键字
+用作类名字和类型名字。
+有些内置关键字是为了方便把 JavaScript 代码移植到 Dart 而存在的。
+例如，如果 JavaScript 代码中有个变量的名字为 `factory`，
+在移植到 Dart 中的时候，你不必重新命名这个变量。
 
-<sup>2</sup> Words with the superscript **2**
-are newer, limited reserved words related to asynchrony support
-that's being added after Dart's 1.0 release.
-You can't use `async`, `await`, or `yield` as
-an identifier in any function body marked with `async`, `async*`, or `sync*`.
-For more information, see
-[Asynchrony support](#asynchrony-support).
+<sup>2</sup> 带有上标 **2** 
+的关键字，是在 Dart 1.0 发布以后又新加的，用于
+支持异步相关的特性。
+你不能在标记为
+`async`、 `async*`、或者 `sync*` 的方法体内
+使用 `async`、 `await`、或者 `yield` 作为标识符。
+详情请参考：[异步支持](#asynchrony-support)。
 
-All other words in the keyword table are <em>reserved words</em>.
-You can't use reserved words as identifiers.
+所以其他单词都是 <em>保留词</em>。
+你不能用保留词作为关键字。
 
 
-## Variables
+## 变量
 
-Here’s an example of creating a variable and assigning a value to it:
+下面是声明变量并赋值的示例：
 
 <!-- language-tour/creating-a-variable/bin/main.dart -->
 {% prettify dart %}
 var name = 'Bob';
 {% endprettify %}
 
-Variables are references. The variable called `name` contains a
-reference to a String object with a value of “Bob”.
+变量是一个引用。上面名字为 `name` 的变量引用了
+一个内容为 “Bob” 的 String 对象。
 
-### Default value
+### 默认值
 
-Uninitialized variables have an initial value of `null`. Even variables
-with numeric types are initially null, because numbers are objects.
+没有初始化的变量自动获取一个默认值为 `null`。类型为数字的
+变量如何没有初始化其值也是 null，不要忘记了 数字类型也是对象。
 
 <!-- language-tour/numbers-are-objects/bin/main.dart -->
 {% prettify dart %}
@@ -218,50 +218,50 @@ assert(lineCount == null);
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-The `assert()` call is ignored in production mode. In checked mode,
+**注意：**
+在生产模式 `assert()` 语句被忽略了。在检查模式
 <code>assert(<em>condition</em>)</code>
-throws an exception unless *condition* is true. For details,
-see the [Assert](#assert) section.
+会执行，如果条件不为 true 则会抛出一个异常。详情请参考
+[Assert](#assert) 部分。
 </div>
 
 
-### Optional types
+### 可选的类型
 
-You have the option of adding static types to your variable
-declarations:
+在声明变量的时候，你可以选择加上具体
+类型：
 
 <!-- language-tour/static-types/bin/main.dart -->
 {% prettify dart %}
 String name = 'Bob';
 {% endprettify %}
 
-Adding types is a way to clearly express your intent. Tools such as
-compilers and editors can use these types to help you, by providing code
-completion and early warnings for bugs and code completion.
+添加类型可以更加清晰的表达你的意图。
+IDE 编译器等工具有可以使用类型来更好的帮助你，
+可以提供代码补全、提前发现 bug 等功能。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-This page follows the
-[style guide recommendation](/guides/language/effective-dart/design#type-annotations)
-of using `var`, rather than type annotations, for local variables.
+**注意：**
+对于局部变量，这里准守
+[代码风格推荐](/guides/language/effective-dart/design#type-annotations)
+部分的建议，使用 `var` 而不是具体的类型来定义局部变量。
 </div>
 
 
-### Final and const
+### Final 和 const
 
-If you never intend to change a variable, use `final` or `const`, either
-instead of `var` or in addition to a type. A final variable can be set
-only once; a const variable is a compile-time constant. (Const variables
-are implicitly final.) A final top-level or class variable is initialized
-the first time it's used.
+如果你以后不打算修改一个变量，使用 `final` 或者 `const`。
+一个 final 变量只能赋值一次；一个 const 变量是编译时常量。
+（Const 变量同时也是 final 变量。）
+顶级的 final 变量或者类中的 final 变量在
+第一次使用的时候初始化。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-Instance variables can be `final` but not `const`.
+**注意：**
+实例变量可以为 `final` 但是不能是 `const` 。
 </div>
 
-Here's an example of creating and setting a final variable:
+下面是 final 变量的示例：
 
 <!-- language-tour/final-initialization/bin/main.dart -->
 {% prettify dart %}
@@ -269,11 +269,11 @@ final name = 'Bob'; // Or: final String name = 'Bob';
 // name = 'Alice';  // Uncommenting this causes an error
 {% endprettify %}
 
-Use `const` for variables that you want to be compile-time constants. If
-the const variable is at the class level, mark it `static const`.
-Where you declare the variable, set the value to a compile-time constant
-such as a number or string literal, a const
-variable, or the result of an arithmetic operation on constant numbers:
+`const` 变量为编译时常量。
+如果 const 变量在类中，请定义为 `static const`。
+可以直接定义 const 和其值，也
+可以定义一个 const 变量使用其他 const 
+变量的值来初始化其值。
 
 <!-- language-tour/const/bin/main.dart -->
 {% prettify dart %}
@@ -281,10 +281,10 @@ const bar = 1000000;       // Unit of pressure (dynes/cm2)
 const atm = 1.01325 * bar; // Standard atmosphere
 {% endprettify %}
 
-The `const` keyword isn't just for declaring constant variables.
-You can also use it to create constant _values_,
-as well as to declare constructors that _create_ constant values.
-Any variable can have a constant value.
+`const` 关键字不仅仅只用来定义常量。
+有可以用来创建不变的值，
+还能定义构造函数为 const 类型的，这种类型
+的构造函数创建的对象是不可改变的。任何变量都可以有一个不变的值。
 
 <!-- language-tour/const-vs-const/bin/main.dart -->
 {% prettify dart %}
@@ -303,68 +303,68 @@ foo = [];
 // baz = []; // Unhandled exception.
 {% endprettify %}
 
-For more information on using `const` to create constant values, see
-[Lists](#lists), [Maps](#maps), and [Classes](#classes).
+关于使用 `const` 来创建不变的值的更多信息，请参考：
+[Lists](#lists)、 [Maps](#maps)、 和 [Classes](#classes)。
 
 
-## Built-in types
+## 内置的类型
 
-The Dart language has special support for the following types:
+Dart 内置支持下面这些类型：
 
 - numbers
 - strings
 - booleans
-- lists (also known as *arrays*)
+- lists (也被称之为 *arrays*)
 - maps
-- runes (for expressing Unicode characters in a string)
+- runes (用于在字符串中表示 Unicode 字符)
 - symbols
 
-You can initialize an object of any of these special types using a
-literal. For example, `'this is a string'` is a string literal,
-and `true` is a boolean literal.
+你可以直接使用字母量来初始化上面的这些类型。
+例如 `'this is a string'` 是一个字符串字面量，
+`true` 是一个布尔字面量。
 
-Because every variable in Dart refers to an object—an instance of a
-*class*—you can usually use *constructors* to initialize variables. Some
-of the built-in types have their own constructors. For example, you can
-use the `Map()` constructor to create a map, using code such as
-`new Map()`.
+由于 Dart 中每个变量引用的都是一个对象 -- 一个类的实例，
+你通常使用构造函数来初始化变量。
+一些内置的类型具有自己的构造函数。例如，
+可以使用 `Map()`构造函数来创建一个 map，
+就像这样 `new Map()`。
 
 
-### Numbers
+### 数字（Numbers）
 
-Dart numbers come in two flavors:
+Dart 支持两种类型的数字：
 
 [`int`]({{site.dart_api}}/dart-core/int-class.html)
 
-:   Integer values, which generally should be in the range
-    -2<sup>53</sup> to 2<sup>53</sup>
+:   整数值，其取值通常位于
+    -2<sup>53</sup> 和 2<sup>53</sup> 之间。
 
 [`double`]({{site.dart_api}}/dart-core/double-class.html)
 
-:   64-bit (double-precision) floating-point numbers, as specified by
-    the IEEE 754 standard
+:   64-bit (双精度) 浮点数，符合
+    IEEE 754 标准。
 
-Both `int` and `double` are subtypes of
-[`num`.]({{site.dart_api}}/dart-core/num-class.html)
-The num type includes basic operators such as +, -, /, and \*,
-and is also where you’ll find `abs()`,` ceil()`,
-and `floor()`, among other methods.
-(Bitwise operators, such as \>\>, are defined in the `int` class.)
-If num and its subtypes don’t have what you’re looking for, the
-[dart:math]({{site.dart_api}}/dart-math/dart-math-library.html) library might.
+`int` 和 `double` 都是
+[`num`]({{site.dart_api}}/dart-core/num-class.html) 的子类。
+num 类型定义了基本的操作符，例如  +, -, /, 和 \*，
+还定义了  `abs()`、` ceil()`、和 `floor()` 等
+函数。
+(位操作符，例如 \>\> 定义在 `int` 类中。)
+如果 num 或者其子类型不满足你的要求，请参考
+[dart:math]({{site.dart_api}}/dart-math/dart-math-library.html) 库。
 
 <div class="alert alert-warning" markdown="1">
-**Warning:**
-Integers outside of the
--2<sup>53</sup> to 2<sup>53</sup> range currently behave
-differently in JavaScript produced from Dart code than they do when
-the same Dart code runs in the Dart VM. The reason is that Dart is
-specified to have arbitrary-precision integers, but JavaScript isn't.
-See [issue 1533](https://github.com/dart-lang/sdk/issues/1533) for details.
+**注意：**
+不在 
+-2<sup>53</sup> 到 2<sup>53</sup> 范围内的整数在 Dart 中的行为
+和 JavaScript 中表现不一样。
+原因在于 Dart 具有任意精度的整数，而 JavaScript 没有。
+参考 
+[问题 1533](https://github.com/dart-lang/sdk/issues/1533) 了解更多信息。
 </div>
 
-Integers are numbers without a decimal point. Here are some examples of
-defining integer literals:
+整数是不带小数点的数字。下面是一些定义
+整数的方式：
 
 <!-- language-tour/integer-literals/bin/main.dart -->
 {% prettify dart %}
@@ -373,8 +373,8 @@ var hex = 0xDEADBEEF;
 var bigInt = 34653465834652437659238476592374958739845729;
 {% endprettify %}
 
-If a number includes a decimal, it is a double. Here are some examples
-of defining double literals:
+如果一个数带小数点，则其为 double，
+下面是定义 double 的一些方式：
 
 <!-- language-tour/double-literals/bin/main.dart -->
 {% prettify dart %}
@@ -382,7 +382,7 @@ var y = 1.1;
 var exponents = 1.42e5;
 {% endprettify %}
 
-Here’s how you turn a string into a number, or vice versa:
+下面是字符串和数字之间转换的方式：
 
 <!-- language-tour/number-conversion/bin/main.dart -->
 {% prettify dart %}
@@ -403,8 +403,8 @@ String piAsString = 3.14159.toStringAsFixed(2);
 assert(piAsString == '3.14');
 {% endprettify %}
 
-The int type specifies the traditional bitwise shift (\<\<, \>\>), AND
-(&), and OR (|) operators. For example:
+整数类型支持传统的位移操作符，(\<\<, \>\>), AND
+(&), 和 OR (|) 。例如：
 
 <!-- language-tour/bit-shifting/bin/main.dart -->
 {% prettify dart %}
@@ -413,10 +413,10 @@ assert((3 >> 1) == 1);  // 0011 >> 1 == 0001
 assert((3 | 4)  == 7);  // 0011 | 0100 == 0111
 {% endprettify %}
 
-Literal numbers are compile-time constants.
-Many arithmetic expressions are also compile-time constants,
-as long as their operands are
-compile-time constants that evaluate to numbers.
+数字字面量为编译时常量。
+很多算术表达式
+只要其操作数是常量，则表达式结果
+也是编译时常量。
 
 <!-- language-tour/number-literals/bin/main.dart -->
 {% prettify dart %}
@@ -426,10 +426,10 @@ const msUntilRetry = secondsUntilRetry * msPerSecond;
 {% endprettify %}
 
 
-### Strings
+### 字符串（Strings）
 
-A Dart string is a sequence of UTF-16 code units. You can use either
-single or double quotes to create a string:
+Dart 字符串是 UTF-16 编码的字符序列。
+可以使用单引号或者双引号来创建字符串：
 
 <!-- language-tour/quoting/bin/main.dart -->
 {% prettify dart %}
@@ -439,10 +439,10 @@ var s3 = 'It\'s easy to escape the string delimiter.';
 var s4 = "It's even easier to use the other delimiter.";
 {% endprettify %}
 
-You can put the value of an expression inside a string by using
-`${`*`expression`*`}`. If the expression is an identifier, you can skip
-the {}. To get the string corresponding to an object, Dart calls the
-object’s `toString()` method.
+可以在字符串中使用表达式，用法是这样的：
+`${`*`expression`*`}`。如果表达式是一个比赛服，可以省略
+{}。 如果表达式的结果为一个对象，则 Dart 会调用对象的
+ `toString()` 函数来获取一个字符串。
 
 <!-- language-tour/string-interpolation/bin/main.dart -->
 {% prettify dart %}
@@ -458,14 +458,14 @@ assert('That deserves all caps. ' +
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-The `==` operator tests whether two objects are equivalent. Two
-strings are equivalent if they contain the same sequence of code
-units.
+**注意：**
+`==` 操作符判断两个对象的内容是否一样。
+如果两个字符串包含一样的字符编码序列，
+则他们是相等的。
 </div>
 
-You can concatenate strings using adjacent string literals or the `+`
-operator:
+可以使用 `+` 操作符来把多个字符串链接为一个，也可以把多个
+字符串放到一起来实现同样的功能：
 
 <!-- adjacent_string_literals.dart -->
 {% prettify dart %}
@@ -479,8 +479,8 @@ var s2 = 'The + operator '
 assert(s2 == 'The + operator works, as well.');
 {% endprettify %}
 
-Another way to create a multi-line string: use a triple quote with
-either single or double quotation marks:
+使用三个单引号或者双引号也可以
+创建多行字符串对象：
 
 <!-- language-tour/triple-quotes/bin/main.dart -->
 {% prettify dart %}
@@ -493,19 +493,18 @@ var s2 = """This is also a
 multi-line string.""";
 {% endprettify %}
 
-You can create a “raw” string by prefixing it with `r`:
+通过提供一个  `r` 前缀可以创建一个 “原始 raw” 字符串：
 
 <!-- language-tour/raw-strings/bin/main.dart -->
 {% prettify dart %}
 var s = r"In a raw string, even \n isn't special.";
 {% endprettify %}
 
-See [Runes](#runes) for details on how to express Unicode
-characters in a string.
+参考 [Runes](#runes) 来了解如何在字符串
+中表达 Unicode 字符。
 
-Literal strings are compile-time constants,
-as long as any interpolated expression is a compile-time constant
-that evaluates to null or a numeric, string, or boolean value.
+字符串字面量是编译时常量，
+带有字符串插值的字符串定义，若干插值表达式引用的为编译时常量则其结果也是编译时常量。
 
 <!-- language-tour/string-literals/bin/main.dart -->
 {% prettify dart %}
@@ -524,23 +523,23 @@ const validConstString = '$aConstNum $aConstBool $aConstString';
 // const invalidConstString = '$aNum $aBool $aString $aConstList';
 {% endprettify %}
 
-For more information on using strings, see
-[Strings and regular expressions](/guides/libraries/library-tour#strings-and-regular-expressions).
+使用字符串的更多信息请参考：
+[字符串和正则表达式](/guides/libraries/library-tour#strings-and-regular-expressions)。
 
 
-### Booleans
+### 布尔值（Booleans）
 
-To represent boolean values, Dart has a type named `bool`. Only two
-objects have type bool: the boolean literals `true` and `false`,
-which are both compile-time constants.
+为了代表布尔值，Dart 有一个名字为 `bool` 的类型。
+只有两个对象是布尔类型的：`true` 和 `false` 所创建的对象，
+这两个对象也都是编译时常量。
 
-When Dart expects a boolean value, only the value `true` is treated as
-true. All other values are treated as false. Unlike in JavaScript,
-values such as `1`, `"aString"`, and `someObject` are all treated as
-false.
+当 Dart 需要一个布尔值的时候，只有 `true`  对象才被认为是 true。
+所有其他的值都是 flase。这点和 JavaScript 不一样，
+像 `1`、 `"aString"`、 以及 `someObject` 等值都被认为是 
+false。
 
-For example, consider the following code, which is valid both as
-JavaScript and as Dart code:
+例如，下面的代码在
+JavaScript 和 Dart 中都是合法的代码：
 
 <!-- language-tour/reference/strictly_booleans.dart -->
 {% prettify dart %}
@@ -551,20 +550,20 @@ if (name) {
 }
 {% endprettify %}
 
-If you run this code as JavaScript, it prints “You have a name!” because
-`name` is a non-null object. However, in Dart running in *production
-mode*, the preceding code doesn’t print at all because `name` is converted to
-`false` (because `name != true`).
-In Dart running in *checked mode*, the preceding code
-throws an exception because the `name` variable is not a bool.
+如果在 JavaScript 中运行，则会打印出 “You have a name!”，在 JavaScript 中
+`name` 是非 null 对象所以认为是 true。但是在 Dart 的*生产模式*下
+运行，这不会打印任何内容，原因是 `name` 被转换为 false了，原因在于
+`name != true`。
+如果在 Dart *检查模式*运行，上面的
+代码将会抛出一个异常，表示 `name` 变量不是一个布尔值。
 
 {% comment %}
 xxx: This code also produces an error:
      "Conditions must have a static type of "bool".
 {% endcomment %}
 
-Here’s another example of code that behaves differently in JavaScript
-and Dart:
+下面是另外一个在 JavaScript
+和 Dart 中表现不一致的示例：
 
 <!-- language-tour/if-one/bin/main.dart -->
 {% prettify dart %}
@@ -578,21 +577,21 @@ if (1) {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-The previous two samples work only in production mode, not checked
-mode. In checked mode, an exception is thrown if a non-boolean is used
-when a boolean value is expected.
+**注意：**
+上面两个示例只能在 Dart 生产模式下运行，
+在检查模式下，会抛出异常表明
+变量不是所期望的布尔类型。
 </div>
 
 {% comment %}
 xxx: The previous example also produces the same error as above.
 {% endcomment %}
 
-Dart’s treatment of booleans is designed to avoid the strange behaviors
-that can arise when many values can be treated as true. What this means
-for you is that, instead of using code like
-<code>if (<em>nonbooleanValue</em>)</code>, you should instead
-explicitly check for values. For example:
+Dart 这样设计布尔值，是为了避免奇怪的行为。很多 JavaScript 代码
+都遇到这种问题。
+对于你来说，在写代码的时候你不用这些写代码：
+<code>if (<em>nonbooleanValue</em>)</code>，你应该显式的
+判断变量是否为布尔值类型。例如：
 
 <!-- language-tour/empty-string/bin/main.dart -->
 {% prettify dart %}
@@ -614,25 +613,25 @@ assert(iMeantToDoThis.isNaN);
 {% endprettify %}
 
 
-### Lists
+### 列表（Lists）
 
-Perhaps the most common collection in nearly every programming language
-is the *array*, or ordered group of objects. In Dart, arrays are
-[List]({{site.dart_api}}/dart-core/List-class.html) objects, so we
-usually just call them *lists*.
+也许 *array* （或者有序集合）是所有编程语言中最常见的集合类型。
+在 Dart 中数组就是
+[List]({{site.dart_api}}/dart-core/List-class.html) 对象。所以
+通常我们都称之为 *lists*。
 
-Dart list literals look like JavaScript array literals. Here’s a simple
-Dart list:
+Dart list 字面量和 JavaScript 的数组字面量类似。下面是一个
+Dart list 的示例：
 
 <!-- language-tour/list-literal/bin/main.dart -->
 {% prettify dart %}
 var list = [1, 2, 3];
 {% endprettify %}
 
-Lists use zero-based indexing, where 0 is the index of the first element
-and `list.length - 1` is the index of the last element. You can get a
-list’s length and refer to list elements just as you would in
-JavaScript:
+Lists 的下标索引从 0 开始，第一个元素的索引是 0.
+`list.length - 1` 是最后一个元素的索引。
+访问 list 的长度和元素与 
+JavaScript 中的用法一样：
 
 <!-- language-tour/list-indexing/bin/main.dart -->
 {% prettify dart %}
@@ -644,8 +643,8 @@ list[1] = 1;
 assert(list[1] == 1);
 {% endprettify %}
 
-To create a list that's a compile-time constant,
-add `const` before the list literal:
+在 list 字面量之前添加 `const` 关键字，可以
+定义一个不变的 list 对象（编译时常量）：
 
 <!-- language-tour/list-literal/bin/main.dart -->
 {% prettify dart %}
@@ -653,20 +652,20 @@ var constantList = const [1, 2, 3];
 // constantList[1] = 1; // Uncommenting this causes an error.
 {% endprettify %}
 
-The List type has many handy methods for manipulating lists. For more
-information about lists, see [Generics](#generics) and
-[Collections](/guides/libraries/library-tour#collections).
+List 类型有很多函数可以操作 list。
+更多信息参考 [泛型](#generics) 和
+[集合](/guides/libraries/library-tour#collections)。
 
 
 ### Maps
 
-In general, a map is an object that associates keys and values. Both
-keys and values can be any type of object. Each *key* occurs only once,
-but you can use the same *value* multiple times. Dart support for maps
-is provided by map literals and the
-[Map]({{site.dart_api}}/dart-core/Map-class.html) type.
+通常来说，Map 是一个键值对相关的对象。
+键和值可以是任何类型的对象。每个 *键* 只出现一次，
+而一个值则可以出现多次。Dart 通过 map 字面量
+和
+[Map]({{site.dart_api}}/dart-core/Map-class.html) 类型支持 map。
 
-Here are a couple of simple Dart maps, created using map literals:
+下面是一些创建简单 map 的示例：
 
 <!-- language-tour/reference/map_literal.dart -->
 {% prettify dart %}
@@ -685,7 +684,7 @@ var nobleGases = {
 };
 {% endprettify %}
 
-You can create the same objects using a Map constructor:
+使用 Map 构造函数也可以实现同样的功能：
 
 <!-- language-tour/map-constructor/bin/main.dart -->
 {% prettify dart %}
@@ -700,8 +699,8 @@ nobleGases[10] = 'neon';
 nobleGases[18] = 'argon';
 {% endprettify %}
 
-Add a new key-value pair to an existing map just as you would in
-JavaScript:
+往 map 中添加新的键值对和在
+JavaScript 中的用法一样：
 
 <!-- language-tour/map-add-item/bin/main.dart -->
 {% prettify dart %}
@@ -709,7 +708,7 @@ var gifts = {'first': 'partridge'};
 gifts['fourth'] = 'calling birds'; // Add a key-value pair
 {% endprettify %}
 
-Retrieve a value from a map the same way you would in JavaScript:
+获取 map 中的对象也和 JavaScript 的用法一样：
 
 <!-- language-tour/map-retrieve-item/bin/main.dart -->
 {% prettify dart %}
@@ -717,7 +716,7 @@ var gifts = {'first': 'partridge'};
 assert(gifts['first'] == 'partridge');
 {% endprettify %}
 
-If you look for a key that isn’t in a map, you get a null in return:
+如果所查找的键不存在，则返回 null：
 
 <!-- language-tour/map-missing-key/bin/main.dart -->
 {% prettify dart %}
@@ -725,7 +724,7 @@ var gifts = {'first': 'partridge'};
 assert(gifts['fifth'] == null);
 {% endprettify %}
 
-Use `.length` to get the number of key-value pairs in the map:
+使用 `.length` 来获取 map 中键值对的数目：
 
 <!-- language-tour/map-length/bin/main.dart -->
 {% prettify dart %}
@@ -734,8 +733,8 @@ gifts['fourth'] = 'calling birds';
 assert(gifts.length == 2);
 {% endprettify %}
 
-To create a map that's a compile-time constant,
-add `const` before the map literal:
+同样使用 `const` 可以创建一个
+编译时常量的 map：
 
 <!-- language-tour/reference/map_literal.dart -->
 {% prettify dart %}
@@ -748,36 +747,36 @@ final constantMap = const {
 // constantMap[2] = 'Helium'; // Uncommenting this causes an error.
 {% endprettify %}
 
-For more information about maps, see
-[Generics](#generics) and
-[Maps](/guides/libraries/library-tour#maps).
+关于 Map 的更多信息请参考
+[泛型](#generics) 和
+[Maps](/guides/libraries/library-tour#maps)。
 
 ### Runes
 
-In Dart, runes are the UTF-32 code points of a string.
+在 Dart 中，runes 代表字符串的 UTF-32 code points。
 
-Unicode defines a unique numeric value for each letter, digit,
-and symbol used in all of the world's writing systems.
-Because a Dart string is a sequence of UTF-16 code units,
-expressing 32-bit Unicode values within a string requires
-special syntax.
+Unicode 为每一个字符、标点符号、表情符号等都定义了
+一个唯一的数值。
+由于 Dart 字符串是 UTF-16 code units 字符序列，
+所以在字符串中表达 32-bit Unicode 值就需要
+新的语法了。
 
-The usual way to express a Unicode code point is
-`\uXXXX`, where XXXX is a 4-digit hexidecimal value.
-For example, the heart character (♥) is `\u2665`.
-To specify more or less than 4 hex digits,
-place the value in curly brackets.
-For example, the laughing emoji (😆) is `\u{1f600}`.
+通常使用 `\uXXXX` 的方式来表示 Unicode code point，
+这里的 XXXX 是4个 16 进制的数。
+例如，心形符号 (♥) 是 `\u2665`。
+对于非 4 个数值的情况，
+把编码值放到大括号中即可。
+例如，笑脸 emoji (😆) 是 `\u{1f600}`。
 
-The [String]({{site.dart_api}}/dart-core/String-class.html)
-class has several properties you can use to extract rune information.
-The `codeUnitAt` and `codeUnit` properties return 16-bit code
-units. Use the `runes` property to get the runes of a string.
+[String]({{site.dart_api}}/dart-core/String-class.html) 类
+有一些属性可以提取 rune 信息。
+`codeUnitAt` 和 `codeUnit` 属性返回 16-bit code units。
+使用 `runes` 属性来获取字符串的 runes 信息。
 
-The following example illustrates the relationship between runes,
-16-bit code units, and 32-bit code points.
-Click the run button ( {% img 'red-run.png' %} )
-to see runes in action.
+下面是示例演示了 runes、
+16-bit code units、和 32-bit code points 之间的关系。
+点击运行按钮 ( {% img 'red-run.png' %} )
+ 查看 runes 。
 
 <!-- language-tour/runes/bin/main.dart -->
 {% comment %}
@@ -805,17 +804,18 @@ src="{{site.custom.dartpad.embed-dart-prefix}}?id=589bc5c95318696cefe5&horizonta
 </iframe>
 
 <div class="alert alert-warning" markdown="1">
-**Note:**
-Be careful when manipulating runes using list operations.
-This approach can easily break down,
-depending on the particular language, character set, and operation.
-For more information, see
-[How do I reverse a String in Dart?](http://stackoverflow.com/questions/21521729/how-do-i-reverse-a-string-in-dart) on Stack Overflow.
+**注意：**
+使用 list 操作 runes 的时候请小心。
+根据所操作的语种、字符集等，
+这种操作方式可能导致你的字符串出问题。
+更多信息参考 Stack Overflow 上的一个问题：
+[我如何在 Dart 中反转一个字符串？](http://stackoverflow.com/questions/21521729/how-do-i-reverse-a-string-in-dart)
 </div>
 
 ### Symbols
 
-A [Symbol]({{site.dart_api}}/dart-core/Symbol-class.html) object
+一个 [Symbol]({{site.dart_api}}/dart-core/Symbol-class.html) object
+代表 Dart 程序中声明
 represents an operator or identifier declared in a Dart program. You
 might never need to use symbols, but they're invaluable for APIs that
 refer to identifiers by name, because minification changes identifier

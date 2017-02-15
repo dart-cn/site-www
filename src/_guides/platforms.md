@@ -1,28 +1,28 @@
 ---
 layout: default
-title: "Overview: Platforms"
-short-title: "Platforms"
-description: "You can use Dart when writing web apps, standalone apps, servers, mobile apps, and embedded apps."
+title: "平台概述"
+short-title: "平台"
+description: "Dart 可以用来写 web app、独立应用、服务器应用、移动应用以及嵌入式应用。"
 toc: false
 ---
 
-Dart is a scalable language that you can use to write simple scripts or full 
-featured apps. Whether you are creating mobile apps, a command-line script, 
-a server, or a web app, there's a Dart solution for that.
+Dart 是一个扩展性很好的语言，可以用来写简单的脚本，也可以写
+功能复杂的应用。无论你是创建移动应用、命令行脚本、
+还是服务器应用、web app ， Dart 都有对应的解决方案。
 
 <div class="card-grid">
   <div class="card">
     <h3><a href="{{site.webdev}}">Web</a></h3>
-    <p>Write a Dart app that runs in any modern web browser</p>
+    <p>编写运行在现代浏览器之上的 Dart web 应用</p>
   </div>
 
   <div class="card">
     <h3><a href="{{site.flutter}}">Flutter</a></h3>
-    <p>Write an app that runs on both iOS and Android from a single codebase</p>
+    <p>同一份代码编写运行在 iOS 和 Android 上的应用</p>
   </div>
 
   <div class="card">
     <h3><a href="{{site.dart_vm}}">Dart VM</a></h3>
-    <p>Write a command-line app or server</p>
+    <p>编写命令行脚本或者服务器应用</p>
   </div>
 </div>
