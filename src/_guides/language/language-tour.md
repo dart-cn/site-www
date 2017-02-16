@@ -815,14 +815,13 @@ src="{{site.custom.dartpad.embed-dart-prefix}}?id=589bc5c95318696cefe5&horizonta
 ### Symbols
 
 一个 [Symbol]({{site.dart_api}}/dart-core/Symbol-class.html) object
-代表 Dart 程序中声明
-represents an operator or identifier declared in a Dart program. You
-might never need to use symbols, but they're invaluable for APIs that
-refer to identifiers by name, because minification changes identifier
-names but not identifier symbols.
+代表 Dart 程序中声明的操作符或者标识符。
+你也许从来不会用到 Symbol，但是该功能对于通过名字来引用标识符的情况
+是非常有价值的，特别是混淆后的代码，
+标识符的名字被混淆了，但是 Symbol 的名字不会改变。
 
-To get the symbol for an identifier, use a symbol literal, which is just
-`#` followed by the identifier:
+使用 Symbol 字面量来获取标识符的 symbol 对象，也就是在标识符
+前面添加一个 `#` 符号：
 
 <!-- language-tour/symbols/bin/main.dart -->
 {% prettify dart %}
@@ -830,22 +829,22 @@ To get the symbol for an identifier, use a symbol literal, which is just
 #bar
 {% endprettify %}
 
-Symbol literals are compile-time constants.
+Symbol 字面量定义是编译时常量。
 
-For more information on symbols, see
-[dart:mirrors - reflection](/guides/libraries/library-tour#dartmirrors---reflection).
+关于 symbols 的详情，请参考
+[dart:mirrors - reflection](/guides/libraries/library-tour#dartmirrors---reflection)。
 
 
-## Functions
+## 方法（Functions）
 
-Dart is a true object-oriented language, so even functions are objects
-and have a type,
-[`Function`]({{site.dart_api}}/dart-core/Function-class.html).
-This means that functions can be assigned to variables or passed as arguments
-to other functions. You can also call an instance of a Dart class as if
-it were a function. For details, see [Callable classes](#callable-classes).
+Dart 是一个真正的面向对象语言，方法也是对象并且具有一种
+类型，
+[`Function`]({{site.dart_api}}/dart-core/Function-class.html)。
+这意味着，方法可以赋值给变量，也可以当做其他方法的参数。
+也可以把 Dart 类的实例当做方法来调用。
+详情请参考 [Callable classes](#callable-classes)。
 
-Here’s an example of implementing a function:
+下面是定义方法的示例：
 
 <!-- language-tour/function-example/bin/main.dart -->
 {% prettify dart %}
@@ -854,9 +853,9 @@ bool isNoble(int atomicNumber) {
 }
 {% endprettify %}
 
-Although Effective Dart recommends
-[type annotations for public APIs](/guides/language/effective-dart/design#do-type-annotate-public-apis),
-the function still works if you omit the types:
+虽然在 Effective Dart 中推荐
+[在公开的 APIs 上使用静态类型](/guides/language/effective-dart/design#do-type-annotate-public-apis)，
+你当然也可以选择忽略类型定义：
 
 <!-- language-tour/function-omitting-types/bin/main.dart -->
 {% prettify dart %}
@@ -865,48 +864,48 @@ isNoble(atomicNumber) {
 }
 {% endprettify %}
 
-For functions that contain just one expression, you can use a shorthand
-syntax:
+对于只有一个表达式的方法，你可以选择
+使用缩写语法来定义：
 
 <!-- language-tour/function-shorthand/bin/main.dart -->
 {% prettify dart %}
 bool isNoble(int atomicNumber) => _nobleGases[atomicNumber] != null;
 {% endprettify %}
 
-The <code>=> <em>expr</em></code> syntax is a shorthand for
-<code>{ return <em>expr</em>; }</code>. The `=>` notation
-is sometimes referred to as _fat arrow_ syntax.
+这个 <code>=> <em>expr</em></code> 语法是
+<code>{ return <em>expr</em>; }</code> 形式的缩写。`=>` 形式
+有时候也称之为 _胖箭头_ 语法。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-Only an *expression*—not a *statement*—can appear between the arrow
-(=\>) and the semicolon (;). For example, you can’t put an [if
-statement](#if-and-else) there, but you can use a [conditional
-expression](#conditional-expressions).
+**注意：**
+在箭头 (=\>) 和冒号 (;) 之间只能使用一个 *表达式* -- 不能使用 *语句*。
+例如：你不能使用 [if statement](#if-and-else)，但是可以
+使用条件表达式
+[conditional expression](#conditional-expressions)。
 </div>
 
-A function can have two types of parameters: required and optional. The
-required parameters are listed first, followed by any optional
-parameters.
+方法可以有两种类型的参数：必需的和可选的。
+必需的参数在参数列表前面，
+后面是可选参数。
 
 
-### Optional parameters
+### 可选参数 （Optional parameters）
 
-Optional parameters can be either positional or named, but not both.
+可选参数可以是命名参数或者基于位置的参数，但是这两种参数不能同时当做可选参数。
 
-#### Optional named parameters
+#### 可选命名参数 （Optional named parameters）
 
-When calling a function, you can specify named parameters using
-<code><em>paramName</em>: <em>value</em></code>. For example:
+调用方法的时候，你可以使用这种形式 
+<code><em>paramName</em>: <em>value</em></code> 来指定命名参数。例如：
 
 <!-- language-tour/use-named-parameters/bin/main.dart -->
 {% prettify dart %}
 enableFlags(bold: true, hidden: false);
 {% endprettify %}
 
-When defining a function, use
+在定义方法的时候，使用 
 <code>{<em>param1</em>, <em>param2</em>, …}</code>
-to specify named parameters:
+的形式来指定命名参数：
 
 <!-- language-tour/specify-named-parameters/bin/main.dart -->
 {% prettify dart %}
@@ -917,10 +916,10 @@ enableFlags({bool bold, bool hidden}) {
 }
 {% endprettify %}
 
-#### Optional positional parameters
+#### 可选位置参数 （Optional positional parameters）
 
-Wrapping a set of function parameters in `[]` marks them as optional
-positional parameters:
+把一些方法的参数放到 `[]` 中就变成可选
+位置参数了：
 
 <!-- language-tour/optional-positional-parameters/bin/main.dart -->
 {% prettify dart %}
@@ -933,15 +932,15 @@ String say(String from, String msg, [String device]) {
 }
 {% endprettify %}
 
-Here’s an example of calling this function without the optional
-parameter:
+下面是不使用可选参数调用上面方法
+的示例：
 
 <!-- language-tour/optional-positional-parameters/bin/main.dart -->
 {% prettify dart %}
 assert(say('Bob', 'Howdy') == 'Bob says Howdy');
 {% endprettify %}
 
-And here’s an example of calling this function with the third parameter:
+下面是使用可选参数调用上面方法的示例：
 
 <!-- language-tour/optional-positional-parameters/bin/main.dart -->
 {% prettify dart %}
@@ -950,13 +949,13 @@ assert(say('Bob', 'Howdy', 'smoke signal') ==
 {% endprettify %}
 
 <a id="default-parameters"></a>
-#### Default parameter values
+#### 带默认值的参数 （Default parameter values）
 
-Your function can use `=` to define default values for both named and positional
-parameters. The default values must be compile-time constants.
-If no default value is provided, the default value is `null`.
+在定义方法的时候，可以使用 `=` 来定义可选参数的默认值。
+默认值只能是编译时常量。
+如果没有提供默认值，则默认值为 `null`。
 
-Here's an example of setting default values for named parameters:
+下面是设置可选参数默认值的示例：
 
 <!-- language-tour/specify-default-values/bin/main.dart -->
 {% prettify dart %}
@@ -971,17 +970,17 @@ enableFlags(bold: true);
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Version note:**
-Old code might use a colon (`:`) instead of `=`
-to set default values of named parameters.
-The reason is that before SDK 1.21, only `:` was supported for named parameters.
-That support is likely to be deprecated,
-so we recommend that you
-**use `=` to specify default values,
-and [specify an SDK version of 1.21 or higher.](/tools/pub/pubspec#sdk-constraints)**
+**版本问题：**
+就版本代码可能需要使用一个冒号 (`:`) 而不是 `=`
+来设置参数默认值。
+原因在于 Dart SDK 1.21 之前的版本，命名参数只支持 `:`。
+`:` 设置命名默认参数值在以后版本中将不能使用，
+所以我们推荐你
+**使用 `=` 来设置默认值，
+并 [指定 Dart SDK 版本为 1.21 或者更高的版本。](/tools/pub/pubspec#sdk-constraints)**
 </div>
 
-The next example shows how to set default values for positional parameters:
+下面的示例显示了如何设置位置参数的默认值：
 
 <!-- language-tour/optional-positional-parameter-default/bin/main.dart -->
 {% prettify dart %}
@@ -1001,10 +1000,10 @@ assert(say('Bob', 'Howdy') ==
     'Bob says Howdy with a carrier pigeon');
 {% endprettify %}
 
-You can also pass lists or maps as default values.
-The following example defines a function, `doStuff()`,
-that specifies a default list for the `list`
-parameter and a default map for the `gifts` parameter.
+还可以使用 list 或者 map 作为默认值。
+下面的示例定义了一个方法 `doStuff()`，
+并分别为 `list` 和 `gifts` 参数指定了
+默认值。
 {% comment %}
 The function is called three times with different values.
 Click the run button ( {% img 'red-run.png' %} )
@@ -1038,13 +1037,13 @@ src="{{site.custom.dartpad.embed-dart-prefix}}?id=d988cfce0a54c6853799&horizonta
 {% endcomment %}
 
 
-### The main() function
+### 入口函数 （The main() function）
 
-Every app must have a top-level `main()` function, which serves as the
-entrypoint to the app. The `main()` function returns `void` and has an
-optional `List<String>` parameter for arguments.
+每个应用都需要有个顶级的 `main()`  入口方法才能执行。
+`main()` 方法的返回值为 `void` 并且有个可选的
+ `List<String>` 参数。
 
-Here's an example of the `main()` function for a web app:
+下面是一个 web 应用的 `main()` 方法：
 
 <!-- from Dart Editor's default web app -->
 {% prettify dart %}
@@ -1056,14 +1055,14 @@ void main() {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-The `..` syntax in the preceding code is called a [cascade](#cascade-notation-).
-With cascades,
-you can perform multiple operations on the members of a single object.
+**注意：**
+前面代码中的 `..` 语法为 [级联调用](#cascade-notation-)（cascade）。
+使用级联调用语法，
+你可以在一个对象上执行多个操作。
 </div>
 
-Here's an example of the `main()` function for a command-line app that
-takes arguments:
+下面是一个命令行应用的 `main()` 方法，并且使用了
+方法参数作为输入参数：
 
 <!-- language-tour/args/bin/main.dart -->
 {% prettify dart %}
@@ -1077,12 +1076,12 @@ void main(List<String> arguments) {
 }
 {% endprettify %}
 
-You can use the [args library](https://pub.dartlang.org/packages/args) to
-define and parse command-line arguments.
+你可以使用 [args library](https://pub.dartlang.org/packages/args) 来
+定义和解析命令行输入的参数数据。
 
-### Functions as first-class objects
+### 一等方法对象 （Functions as first-class objects）
 
-You can pass a function as a parameter to another function. For example:
+可以把方法当做参数调用另外一个方法。例如：
 
 <!-- from language-tour/function-as-parameter/bin/main.dart -->
 {% prettify dart %}
@@ -1096,7 +1095,7 @@ var list = [1, 2, 3];
 list.forEach(printElement);
 {% endprettify %}
 
-You can also assign a function to a variable, such as:
+方法也可以赋值给一个变量：
 
 <!-- from language-tour/function-as-variable/bin/main.dart -->
 {% prettify dart %}
@@ -1104,21 +1103,21 @@ var loudify = (msg) => '!!! ${msg.toUpperCase()} !!!';
 assert(loudify('hello') == '!!! HELLO !!!');
 {% endprettify %}
 
-This example uses an anonymous function.
-More about those in the next section.
+上面的方法为
+下面即将介绍的匿名方法。
 
-### Anonymous functions
+### 匿名方法 （Anonymous functions）
 
-Most functions are named, such as `main()` or `printElement()`.
-You can also create a nameless function
-called an _anonymous function_, or sometimes a _lambda_ or _closure_.
-You might assign an anonymous function to a variable so that,
-for example, you can add or remove it from a collection.
+大部分方法都带有名字，例如 `main()` 或者 `printElement()`。
+你有可以创建没有名字的方法，称之为
+_匿名方法_，有时候也被称为 _lambda_ 或者 _closure 闭包_。
+你可以把匿名方法赋值给一个变量，
+然后你可以使用这个方法，比如添加到集合或者从集合中删除。
 
-An anonymous function looks similar to a named function&mdash;
-zero or more parameters, separated by commas
-and optionally typed, between parentheses.
-The code block that follows contains the function's body:
+匿名函数和命名函数看起来类似&mdash;
+在括号之间可以定义一些参数，参数使用逗号
+分割，也可以是可选参数。
+后面大括号中的代码为函数体：
 
 <code>
 ([[<em>Type</em>] <em>param1</em>[, …]]) { <br>
@@ -1126,9 +1125,9 @@ The code block that follows contains the function's body:
 }; <br>
 </code>
 
-The following example defines an anonymous function with an untyped parameter, `i`.
-The function, invoked for each item in the list,
-prints a string that includes the value at the specified index.
+下面的代码定义了一个参数为`i` （该参数没有指定类型）的匿名函数。
+list 中的每个元素都会调用这个函数来
+打印出来，同时来计算了每个元素在 list 中的索引位置。
 
 {% prettify dart %}
 var list = ['apples', 'oranges', 'grapes', 'bananas', 'plums'];
@@ -1137,7 +1136,7 @@ list.forEach((i) {
 });
 {% endprettify %}
 
-Click the run button ( {% img 'red-run.png' %} ) to execute the code.
+点击运行按钮 ( {% img 'red-run.png' %} ) 执行下面的代码。
 
 {% comment %}
 https://gist.github.com/Sfshaza/d1c5d3124c8abf2d58f9b98936339232
@@ -1158,24 +1157,24 @@ src="{{site.custom.dartpad.embed-dart-prefix}}?id=d1c5d3124c8abf2d58f9b989363392
     style="border: 1px solid #ccc;">
 </iframe>
 
-If the function contains only one statement, you can shorten it using
-fat arrow notation. Paste the following line into DartPad
-and click run to verify that it is functionally equivalent.
+如果方法只包含一个语句，可以使用胖箭头语法缩写。
+把下面的代码粘贴到
+DartPad 中运行，可以看到结果是一样的。
 
 {% prettify dart %}
 list.forEach((i) => print(list.indexOf(i).toString() + ': ' + i));
 {% endprettify %}
 
 
-### Lexical scope
+### 静态作用域 （Lexical scope）
 
-Dart is a lexically scoped language, which means that the scope of
-variables is determined statically, simply by the layout of the code.
-You can “follow the curly braces outwards” to see if a variable is in
-scope.
+Dart 是静态作用域语言，变量的作用域在写代码的时候就确定过了。
+基本上大括号里面定义的变量就
+只能在大括号里面访问，和 Java 作用域
+类似。
 
-Here is an example of nested functions with variables at each scope
-level:
+下面是作用域的一个
+示例：
 
 <!-- language-tour/nested-functions/bin/main.dart -->
 {% prettify dart %}
@@ -1199,19 +1198,19 @@ main() {
 }
 {% endprettify %}
 
-Notice how `nestedFunction()` can use variables from every level, all
-the way up to the top level.
+注意 `nestedFunction()` 可以访问所有的变量，
+包含顶级变量。
 
 
-### Lexical closures
+### 词法闭包 （Lexical closures）
 
-A *closure* is a function object that has access to variables in its
-lexical scope, even when the function is used outside of its original
-scope.
+一个 *闭包* 是一个方法对象，不管该对象在何处被调用，
+该对象都可以访问其作用域内
+的变量。
 
-Functions can close over variables defined in surrounding scopes. In the
-following example, `makeAdder()` captures the variable `addBy`. Wherever the
-returned function goes, it remembers `addBy`.
+方法可以封闭定义到其作用域内的变量。
+下面的示例中，`makeAdder()` 捕获到了变量 `addBy`。
+不管你在那里执行 `makeAdder()` 所返回的函数，都可以使用 `addBy` 参数。
 
 <!-- language-tour/function-closure/bin/main.dart -->
 {% prettify dart %}
@@ -1234,10 +1233,10 @@ main() {
 {% endprettify %}
 
 
-### Testing functions for equality
+### 测试函数是否相等（Testing functions for equality）
 
-Here's an example of testing top-level functions, static methods, and
-instance methods for equality:
+下面是测试顶级方法、静态函数和实例函数
+相等的示例：
 
 <!-- language-tour/function-equality-2/bin/main.dart -->
 {% prettify dart %}
@@ -1276,20 +1275,20 @@ main() {
 {% endprettify %}
 
 
-### Return values
+### 返回值 （Return values）
 
-All functions return a value. If no return value is specified, the
-statement `return null;` is implicitly appended to the function body.
+所有的函数都返回一个值。如果没有指定返回值，则
+默认把语句 `return null;` 作为函数的最后一个语句执行。
 
 
-## Operators
+## 操作符 （Operators）
 
-Dart defines the operators shown in the following table.
-You can override many of these operators, as described in
-[Overridable operators](#overridable-operators).
+下表是 Dart 中定义的操作符。 
+很多操作符都可以重载，详情参考
+[Overridable operators](#overridable-operators)。
 
 |--------------------------+------------------------------------------------|
-|Description               | Operator                                       |
+|描述                      | 操作符                                         |
 |--------------------------|------------------------------------------------|
 | unary postfix            | <code><em>expr</em>++</code>    <code><em>expr</em>--</code>    `()`    `[]`    `.`    `?.` |
 | unary prefix             | <code>-<em>expr</em></code>    <code>!<em>expr</em></code>    <code>~<em>expr</em></code>    <code>++<em>expr</em></code>    <code>--<em>expr</em></code>   |
@@ -1309,8 +1308,8 @@ You can override many of these operators, as described in
 | assignment               | `=`    `*=`    `/=`    `~/=`    `%=`    `+=`    `-=`    `<<=`    `>>=`    `&=`    `^=`    `|=`    `??=` |
 {:.table .table-striped}
 
-When you use operators, you create expressions. Here are some examples
-of operator expressions:
+在使用操作符的时候，就创建了表达式。下面是一些
+操作符表达式：
 
 <!-- TODO: write test for this -->
 {% prettify dart %}
@@ -1322,13 +1321,12 @@ a ? b: c
 a is T
 {% endprettify %}
 
-In the [operator table](#operators),
-each operator has higher precedence than the operators in the rows
-that follow it. For example, the multiplicative operator `%` has higher
-precedence than (and thus executes before) the equality operator `==`,
-which has higher precedence than the logical AND operator `&&`. That
-precedence means that the following two lines of code execute the same
-way:
+在[操作符表格](#operators)中所列的操作符
+都是按照优先级顺序从左到右，从上到下的方式来列出的，
+上面和左边的操作符优先级要高于下面和右边的。
+例如 `%`  操作符优先级高于 `==`，而 等号
+高于 `&&`。所以下面的
+代码结果是一样的：
 
 <!-- language-tour/precedence/bin/main.dart -->
 {% prettify dart %}
@@ -1340,31 +1338,31 @@ if (n % i == 0 && d % i == 0)
 {% endprettify %}
 
 <div class="alert alert-warning" markdown="1">
-**Warning:**
-For operators that work on two operands, the leftmost operand
-determines which version of the operator is used. For example, if you
-have a Vector object and a Point object, `aVector + aPoint` uses the
-Vector version of +.
+**警告：**
+对于有两个操作数的操作符，左边的操作数决定了
+操作符的功能。
+例如，如果有一个 Vector 对象和一个 Point 对象， `aVector + aPoint`
+使用的是 Vector 对象中定义的 + 操作符。
 </div>
 
 
-### Arithmetic operators
+### 算术操作符 （Arithmetic operators）
 
-Dart supports the usual arithmetic operators, as shown in the following table.
+Dart 支持常用的算术操作符，如下：
 
 |-----------------------------+-------------------------------------------|
-| Operator                    | Meaning                                   |
+| 操作符                      | 解释                                      |
 |-----------------------------+-------------------------------------------|
-| `+`                         | Add
-| `–`                         | Subtract
-| <code>-<em>expr</em></code> | Unary minus, also known as negation (reverse the sign of the expression)
-| `*`                         | Multiply
-| `/`                         | Divide
-| `~/`                        | Divide, returning an integer result
-| `%`                         | Get the remainder of an integer division (modulo)
+| `+`                         | 加号
+| `–`                         | 减号
+| <code>-<em>expr</em></code> | 负号
+| `*`                         | 乘号
+| `/`                         | 除号
+| `~/`                        | 除号，但是返回值为整数
+| `%`                         | 取模
 {:.table .table-striped}
 
-Example:
+示例：
 
 <!-- language-tour/arithmetic-operators/bin/main.dart -->
 {% prettify dart %}
@@ -1378,8 +1376,8 @@ assert(5 % 2 == 1);     // Remainder
 print('5/2 = ${5~/2} r ${5%2}'); // 5/2 = 2 r 1
 {% endprettify %}
 
-Dart also supports both prefix and postfix increment and decrement
-operators.
+Dart 还支持递增、递减前缀
+和后缀操作：
 
 |-----------------------------+-------------------------------------------|
 | Operator                    | Meaning                                   |
@@ -1390,7 +1388,7 @@ operators.
 | <code><em>var</em>--</code> | <code><em>var</em> = <em>var</em> – 1</code> (expression value is <code><em>var</em></code>)
 {:.table .table-striped}
 
-Example:
+示例：
 
 <!-- language-tour/op-increment-decrement/bin/main.dart -->
 {% prettify dart %}
@@ -1414,20 +1412,21 @@ assert(a != b); // -1 != 0
 {% endprettify %}
 
 
-### Equality and relational operators
+### 相等相关的操作符 （Equality and relational operators）
 
-The following table lists the meanings of equality and relational operators.
+下表是和相等操作相关的操作符。
 
 |-----------+-------------------------------------------|
-| Operator  | Meaning                                   |
+| 操作符    | 解释                                      |
 |-----------+-------------------------------------------|
-| `==`      |       Equal; see discussion below
-| `!=`      |       Not equal
-| `>`       |       Greater than
-| `<`       |       Less than
-| `>=`      |       Greater than or equal to
-| `<=`      |       Less than or equal to
+| `==`      |       相等
+| `!=`      |       不等
+| `>`       |       大于
+| `<`       |       小于
+| `>=`      |       大于等于
+| `<=`      |       小于等于
 {:.table .table-striped}
+
 
 To test whether two objects x and y represent the same thing, use the
 `==` operator. (In the rare case where you need to know whether two
@@ -1495,7 +1494,7 @@ You can make the code shorter using the `as` operator:
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 The code isn’t equivalent. If `emp` is null or not a Person, the
 first example (with `is`) does nothing; the second (with `as`) throws
 an exception.
@@ -1712,7 +1711,7 @@ The `sb.write()` call returns void,
 and you can't construct a cascade on `void`.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Strictly speaking,
 the "double dot" notation for cascades is not an operator.
 It's just part of the Dart syntax.
@@ -1890,7 +1889,7 @@ override `==`.
 [Enumerated types](#enumerated-types) work well in `switch` statements.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Switch statements in Dart are intended for limited circumstances,
 such as in interpreters or scanners.
 </div>
@@ -2000,7 +1999,7 @@ assert(urlString.startsWith('https'));
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Assert statements work only in checked mode. They have no effect in
 production mode.
 </div>
@@ -2327,7 +2326,7 @@ class Point {
 The `this` keyword refers to the current instance.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Use `this` only when there is a name conflict. Otherwise, Dart style
 omits the `this`.
 </div>
@@ -2451,7 +2450,7 @@ class Employee extends Person {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 When using `super()` in a constructor's initialization list, put it last.
 For more information, see the
 [Dart usage guide](/guides/language/effective-dart/usage#do-place-the-super-call-last-in-a-constructor-initialization-list).
@@ -2606,7 +2605,7 @@ class Logger {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Factory constructors have no access to `this`.
 </div>
 
@@ -2683,7 +2682,7 @@ With getters and setters, you can start with instance variables, later
 wrapping them with methods, all without changing client code.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Operators such as increment (++) work in the expected way, whether or
 not a getter is explicitly defined. To avoid any unexpected side
 effects, the operator calls the getter exactly once, saving its value
@@ -3074,7 +3073,7 @@ abstract class Musical {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 As of 1.13, two restrictions on mixins have been lifted
 from the Dart VM:
 
@@ -3116,7 +3115,7 @@ main() {
 Static variables aren’t initialized until they’re used.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 This page follows the [style guide
 recommendation](/guides/language/effective-dart/style#identifiers)
 of preferring `lowerCamelCase` for constant names.
@@ -3152,7 +3151,7 @@ main() {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Consider using top-level functions, instead of static methods, for
 common or widely used utilities and functionality.
 </div>
@@ -3298,7 +3297,7 @@ each item’s type or wrap item-manipulation code in an exception handler
 (see [Exceptions](#exceptions)).
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 In contrast, generics in Java use *erasure*, which means that generic
 type parameters are removed at runtime. In Java, you can test whether
 an object is a List, but you can’t test whether it’s a `List<String>`.
@@ -3412,7 +3411,7 @@ import 'package:utils/utils.dart';
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 *URI* stands for uniform resource identifier.
 *URLs* (uniform resource locators) are a common kind of URI.
 </div>
@@ -3805,7 +3804,7 @@ main() {
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Currently, typedefs are restricted to function types. We expect this
 to change.
 </div>
