@@ -1428,24 +1428,24 @@ assert(a != b); // -1 != 0
 {:.table .table-striped}
 
 
-To test whether two objects x and y represent the same thing, use the
-`==` operator. (In the rare case where you need to know whether two
-objects are the exact same object, use the
+要测试两个对象代表的是否为同样的内容，使用
+`==` 操作符。(在某些情况下，你需要知道两个对象是否是同一个对象，
+使用 
 [`identical()`]({{site.dart_api}}/dart-core/identical.html)
-function instead.) Here’s how the `==` operator works:
+ 方法。) 下面是 `==` 操作符工作原理解释：
 
-1.  If *x* or *y* is null, return true if both are null, and false if only
-    one is null.
+1.  如果 *x* 或者 *y* 是 null，如果两个都是 null 则返回 true，如果
+    只有一个是 null 返回 false。
 
-2.  Return the result of the method invocation
-    <code><em>x</em>.==(<em>y</em>)</code>. (That’s right,
-    operators such as `==` are methods that are invoked on their first
-    operand. You can even override many operators, including `==`, as
-    you’ll see in
-    [Overridable operators](#overridable-operators).)
+2.  返回如下函数的返回值 
+    <code><em>x</em>.==(<em>y</em>)</code>。 （你没看错，
+    像 `==` 这种操作符是定义在左边对象上的函数。
+    你甚至还可以覆写这些操作符。
+    在后面的
+    [Overridable operators](#overridable-operators) 将介绍如何做。）
 
-Here’s an example of using each of the equality and relational
-operators:
+下面是相等关系操作符的
+使用示例：
 
 <!-- language-tour/op-equality/bin/main.dart -->
 {% prettify dart %}
@@ -1458,26 +1458,26 @@ assert(2 <= 3);
 {% endprettify %}
 
 
-### Type test operators
+### 类型判定操作符 （Type test operators）
 
-The `as`, `is`, and `is!` operators are handy for checking types at
-runtime.
+`as`、 `is`、 和 `is!` 操作符是在运行时判定对象
+类型的操作符：
 
 |-----------+-------------------------------------------|
-| Operator  | Meaning                                   |
+| 操作符    | 解释                                   |
 |-----------+-------------------------------------------|
-| `as`      | Typecast
-| `is`      | True if the object has the specified type
-| `is!`     | False if the object has the specified type
+| `as`      | 类型转换
+| `is`      | 如果对象是指定的类型返回 True
+| `is!`     | 如果对象是指定的类型返回 False
 {:.table .table-striped}
 
-The result of `obj is T` is true if `obj` implements the interface
-specified by `T`. For example, `obj is Object` is always true.
+只有当 `obj` 实现了 `T` 的接口，
+`obj is T` 才是 true。例如 `obj is Object` 总是 true。
 
-Use the `as` operator to cast an object to a particular type. In
-general, you should use it as a shorthand for an `is` test on an object
-following by an expression using that object. For example, consider the
-following code:
+使用 `as` 操作符把对象转换为特定的类型。
+一般情况下，你可以把它当做用 `is` 判定类型然后调用
+所判定对象的函数的缩写形式。例如下面的
+示例：
 
 <!-- language-tour/op-as/bin/main.dart -->
 {% prettify dart %}
@@ -1486,7 +1486,7 @@ if (emp is Person) { // Type check
 }
 {% endprettify %}
 
-You can make the code shorter using the `as` operator:
+使用 `as` 操作符可以简化上面的代码：
 
 <!-- language-tour/op-as/bin/main.dart.dart -->
 {% prettify dart %}
@@ -1495,22 +1495,22 @@ You can make the code shorter using the `as` operator:
 
 <div class="alert alert-info" markdown="1">
 **注意：**
-The code isn’t equivalent. If `emp` is null or not a Person, the
-first example (with `is`) does nothing; the second (with `as`) throws
-an exception.
+上面这两个代码效果是有区别的。如果 `emp` 是 null 或者不是 Person 类型，
+则第一个示例使用 `is` 则不会执行条件里面的代码，而第二个情况使用
+`as` 则会抛出一个异常。
 </div>
 
 
-### Assignment operators
+### 赋值操作符 （Assignment operators）
 
-As you’ve already seen, you can assign values using the `=` operator.
-To assign only if the assigned-to variable is null,
-use the `??=` operator.
+使用 `=` 操作符来赋值。
+但是还有一个 `??=` 操作符用来指定
+值为 null 的变量的值。
 
 {% prettify dart %}
-a = value;   // Assign value to a
-b ??= value; // If b is null, assign value to b;
-             // otherwise, b stays the same
+a = value;   // 给 a 变量赋值
+b ??= value; // 如果 b 是 null，则赋值给 b；
+             // 如果不是 null，则 b 的值保持不变
 {% endprettify %}
 
 {% comment %}
@@ -1519,24 +1519,24 @@ https://gist.github.com/9de887c4daf76d39e524
 https://dartpad.dartlang.org/9de887c4daf76d39e524
 {% endcomment %}
 
-Compound assignment operators such as `+=` combine
-an operation with an assignment.
+还有复合赋值操作符 `+=` 等可以
+赋值：
 
 | `=`  | `–=` | `/=`  | `%=`  | `>>=` | `^=`
 | `+=` | `*=` | `~/=` | `<<=` | `&=`  | `|=`
 {:.table}
 
-Here’s how compound assignment operators work:
+下面是复合赋值操作符工作原理解释：
 
 |-----------+----------------------+-----------------------|
-|           | Compound assignment  | Equivalent expression |
+|           | 复合赋值操作符       | 相等的表达式          |
 |-----------+----------------------+-----------------------|
-|**For an operator <em>op</em>:** | <code>a <em>op</em>= b</code> | <code>a = a <em>op</em> b</code>
-|**Example:**                     |`a += b`                       | `a = a + b`
+|**对于  操作符 <em>op</em>:** | <code>a <em>op</em>= b</code> | <code>a = a <em>op</em> b</code>
+|**示例:**                        |`a += b`                       | `a = a + b`
 {:.table}
 
-The following example uses assignment and compound assignment
-operators:
+下面的代码使用赋值操作符合
+复合赋值操作符：
 
 <!-- language-tour/op-assign/bin/main.dart -->
 {% prettify dart %}
@@ -1546,20 +1546,20 @@ assert(a == 6);
 {% endprettify %}
 
 
-### Logical operators
+### 逻辑操作符 （Logical operators）
 
-You can invert or combine boolean expressions using the logical
-operators.
+可以使用逻辑操作符来
+操作布尔值：
 
 |-----------------------------+-------------------------------------------|
-| Operator                    | Meaning                                   |
+| 操作符                      | 解释                                      |
 |-----------------------------+-------------------------------------------|
-| <code>!<em>expr</em></code> | inverts the following expression (changes false to true, and vice versa)
-| `||`                        | logical OR
-| `&&`                        | logical AND
+| <code>!<em>expr</em></code> | 对表达式结果取反（true 变为 false ，false 变为 true）
+| `||`                        | 逻辑 OR
+| `&&`                        | 逻辑 AND
 {:.table .table-striped}
 
-Here’s an example of using the logical operators:
+下面是使用示例：
 
 <!-- language-tour/op-logicalbin/main.dart -->
 {% prettify dart %}
@@ -1569,13 +1569,13 @@ if (!done && (col == 0 || col == 3)) {
 {% endprettify %}
 
 
-### Bitwise and shift operators
+### 位于和移位操作符（Bitwise and shift operators）
 
-You can manipulate the individual bits of numbers in Dart. Usually,
-you’d use these bitwise and shift operators with integers.
+在 Dart 中可以单独操作数字的某一位，
+下面操作符同样应用于整数：
 
 |-----------------------------+-------------------------------------------|
-| Operator                    | Meaning                                   |
+| 操作符                      | 解释                                      |
 |-----------------------------+-------------------------------------------|
 | `&`                         | AND
 | `|`                         | OR
@@ -1585,7 +1585,7 @@ you’d use these bitwise and shift operators with integers.
 | `>>`                        | Shift right
 {:.table .table-striped}
 
-Here’s an example of using bitwise and shift operators:
+使用位于和移位操作符的示例：
 
 <!-- language-tour/op-bitwise/bin/main.dart -->
 {% prettify dart %}
@@ -1601,37 +1601,37 @@ assert((value >> 4)       == 0x02);  // Shift right
 {% endprettify %}
 
 
-### Conditional expressions
+### 条件表达式（Conditional expressions）
 
-Dart has two operators that let you concisely evaluate expressions
-that might otherwise require [if-else](#if-and-else) statements:
+Dart 有两个特殊的操作符可以用来替代
+[if-else](#if-and-else) 语句：
 
 <code><em>condition</em> ? <em>expr1</em> : <em>expr2</em>
-: If _condition_ is true, evaluates _expr1_ (and returns its value);
-  otherwise, evaluates and returns the value of _expr2_.
+: 如果 _condition_ 是 true，执行 _expr1_ (并返回执行的结果)；
+  否则执行 _expr2_ 并返回其结果。
 
 <code><em>expr1</em> ?? <em>expr2</em></code>
-: If _expr1_ is non-null, returns its value;
-  otherwise, evaluates and returns the value of _expr2_.
+: 如果 _expr1_ 是 non-null，返回其值；
+  否则执行 _expr2_ 并返回其结果。
 
-When you need to assign a value
-based on a boolean expression,
-consider using `?:`.
+如果你需要基于布尔表达式
+的值来赋值，
+考虑使用 `?:`。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
 var finalStatus = m.isFinal ? 'final' : 'not final';
 {% endprettify %}
 
-If the boolean expression tests for null,
-consider using `??`.
+如果布尔表达式是测试值是否为 null，
+考虑使用 `??`。
 
 {% prettify dart %}
 String toString() => msg ?? super.toString();
 {% endprettify %}
 
-The previous example could have been written at least two other ways,
-but not as succinctly:
+下面是一样效果的实现，
+但是代码不是那么简洁：
 
 {% comment %}
 https://dartpad.dartlang.org/f2c8d82ce5d0dd533fe2
@@ -1653,15 +1653,16 @@ String toString() {
 {% endprettify %}
 
 <a id="cascade"></a>
-### Cascade notation (..)
+### 级联操作符（Cascade notation (..)）
 
-Cascades (`..`) allow you to make a sequence of operations
-on the same object. In addition to function calls,
-you can also access fields on that same object.
-This often saves you the step of creating a temporary variable and
-allows you to write more fluid code.
+级联操作符 (`..`) 可以在同一个对象上
+连续调用多个函数以及访问成员变量。
+使用级联操作符可以避免创建
+临时变量，
+并且写出来的代码看起来
+更加流畅：
 
-Consider the following code:
+例如下面的代码：
 
 <!-- language-tour/cascade-operator/web/main.dart -->
 {% prettify dart %}
@@ -1671,12 +1672,12 @@ querySelector('#button') // Get an object.
   ..onClick.listen((e) => window.alert('Confirmed!'));
 {% endprettify %}
 
-The first method call, `querySelector()`, returns a selector object.
-The code that follows the cascade notation operates
-on this selector object, ignoring any subsequent values that
-might be returned.
+第一个方法 `querySelector()` 返回了一个 selector 对象。
+后面的级联操作符都是调用这个对象的成员，
+并忽略每个操作
+所返回的值。
 
-The previous example is equivalent to:
+上面的代码和下面的代码功能一样：
 
 {% prettify dart %}
 var button = querySelector('#button');
@@ -1685,7 +1686,7 @@ button.classes.add('important');
 button.onClick.listen((e) => window.alert('Confirmed!'));
 {% endprettify %}
 
-You can also nest your cascades. For example:
+级联调用也可以嵌套：
 
 {% prettify dart %}
 final addressBook = (new AddressBookBuilder()
@@ -1698,8 +1699,8 @@ final addressBook = (new AddressBookBuilder()
     .build();
 {% endprettify %}
 
-Be careful to construct your cascade on a function that returns
-an actual object. For example, the following code fails:
+在方法上使用级联操作符需要非常小心，
+例如下面的代码就是不合法的：
 
 {% prettify dart %}
 // Does not work
@@ -1707,34 +1708,34 @@ var sb = new StringBuffer();
 sb.write('foo')..write('bar');
 {% endprettify %}
 
-The `sb.write()` call returns void,
-and you can't construct a cascade on `void`.
+`sb.write()` 函数返回一个 void，
+无法在 `void` 上使用级联操作符。
 
 <div class="alert alert-info" markdown="1">
 **注意：**
-Strictly speaking,
-the "double dot" notation for cascades is not an operator.
-It's just part of the Dart syntax.
+严格来说，
+两个点的级联语法不是一个操作符。
+只是一个 Dart 特殊语法。
 </div>
 
-### Other operators
+### 其他操作符 （Other operators）
 
-You've seen most of the remaining operators in other examples:
+下面是其他操作符：
 
 |----------+-------------------------------------------|
 | Operator | Name                 |          Meaning   |
 |-----------+------------------------------------------|
-| `()`     | Function application | Represents a function call
-| `[]`     | List access          | Refers to the value at the specified index in the list
-| `.`      | Member access        | Refers to a property of an expression; example: `foo.bar` selects property `bar` from expression `foo`
-| `?.`     | Conditional member access | Like `.`, but the leftmost operand can be null; example: `foo?.bar` selects property `bar` from expression `foo` unless `foo` is null (in which case the value of `foo?.bar` is null)
+| `()`     | 使用方法             | 代表调用一个方法
+| `[]`     | 访问 List            | 访问 list 中特定位置的元素
+| `.`      | 访问 Member          | 访问元素，例如 `foo.bar` 代表访问 `foo` 的 `bar` 成员
+| `?.`     | 条件成员访问         | 和 `.` 类似，但是左边的操作对象不能为 null，例如 `foo?.bar` 如果 `foo` 为 null 则返回 null，否则返回 `bar` 成员
 {:.table .table-striped}
 
-For more information about the `.`, `?.`, and `..` operators, see
-[Classes](#classes).
+关于 `.`、 `?.`、和 `..` 的详情，请参考
+[Classes](#classes)。
 
 
-## Control flow statements
+## 流程控制语句（Control flow statements）
 
 You can control the flow of your Dart code using any of the following:
 
