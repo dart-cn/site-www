@@ -1,18 +1,18 @@
 ---
-title: "Sample Code"
-description: "Examples of idiomatic Dart with links to larger examples."
+title: "示例代码"
+description: "Dart 习惯用户示例和到大型示例项目的链接。"
 permalink: /samples
 ---
 
-This collection is not exhaustive&mdash;it's just a brief
-introduction to the language for people who like to learn by example. You may
-also want to check out the following pages.
+这里展示的示例并不完善&mdash;只是像想通过示例
+学习 Dart 的人做了简单的介绍。
+你还应该查看下面两个页面。
 
 <div class="card-grid">
   <div class="card">
-    <h3><a href="/guides/language/language-tour">Language Tour</a></h3>
+    <h3><a href="/guides/language/language-tour">语法预览</a></h3>
     <p>
-      Higher text-to-code ratio than here.
+      比这里更加详细的语法介绍以及各种示例代码。
     </p>
   </div>
   <!-- XXXXX TODO: XXXXX
@@ -24,15 +24,15 @@ also want to check out the following pages.
   <div class="card">
     <h3><a href="/dart-vm/dart-by-example">Cookbook</a></h3>
     <p>
-      A set of concrete recipes to get you started with common programming
-      tasks.
+      一些帮助你解决常见问题的
+      示例代码片段。
     </p>
   </div>
 </div>
 
 ## Hello World
 
-First things first:
+喜闻乐见的 hello world:
 
 {% prettify dart %}
 void main() {
@@ -42,7 +42,7 @@ void main() {
 
 ## Variables
 
-We're not explicitly typing the variables here. We could, but type inference works for us.
+这里没有显式的指定变量类型。也可以指定变量类型。
 
 {% prettify dart %}
 var name = 'Voyager I';
@@ -55,11 +55,11 @@ var image = {
 };
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#variables) about variables in Dart, including default values, `final` and `const` keywords, and more.
+[更多关于](/guides/language/language-tour#variables) 变量的信息，包含默认值、 `final` 和 `const` 关键字等。
 
 ## Control flow statements
 
-No surprises here.
+也是很常见的结构：
 
 {% prettify dart %}
 if (year >= 2001) {
@@ -81,12 +81,12 @@ while (year < 2016) {
 }
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#control-flow-statements) about control flow statements in Dart,
-including `break` and `continue`, `switch` and `case`, and `assert`.
+[更多关于](/guides/language/language-tour#control-flow-statements) 控制流程语句的介绍，
+包括 `break` 和 `continue`、 `switch` 和 `case`、以及 `assert`。
 
 ## Functions
 
-As a best practice, we're specifying the type of the function's argument and return value here. You don't need to do that, though.
+如最佳实践所建议的，这里指定了方法参数类型和返回值类型。你有可以忽略这些类型。
 
 {% prettify dart %}
 int fibonacci(int n) {
@@ -97,32 +97,32 @@ int fibonacci(int n) {
 var result = fibonacci(20);
 {% endprettify %}
 
-A shorthand (_fat arrow_) syntax is handy for functions that contain a single statement.
-It's especially useful when functions are passed as arguments,
-but it also means that Hello World can be made even [shorter](https://gist.github.com/filiph/8a5e3e845acdafe2ea928fd257a46859).
+只有一个语句的方法可以使用缩写 (_胖箭头_) 语法来定义方法。
+特别是当把方法作为函数参数来使用的时候，
+这意味着，Hello World 示例可以变的更加[简短](https://gist.github.com/filiph/8a5e3e845acdafe2ea928fd257a46859)。
 
 {% prettify dart %}
 flybyObjects.where((name) => name.contains('anus')).forEach(print);
 {% endprettify %}
 
-Also note that in the example above, the top-level function `print` is provided as an argument.
+注意上面示例中，顶级方法 `print` 被当做参数使用。
 
-[Read more](/guides/language/language-tour#functions) about functions in Dart,
-including optional parameters, default parameter values, lexical scope, and more.
+[更多关于](/guides/language/language-tour#functions) Dart 中方法的介绍，包括
+optional parameters、 default parameter values、 lexical scope 等。
 
 ## Comments
 
 {% prettify dart %}
-// A normal, one-line comment.
+// 普通的单行注释。
 
-/// A documentation comment. These are used to document libraries, classes and
-/// their members. IDEs and tools use these.
+/// 文档注释。用来显示库、类以及
+/// 他们的成员。IDEs 和工具使用文档注释。
 
-/* Comments like these are also supported. */
+/* 这种注释也是支持的。 */
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#comments) about comments in Dart,
-including how the documentation tooling works.
+[更多关于](/guides/language/language-tour#comments) 注释的内容，
+以及文档注释工具是如何使用的。
 
 ## Imports
 
@@ -138,8 +138,8 @@ import 'package:angular2/angular2.dart';
 import 'path/to/my_other_file.dart';
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#libraries-and-visibility) about libraries and visibility in Dart,
-including library prefixes, `show` and `hide`, and lazy loading through the `deferred` keyword.
+[更多关于](/guides/language/language-tour#libraries-and-visibility) 库和可见性的介绍，
+包括 library prefixes、 `show` 和 `hide`、 以及使用 `deferred`  关键字来延迟加载库。
 
 ## Classes
 
@@ -172,7 +172,7 @@ class Spacecraft {
 }
 {% endprettify %}
 
-You would use the class defined above like so:
+可以这样使用上面定义的类：
 
 {% prettify dart %}
 var voyager = new Spacecraft('Voyager I', new DateTime(1977, 9, 5));
@@ -182,12 +182,12 @@ var voyager3 = new Spacecraft.unlaunched('Voyager III');
 voyager3.describe();
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#classes) about classes in Dart,
-including initializer lists, redirecting constructors, constant constructors, `factory` constructors, getters, setters, and much more.
+[更多关于](/guides/language/language-tour#classes) 类的介绍，
+包括 initializer lists、 redirecting constructors、 constant constructors、 `factory` constructors、 getters、 setters、 等等。
 
 ## Inheritance
 
-Dart has single inheritance.
+Dart 是单继承的。
 
 {% prettify dart %}
 class Orbiter extends Spacecraft {
@@ -197,11 +197,11 @@ class Orbiter extends Spacecraft {
 }
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#extending-a-class) about extending classes, the optional `@override` annotation, and more.
+[更多关于](/guides/language/language-tour#extending-a-class) 继承类的信息，还有 `@override` 注解等信息。
 
 ## Mixins
 
-Mixins are a way of reusing code in multiple class hierarchies. The following class can act as a mixin.
+Mixins 是在多类继承体系中重用代码的一种方式。下面的类可以作为一个 mixin：
 
 {% prettify dart %}
 class Manned {
@@ -212,7 +212,7 @@ class Manned {
 }
 {% endprettify %}
 
-Just extend a class with a mixin to add the mixin's capabilities to the class.
+只需要扩展一个 mixin 类即可把 mixin 的功能添加到类中。
 
 {% prettify dart %}
 class Orbiter extends Spacecraft with Manned {
@@ -220,13 +220,13 @@ class Orbiter extends Spacecraft with Manned {
 }
 {% endprettify %}
 
-`Orbiter` now has the `astronauts` field as well as the `describeCrew()` method.
+`Orbiter` 现在也有一个 `astronauts` 变量和 `describeCrew()` 函数。
 
-[Read more](/articles/language/mixins) about mixins.
+[更多关于](/articles/language/mixins) mixins 的介绍。
 
 ## Interfaces
 
-Dart has no `interface` keyword. Instead, all classes implicitly define an interface. Therefore, you can `implement` any class.
+Dart 没有 `interface` 关键字。在 Dart 中所有的类都隐含的定义了一个接口。因此你可以使用 `implement` 来实现任意的类隐含定义的接口。
 
 {% prettify dart %}
 class MockSpaceship implements Spacecraft {
@@ -234,11 +234,11 @@ class MockSpaceship implements Spacecraft {
 }
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#implicit-interfaces) about implicit interfaces.
+[更多关于](/guides/language/language-tour#implicit-interfaces) 接口的说明。
 
 ## Abstract classes
 
-You can create an abstract class to be extended (or implemented) by a concrete class. Abstract classes can contain abstract methods (with empty bodies).
+可以创建一个抽象类。抽象类可以包含抽象函数（没有函数体的函数）。
 
 {% prettify dart %}
 abstract class Describable {
@@ -252,13 +252,13 @@ abstract class Describable {
 }
 {% endprettify %}
 
-Any class extending `Describable` has the `describeWithEmphasis()` method, which calls the extender's implementation of `describe()`.
+任何继承 `Describable` 的类都有一各 `describeWithEmphasis()` 函数，这个函数调用子类的 `describe()` 函数。
 
-[Read more](/guides/language/language-tour#abstract-classes) about abstract classes and methods.
+[更多关于](/guides/language/language-tour#abstract-classes) 抽象类和函数的介绍。
 
 ## Async
 
-You can avoid callback hell and make your code much more readable by using `async` and `await`.
+使用 `async` 和 `await` 可以避免回调接口嵌套的问题，让异步代码更加简洁。
 
 {% prettify dart %}
 Future<Null> printWithDelay(String message) async {
@@ -267,7 +267,7 @@ Future<Null> printWithDelay(String message) async {
 }
 {% endprettify %}
 
-The code above is equivalent to:
+上面的代码和下面的代码是一样的：
 
 {% prettify dart %}
 Future<Null> printWithDelay(String message) {
@@ -277,9 +277,9 @@ Future<Null> printWithDelay(String message) {
 }
 {% endprettify %}
 
-From the example above, `async` and `await` may not seem all that useful.
-The next example shows that `async` and `await` help make asynchronous code
-easy to read.
+上面的代码，`async` 和 `await` 看起来并不太有用。
+下面是示例显示了 `async` 和 `await`如何让异步代码变得
+更加简单易读：
 
 {% prettify dart %}
 Future<Null> createDescriptions(Iterable<String> objects) async {
@@ -300,7 +300,7 @@ Future<Null> createDescriptions(Iterable<String> objects) async {
 }
 {% endprettify %}
 
-You can also use `async*`, which gives you a nice, readable way to build streams.
+你还可以使用 `async*`，可以使用优雅的方式来创建 stream：
 
 {% prettify dart %}
 Stream<String> report(Spacecraft craft, Iterable<String> objects) async* {
@@ -311,7 +311,7 @@ Stream<String> report(Spacecraft craft, Iterable<String> objects) async* {
 }
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#asynchrony-support) about asynchrony support, including async functions, `Future`, `Stream`, the asynchronous loop (`await for`), and much more.
+[更多关于](/guides/language/language-tour#asynchrony-support) 异步的信息，包括 async functions、 `Future`、 `Stream`、 the asynchronous loop (`await for`)、等等。
 
 ## Exceptions
 
@@ -321,7 +321,7 @@ if (astronauts == 0) {
 }
 {% endprettify %}
 
-Exceptions can be caught, even in asynchronous code.
+异常可以被捕获，异步代码中也可以。
 
 {% prettify dart %}
 try {
@@ -336,11 +336,11 @@ try {
 }
 {% endprettify %}
 
-[Read more](/guides/language/language-tour#exceptions) about exceptions, including information about the distinction between Error and Exception, stack traces, `rethrow`, and more.
+[更多关于](/guides/language/language-tour#exceptions) 异常的信息，包括 Error 和 Exception 的区别、 stack traces、 `rethrow` 等等。
 
 ### Getters and setters
 
-Getters and setters are special methods that appear like properties. We could rewrite the `launchYear` property of the `Spacecraft` class like so:
+getter 和setter 是 Dart 中特殊的函数，看起来像是变量。可以像下面这样来重新定义 `Spacecraft` 类的 `launchYear` 属性：
 
 {% prettify dart %}
 class Spacecraft {
@@ -351,11 +351,11 @@ class Spacecraft {
 }
 {% endprettify %}
 
-Users of the class access the property like they normally would (`spacecraft.launchYear`). The fact that it's a method is transparent to them.
+还使用访问变量的方式 (`spacecraft.launchYear`) 来是会用这个属性。其实是调用的类的  getter 方法。
 
-[Read more](/guides/language/language-tour#getters-and-setters) about getters and their counterpart, setters.
+[更多关于](/guides/language/language-tour#getters-and-setters) getter 和 setter 的信息。
 
 ## Other topics
 
-Many more code samples are in the [Language Tour](/guides/language/language-tour) and the [Library Tour](/guides/libraries/library-tour).
-Libraries provide examples of use in their [API documentation.](https://api.dartlang.org/)
+在 [语法预览](/guides/language/language-tour) 和 [核心库预览](/guides/libraries/library-tour) 中介绍了更多的示例代码。
+库还在 [API 文档](https://api.dartlang.org/) 中提供了各种示例。

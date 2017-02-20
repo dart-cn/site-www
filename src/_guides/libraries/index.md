@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Overview: Libraries"
-description: "Learn about Dart's core libraries and APIs."
+title: "Dart 核心库预览"
+description: "学习 Dart 的核心库和其 API。"
 permalink: /guides/libraries
-short-title: "Libraries"
+short-title: "库"
 toc: false
 ---
 
