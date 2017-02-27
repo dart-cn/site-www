@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "What Not to Commit"
-description: "Your development tools generate a bunch of files. Not all of them should be committed."
+title: "哪些不需要提交到代码库的文件"
+description: "开发工具会生成各种文件，并不是所有文件都需要提交到代码库。"
 ---
 
 When you put Dart source code in a repository,
