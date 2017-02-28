@@ -1,71 +1,71 @@
 ---
 layout: default
-title: "Commonly Used Dart Libraries"
-description: "What are some of the most useful and popular Dart libraries and where can you learn more?"
+title: "常用的库"
+description: "一些你应该了解的常用库。"
 ---
 
-You can use many Dart libraries when writing your code.
-Dart libraries come from a variety of sources:
+在写代码的时候你可以使用很多 Dart 库。
+Dart 库来源于很多地方：
 
-* Core libraries&mdash;such as dart:core, dart:async, and dart:collection&mdash;are
-  distributed with the SDK and documented at [api.dartlang.org]({{site.dart_api}}).
-* Libraries shared with the Dart community are distributed as library packages,
-  published at [pub.dartlang.org](https://pub.dartlang.org/).
-  The [pub](/tools/pub/) tool allows you to create, publish, and manage library packages.
-* Libraries from GitHub, a URL, or a local path can be included in your application.
-  For more information, see
-  [Dependency sources](/tools/pub/dependencies#dependency-sources),
-  a section in [Pub Dependencies](/tools/pub/dependencies).
-* Local libraries are placed under the `/lib` directory of your [application's directory
-  structure](/tools/pub/package-layout#public-directories).
+* 核心库&mdash;例如 dart:core、 dart:async、 和 dart:collection&mdash;在 Dart
+  SDK 中已经包含了，文档位于 [api.dartlang.org]({{site.dart_api}})。
+* Dart 社区分享的库通过库包的形式分享，
+  发布在 [pub.dartlang.org](https://pub.dartlang.org/)。
+  [pub](/tools/pub/) 工具可以用来创建、发布和管理库包。
+* 来自于 GitHub 、任意 URL 地址或者本地路径的库也可以使用在你的应用中。
+  详情请参考
+  [Pub 依赖管理](/tools/pub/dependencies) 里面的
+  [依赖源](/tools/pub/dependencies#dependency-sources)。
+* 本地库位于你应用目录下的 `/lib` 目录，目录结构参考： [
+应用目录结构](/tools/pub/package-layout#public-directories)。
 
-This document discusses the first two kinds of libraries,
-and tells you where to learn more about some of the most widely used Dart libraries.
+本文档讨论前面两种库，
+并告诉你在哪里学习其他常用的 Dart 库。
 
 <aside class="alert alert-info" markdown="1">
-**Tip:**
-If you don't find the functionality you need on [api.dartlang.org]({{site.dart_api}}),
-check [pub.dartlang.org](https://pub.dartlang.org/).
+**提示：**
+如果你在 [api.dartlang.org]({{site.dart_api}}) 没有找到你需要的函数，
+看看 [pub.dartlang.org](https://pub.dartlang.org/) 有没有。
 </aside>
 
-Looking for web, server, or Flutter libraries?
-See [Specialized libraries](#specialized-libraries).
+关于 web、 server、 或者 Flutter 的库请参考
+[Specialized libraries](#specialized-libraries)。
 
 ## Dart SDK libraries
 
-The SDK libraries (such as dart:core, dart:async, dart:math, dart:convert)
-contain the fundamental classes used in Dart applications.
-Classes that aren't as universal are placed in packages outside of the SDK.
+SDK 库（例如 dart:core, dart:async, dart:math, dart:convert）包含
+一些 Dart 应用所需要的基础类。
+其他非核心的类放到了 SDK 之外。
 
-The [library tour](/guides/libraries/library-tour) walks you through the
-libraries distributed with the SDK.
+[核心库概览](/guides/libraries/library-tour) 介绍了 SDK 里面的
+核心库的常用功能。
 
-## Commonly used packages
+## Commonly used packages（常用的库）
 
-Developers have written some excellent packages for use by the
-Dart community.  Here are some popular and useful packages,
-in alphabetical order:
+Dart 社区的开发者已经开发了很多优秀的库了。
+下面是一些非常流行和常用的库，
+按照英文字母顺序排序：
 
 | **Package** | **Description** | **Commonly used APIs** |
-| [firebase](https://pub.dartlang.org/packages/firebase) | A wrapper for [Firebase](https://firebase.google.com) that allows you to easily publish your app to the cloud. | Auth, Database, Query, Storage |
-| [http](https://pub.dartlang.org/packages/http) | A set of high-level functions and classes that make it easy to consume HTTP resources. | delete(), get(), post(), read() |
-| [intl](https://pub.dartlang.org/packages/intl) | Internationalization and localization facilities, with support for plurals and genders, date and number formatting and parsing, and bidirectional text. | Bidi, DateFormat, MicroMoney, TextDirection |
-| [logging](https://pub.dartlang.org/packages/logging) | A configurable mechanism for adding message logging to your application. | LoggerHandler, Level, LogRecord |
-| [mockito](https://pub.dartlang.org/packages/mockito) | A popular framework for mocking objects in tests. Especially useful if you are writing tests for dependency injection. Used with the [test](https://pub.dartlang.org/packages/test) package. | Answering, Expectation, Verification |
-| [path](https://pub.dartlang.org/packages/path) | Common operations for manipulating different types of paths. For more information, see [Unboxing Packages: path.](http://news.dartlang.org/2016/06/unboxing-packages-path.html) | absolute(), basename(), extension(), join(), normalize(), relative(), split() |
-| [quiver](https://pub.dartlang.org/packages/quiver) | Utilities that make using core Dart libraries more convenient. Some of the libraries where Quiver provides additional support include async, cache, collection, core, iterables, patterns, and testing. | CountdownTimer (quiver.async); MapCache (quiver.cache); MultiMap, TreeSet (quiver.collection); EnumerateIterable (quiver.iterables); center(), compareIgnoreCase(), isWhiteSpace() (quiver.strings)  |
-| [shelf](https://pub.dartlang.org/packages/shelf) | Web server middleware for Dart. Shelf makes it easy to create and compose web servers, and parts of web servers. | Cascade, Pipeline, Request, Response, Server |
-| [stack_trace](https://pub.dartlang.org/packages/stack_trace) | Methods for parsing, inspecting, and manipulating stack traces produced by the underlying Dart implementation. Also provides functions to produce string representations of stack traces in a more readable format than the native StackTrace implementation. For more information, see [Unboxing Packages: stack_trace.](http://news.dartlang.org/2016/01/unboxing-packages-stacktrace.html) | Trace.current(), Trace.format(), Trace.from() |
-| [stagehand](https://pub.dartlang.org/packages/stagehand) | A Dart project generator. WebStorm and IntelliJ use Stagehand templates when you create a new application, but you can also use the templates from the command line. | Generally used through an IDE or the [`stagehand` command](http://stagehand.pub/). |
-| [test](https://pub.dartlang.org/packages/test) | A standard way of writing and running tests in Dart. | expect(), group(), test() |
+| [firebase](https://pub.dartlang.org/packages/firebase) | [Firebase](https://firebase.google.com) 扩展库，可以让你很简单的发布应用到云端。 | Auth, Database, Query, Storage |
+| [http](https://pub.dartlang.org/packages/http) | 请求 HTTP 的扩展库。 | delete(), get(), post(), read() |
+| [intl](https://pub.dartlang.org/packages/intl) | 强大的国际化和本地化工具库，支持很多格式化操作。 | Bidi, DateFormat, MicroMoney, TextDirection |
+| [logging](https://pub.dartlang.org/packages/logging) | 强大的日志工具库。 | LoggerHandler, Level, LogRecord |
+| [mockito](https://pub.dartlang.org/packages/mockito) | 测试过程中 mock 对象的库。如果你在为依赖注入编写测试代码，则这个库最适合你了。和 [test](https://pub.dartlang.org/packages/test) 库配合使用。 | Answering, Expectation, Verification |
+| [path](https://pub.dartlang.org/packages/path) | 功能全面的跨平台的路径管理库。详情参考 [Unboxing Packages: path.](http://news.dartlang.org/2016/06/unboxing-packages-path.html) | absolute(), basename(), extension(), join(), normalize(), relative(), split() |
+| [quiver](https://pub.dartlang.org/packages/quiver) | 扩展了 Dart 核心库，可以更简单的使用核心库和其他的库。对 async, cache, collection, core, iterables, patterns, 和 testing 提供了额外的支持。 | CountdownTimer (quiver.async); MapCache (quiver.cache); MultiMap, TreeSet (quiver.collection); EnumerateIterable (quiver.iterables); center(), compareIgnoreCase(), isWhiteSpace() (quiver.strings)  |
+| [shelf](https://pub.dartlang.org/packages/shelf) | Dart Web 服务器的中间件。Shelf 让编写 web 服务器更加简单。 | Cascade, Pipeline, Request, Response, Server |
+| [stack_trace](https://pub.dartlang.org/packages/stack_trace) | 一个异常堆栈分析工具，提供比 Dart 自带的 StackTrace 更加友好的方式来显示堆栈信息。还提供很多方便分析堆栈的工具，详情参考 [Unboxing Packages: stack_trace.](http://news.dartlang.org/2016/01/unboxing-packages-stacktrace.html) | Trace.current(), Trace.format(), Trace.from() |
+| [stagehand](https://pub.dartlang.org/packages/stagehand) | Dart 项目生成器。 WebStorm 和 IntelliJ 使用 Stagehand 模板来创建新的项目，在命令行也可以使用该模板。 | Generally used through an IDE or the [`stagehand` command](http://stagehand.pub/). |
+| [test](https://pub.dartlang.org/packages/test) | Dart 中编写和运行测试的标准方式。 | expect(), group(), test() |
 {:.table .table-striped .nowrap}
 
-To find more packages, see [pub.dartlang.org](https://pub.dartlang.org/).
+了解更多各种库，请查看 [pub.dartlang.org](https://pub.dartlang.org/)。
 
 ## Packages that correspond to SDK libraries
 
-Each of these "expansion pack" libraries builds upon an SDK library, adding
-additional functionality and filling in missing features:
+下面这些扩展库都是建立在 SDK 核心库之上的，为核心库
+提供了额外的功能和其他缺失的特性：
 
 | **Package** | **Description** | **Commonly used APIs** |
 | [async](https://www.dartdocs.org/documentation/async/latest/) | Expands on dart:async, adding utility classes to work with asynchronous computations. For more information, see [Unboxing Packages: async part 1](http://news.dartlang.org/2016/03/unboxing-packages-async-part-1.html), [part 2](http://news.dartlang.org/2016/03/unboxing-packages-async-part-2.html), and [part 3.](http://news.dartlang.org/2016/04/unboxing-packages-async-part-3.html) | AsyncMemoizer, CancelableOperation, FutureGroup, LazyStream, Result, StreamCompleter, StreamGroup, StreamSplitter |
@@ -73,40 +73,40 @@ additional functionality and filling in missing features:
 |[convert](https://www.dartdocs.org/documentation/convert/latest/) | Expands on dart:convert, adding encoders and decoders for converting between different data representations. One of the data representations is _percent encoding_, also known as _URL encoding_. | HexDecoder, PercentDecoder |
 {:.table .table-striped .nowrap}
 
-## Specialized libraries
+## Specialized libraries（专门的库）
 
-This page doesn't include some of the more specialized libraries that are covered
-elsewhere.
+一些更加专业的库在这里不做
+介绍。
 
 ### Web libraries
 
-If you write web apps, check out Angular 2, a web application framework.
-Other available resources are the js package for interoperability with
-JavaScript APIs, and the dart:html library for low-level HTML programming.
+如果你要编写 Web 应用，可以看看 Angular 2，这是一个 web 应用框架。
+其他可选的资源是和 JS 互操作的 JavaScript API 以及
+dart:html 库用来实现底层的 HTML 编程。
 
-**Learn more:** [webdev.dartlang.org]({{site.webdev}})
+**详情：** [webdev.dartlang.org]({{site.webdev}})
 
 ### Dart VM libraries
 
-If you write servers or command-line applications, check out
+如果你编写服务器或者命令行程序，参考
 [dart:io](https://api.dartlang.org/stable/dart-io/dart-io-library.html)
-and related libraries.
+和其他相关的库。
 
-**Learn more:** [Dart VM]({{site.dart_vm}})
+**详情：** [Dart VM]({{site.dart_vm}})
 
 ### Flutter libraries
 
-If you write mobile apps, check out Flutter.
-The core libraries distributed with the Flutter SDK are documented at
-[docs.flutter.io](http://docs.flutter.io/). To import these libraries,
-follow the instructions in [Importing libraries from
-packages](https://www.dartlang.org/tools/pub/get-started#importing-libraries-from-packages).
+如果你要编写移动应用，参考 Flutter。
+Flutter SDK 的核心库文档位于 
+[docs.flutter.io](http://docs.flutter.io/)。要使用这些苦，
+ 请按照文档 [Importing libraries from
+packages](https://www.dartlang.org/tools/pub/get-started#importing-libraries-from-packages) 来操作。
 
-**Learn more:** [flutter.io]({{site.flutter}})
+**详情：** [flutter.io]({{site.flutter}})
 
 ## Resources
 
-Use the following resources to learn more about libraries and library packages.
+更多关于库和库包的信息请参考如下资源。
 
 ### Importing and using libraries
 
@@ -121,7 +121,7 @@ Use the following resources to learn more about libraries and library packages.
 
 ### Creating library packages
 
-* [Create Library Packages](/guides/libraries/create-library-packages)
+* [创建库包](/guides/libraries/create-library-packages)
 
 ### Using specific libraries and packages
 
