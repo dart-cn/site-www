@@ -1,32 +1,32 @@
 ---
 layout: guide
-title: "A Tour of the Dart Libraries"
-description: "Learn about the major features in Dart's libraries."
-short-title: Library Tour
+title: "Dart 库预览"
+description: "了解 Dart 核心库中的主要特性和功能。"
+short-title: Dart 库预览
 ---
 
-This page shows you how to use the major features in Dart’s
-libraries. It’s just an overview, and by no means comprehensive.
-Whenever you need more details about a class, consult the [Dart API
-reference.]({{site.dart_api}})
+这里讲介绍 Dart 核心库中的主要特性和功能。
+只是一个预览，并不会面面俱到。
+如果你想了解更详细的信息，请参考
+[Dart API 文档]({{site.dart_api}})。
 
-To learn more about the Dart language, see
-[A Tour of the Dart Language](/guides/language/language-tour).
+关于 Dart 语言的更多信息请参考：
+[Dart 语言预览](/guides/language/language-tour)。
 
 ## dart:core - numbers, collections, strings, and more
 
-The Dart core library provides a small but critical set of built-in
-functionality. This library is automatically imported into every Dart
-program.
+Dart core 库提供了少量的但是非常核心的功能。每个 Dart 
+应用都会自动导入这个
+库。
 
 
 ### Numbers
 
-The dart:core library defines the num, int, and double classes, which
-have some basic utilities for working with numbers.
+dart:core 库定义了 num, int, 和 double 类，这些类
+定义一些操作数字的基础功能。
 
-You can convert a string into an integer or double with the `parse()`
-methods of int and double, respectively:
+使用 `parse()` 函数可以把字符串
+转换为 整数或者浮点数。
 
 <!-- library-tour/number-tests/bin/main.dart -->
 {% prettify dart %}
@@ -35,8 +35,8 @@ assert(int.parse('0x42') == 66);
 assert(double.parse('0.50') == 0.5);
 {% endprettify %}
 
-Or use the parse() method of num, which creates an integer if possible
-and otherwise a double:
+num 类也定义了一个 parse() 函数，这个函数会尝试解析
+为整数，如果无法解析为整数，则会解析为浮点数(double)。
 
 <!-- library-tour/number-tests/bin/main.dart -->
 {% prettify dart %}
@@ -45,19 +45,19 @@ assert(num.parse('0x42') is int);
 assert(num.parse('0.50') is double);
 {% endprettify %}
 
-To specify the base of an integer, add a `radix` parameter:
+对于整数，可以指定一个 `radix` 作为基数：
 
 <!-- library-tour/number-tests/bin/main.dart -->
 {% prettify dart %}
 assert(int.parse('42', radix: 16) == 66);
 {% endprettify %}
 
-Use the `toString()` method (defined by
-[Object]({{site.dart_api}}/dart-core/Object-class.html)) to convert an
-int or double to a string. To specify the number of digits to the right
-of the decimal, use `toStringAsFixed()` (defined by num). To specify the
-number of significant digits in the string, use
-`toStringAsPrecision()`(also in num):
+使用 `toString()` 函数 (由
+[Object]({{site.dart_api}}/dart-core/Object-class.html) 对象定义)来把整数或者浮点数
+转换为字符串。使用 num 类的函数  `toStringAsFixed()`  可以限定
+小数点的位数。如果要指定转换为字符串的有效位数，
+则可以使用定义在 num 类的
+函数  `toStringAsPrecision()`：
 
 <!-- library-tour/number-tests/bin/main.dart -->
 {% prettify dart %}
@@ -75,30 +75,30 @@ assert(123.456.toStringAsPrecision(2) == '1.2e+2');
 assert(double.parse('1.2e+2') == 120.0);
 {% endprettify %}
 
-For more information, see the API documentation for
+更多信息，参考 API 文档中每个类的描述：
 [int,]({{site.dart_api}}/dart-core/int-class.html)
-[double,]({{site.dart_api}}/dart-core/double-class.html) and
-[num.]({{site.dart_api}}/dart-core/num-class.html) Also see
-the [dart:math section](#dartmath---math-and-random).
+[double,]({{site.dart_api}}/dart-core/double-class.html) 和
+[num。]({{site.dart_api}}/dart-core/num-class.html) 另外还有
+[dart:math](#dartmath---math-and-random)提供了关于数学运算的常用功能。
 
 
-### Strings and regular expressions
+### Strings and regular expressions（字符串和正则表达式）
 
-A string in Dart is an immutable sequence of UTF-16 code units.
-The language tour has more information about
-[strings](/guides/language/language-tour#strings).
-You can use regular expressions (RegExp objects)
-to search within strings and to
-replace parts of strings.
+Dart 中的字符串是一个不可变的 UTF-16 码元（code units）序列。
+在语言预览中对
+[字符串](/guides/language/language-tour#strings)有详细的介绍。
+你可以使用正则表达式（RegExp 对象）
+来搜索字符串中的内容或者
+替换部分字符串。
 
-The String class defines such methods as `split()`, `contains()`,
-`startsWith()`, `endsWith()`, and more.
+String 类定义了一些函数 `split()`, `contains()`,
+`startsWith()`, `endsWith()` 等来处理各种字符串操作。
 
-#### Searching inside a string
+#### Searching inside a string（在字符串内搜索）
 
-You can find particular locations within a string, as well as check
-whether a string begins with or ends with a particular pattern. For
-example:
+可以在字符串内查找特定字符的位置，还可以
+判断字符串是否以特定字符串开始和结尾。
+例如：
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -115,15 +115,15 @@ assert('Never odd or even'.endsWith('even'));
 assert('Never odd or even'.indexOf('odd') == 6);
 {% endprettify %}
 
-#### Extracting data from a string
+#### Extracting data from a string（从字符串中提取数据）
 
-You can get the individual characters from a string as Strings or ints,
-respectively. To be precise, you actually get individual UTF-16 code
-units; high-numbered characters such as the treble clef symbol
-('\\u{1D11E}') are two code units apiece.
+可以从字符串中获取到单个的字符，单个字符可以是 String 也可以是 int 值。
+准确来说，实际得到的是一个 UTF-16 code units；
+对于码率比较大的字符，实际得到的是两个 code units，例如
+treble clef 符号 ('\\u{1D11E}') 。
 
-You can also extract a substring or split a string into a list of
-substrings:
+还可以从字符串中提取一个子字符串，或者把字符串分割为
+多个子字符串：
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -150,10 +150,10 @@ var codeUnitList = 'Never odd or even'.codeUnits.toList();
 assert(codeUnitList[0] == 78);
 {% endprettify %}
 
-#### Converting to uppercase or lowercase
+#### Converting to uppercase or lowercase（大小写转换）
 
-You can easily convert strings to their uppercase and lowercase
-variants:
+字符串大小写转换是非常
+简单的：
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -167,16 +167,16 @@ assert('STRUCTURED WEB APPS'.toLowerCase() ==
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-These methods don't work for every language. For example, the Turkish
-alphabet's dotless *I* is converted incorrectly.
+**注意：**
+注意上面的转换方式对于某些语言是有问题的。例如对于土耳其语言
+ 中的无点 *I* 的转换就是错误的。
 </div>
 
 
-#### Trimming and empty strings
+#### Trimming and empty strings（裁剪和判断空字符串）
 
-Remove all leading and trailing white space with `trim()`. To check
-whether a string is empty (length is zero), use `isEmpty`.
+`trim()` 函数可以删除字符串前后的空白字符。使用 `isEmpty` 可以
+判断字符串是否为空（长度为 0）。
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -190,14 +190,14 @@ assert(''.isEmpty);
 assert(!'  '.isEmpty);
 {% endprettify %}
 
-#### Replacing part of a string
+#### Replacing part of a string（替换部分字符）
 
-Strings are immutable objects, which means you can create them but you
-can’t change them. If you look closely at the [String API
-docs,]({{site.dart_api}}/dart-core/String-class.html) you’ll notice that
-none of the methods actually changes the state of a String. For example,
-the method `replaceAll()` returns a new String without changing the
-original String:
+Strings 是不可变的对象，可以创建他们但是无法修改。
+如果你仔细研究了 [String API
+文档]({{site.dart_api}}/dart-core/String-class.html)，你会注意到并没有
+ 函数可以修改字符串的状态。
+例如，函数 `replaceAll()` 返回一个新的 String 对象而不是修改
+旧的对象：
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -209,12 +209,12 @@ assert(greeting !=
     greetingTemplate); // greetingTemplate didn't change.
 {% endprettify %}
 
-#### Building a string
+#### Building a string（创建字符串）
 
-To programmatically generate a string, you can use StringBuffer. A
-StringBuffer doesn’t generate a new String object until `toString()` is
-called. The `writeAll()` method has an optional second parameter that
-lets you specify a separator—in this case, a space.
+使用 StringBuffer 可以在代码中创建字符串。
+只有当你调用 StringBuffer 的 `toString()` 函数的时候，才会创建一个
+新的 String 对象。而 `writeAll()` 函数还有一个可选的参数来指定每个字符串的分隔符，
+例如下面指定空格为分隔符：
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -229,11 +229,11 @@ assert(fullString ==
     'Use a StringBuffer for efficient string creation.');
 {% endprettify %}
 
-#### Regular expressions
+#### Regular expressions（正则表达式）
 
-The RegExp class provides the same capabilities as JavaScript regular
-expressions. Use regular expressions for efficient searching and pattern
-matching of strings.
+RegExp 类提供了 JavaScript 正则表达式同样的功能。
+正则表达式可以高效率的搜索和匹配
+字符串。
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -252,8 +252,8 @@ var exedOut = someDigits.replaceAll(numbers, 'XX');
 assert(exedOut == 'llamas live XX to XX years');
 {% endprettify %}
 
-You can work directly with the RegExp class, too. The Match class
-provides access to a regular expression match.
+还可以直接操作 RegExp 类。 Match 类提供了
+访问正则表达式匹配到的内容。
 
 <!-- library-tour/string-tests/bin/main.dart -->
 {% prettify dart %}
@@ -269,27 +269,27 @@ for (var match in numbers.allMatches(someDigits)) {
 }
 {% endprettify %}
 
-#### More information
+#### More information（更多信息）
 
-Refer to the [String API
-docs]({{site.dart_api}}/dart-core/String-class.html) for a full list of
-methods. Also see the API docs for
+参考 [String API
+文档]({{site.dart_api}}/dart-core/String-class.html) 来查看 String 类的所有
+方法。同时还可以参考下面这些类的 api 文档：
 [StringBuffer,]({{site.dart_api}}/dart-core/StringBuffer-class.html)
 [Pattern,]({{site.dart_api}}/dart-core/Pattern-class.html)
-[RegExp,]({{site.dart_api}}/dart-core/RegExp-class.html) and
+[RegExp,]({{site.dart_api}}/dart-core/RegExp-class.html) 和
 [Match.]({{site.dart_api}}/dart-core/Match-class.html)
 
 ### Collections
 
-Dart ships with a core collections API, which includes classes for
-lists, sets, and maps.
+Dart 提供了一些核心的集合 API，包含
+lists, sets, 和 maps。
 
 #### Lists
 
-As the language tour shows, you can use literals to create and
-initialize [lists](#lists). Alternatively, use one of the List
-constructors. The List class also defines several methods for adding
-items to and removing items from lists.
+在语言预览中已经介绍过如何
+创建 [lists](#lists)了。另外还可以
+使用 List 构造函数来创建 List 对象。
+List 类来定义了一些函数可以添加或者删除里面的数据。
 
 <!-- library-tour/list-tests/bin/main.dart -->
 {% prettify dart %}
@@ -318,7 +318,7 @@ fruits.clear();
 assert(fruits.length == 0);
 {% endprettify %}
 
-Use `indexOf()` to find the index of an object in a list:
+使用 `indexOf()` 来查找 list 中对象的索引：
 
 <!-- library-tour/list-tests/bin/main.dart -->
 {% prettify dart %}
@@ -331,12 +331,12 @@ assert(fruits[0] == 'apples');
 assert(fruits.indexOf('apples') == 0);
 {% endprettify %}
 
-Sort a list using the `sort()` method. You can provide a sorting
-function that compares two objects. This sorting function must return \<
-0 for *smaller*, 0 for the *same*, and \> 0 for *bigger*. The following
-example uses `compareTo()`, which is defined by
-[Comparable]({{site.dart_api}}/dart-core/Comparable-class.html) and
-implemented by String.
+排序一个 list 可以使用 `sort()` 函数。还可以提供一个用来排序
+的比较方法。排序方法返回值
+为：对于*小的值* 为 \< 0；对于*相同*的值为 0 ；对于*大的值*为 \> 0。
+下面的示例使用由 
+ [Comparable]({{site.dart_api}}/dart-core/Comparable-class.html)  定义的 `compareTo()`
+ 函数，该函数也被 String 实现了。
 
 <!-- library-tour/list-tests/bin/main.dart -->
 {% prettify dart %}
@@ -347,8 +347,8 @@ fruits.sort((a, b) => a.compareTo(b));
 assert(fruits[0] == 'apples');
 {% endprettify %}
 
-Lists are parameterized types, so you can specify the type that a list
-should contain:
+List 是泛型类型，所以可以指定
+里面所保存的数据类型：
 
 <!-- library-tour/list-tests/bin/main.dart -->
 {% prettify dart %}
@@ -363,14 +363,14 @@ assert(fruit is String);
 fruits.add(5);  // BAD: Throws exception in checked mode.
 {% endprettify %}
 
-Refer to the [List API
-docs]({{site.dart_api}}/dart-core/List-class.html) for a full list of
-methods.
+参考 [List API
+文档]({{site.dart_api}}/dart-core/List-class.html) 来查看 list 的
+所有函数。
 
 #### Sets
 
-A set in Dart is an unordered collection of unique items. Because a set
-is unordered, you can’t get a set’s items by index (position).
+Dart 中的 Set 是一个无序集合，里面不能保护重复的数据。
+由于是无序的，所以无法通过索引来从 set 中获取数据：
 
 <!-- library-tour/set-tests/bin/main.dart -->
 {% prettify dart %}
@@ -387,8 +387,8 @@ ingredients.remove('gold');
 assert(ingredients.length == 2);
 {% endprettify %}
 
-Use `contains()` and `containsAll()` to check whether one or more
-objects are in a set:
+使用 `contains()` 和 `containsAll()` 来判断 set 中是否包含
+一个或者多个对象：
 
 <!-- library-tour/set-tests/bin/main.dart -->
 {% prettify dart %}
@@ -402,7 +402,7 @@ assert(ingredients.contains('titanium'));
 assert(ingredients.containsAll(['titanium', 'xenon']));
 {% endprettify %}
 
-An intersection is a set whose items are in two other sets.
+交际是两个 set 中都有的数据的子集：
 
 <!-- library-tour/set-tests/bin/main.dart -->
 {% prettify dart %}
@@ -416,17 +416,16 @@ assert(intersection.length == 1);
 assert(intersection.contains('xenon'));
 {% endprettify %}
 
-Refer to the [Set API docs]({{site.dart_api}}/dart-core/Set-class.html)
-for a full list of methods.
+详细信息，
+参考 [Set API 文档]({{site.dart_api}}/dart-core/Set-class.html)。
 
 #### Maps
 
-A map, commonly known as a *dictionary* or *hash*, is an unordered
-collection of key-value pairs. Maps associate a key to some value for
-easy retrieval. Unlike in JavaScript, Dart objects are not maps.
+map 通常也被称之为 *字典*或者 *hash* ，也是一个无序的集合，里面
+包含一个 key-value 对。map 把 key 和 value 关联起来可以
+方便获取数据。和 JavaScript 不同的是， Dart objects 不是 maps。
 
-You can declare a map using a terse literal syntax, or you can use a
-traditional constructor:
+下面是两种定义 map 对象的方式：
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -445,8 +444,8 @@ var searchTerms = new Map();
 var nobleGases = new Map<int, String>();
 {% endprettify %}
 
-You add, get, and set map items using the bracket syntax. Use `remove()`
-to remove a key and its value from a map.
+使用中括号来访问或者设置 map 中的数据，
+使用 `remove()` 函数来从 map 中删除 key 和 value。
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -463,7 +462,7 @@ nobleGases.remove(54);
 assert(!nobleGases.containsKey(54));
 {% endprettify %}
 
-You can retrieve all the values or all the keys from a map:
+还可以获取 map 的所有 key 和 value：
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -487,9 +486,9 @@ assert(values.length == 3);
 assert(values.any((v) => v.contains('Waikiki')));
 {% endprettify %}
 
-To check whether a map contains a key, use `containsKey()`. Because map
-values can be null, you cannot rely on simply getting the value for the
-key and checking for null to determine the existence of a key.
+`containsKey()` 判断 map 是否包含一个 key。由于 map 的 value 可以为 null，
+所有通过 key 来获取 value 并通过 判断 value 是否为 null 来判断 key 是否存在是
+行不通的。所以添加了一个判断 key 是否存在的函数：
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -503,9 +502,9 @@ assert(hawaiianBeaches.containsKey('Oahu'));
 assert(!hawaiianBeaches.containsKey('Florida'));
 {% endprettify %}
 
-Use the `putIfAbsent()` method when you want to assign a value to a key
-if and only if the key does not already exist in a map. You must provide
-a function that returns the value.
+map 还有一个 `putIfAbsent()` 函数来设置 key 的值，但是只有该 key 
+在 map 中不存在的时候才设置这个值，否则 key 的值保持不变。该函数需要
+一个方法返回 value：
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -515,22 +514,22 @@ teamAssignments.putIfAbsent(
 assert(teamAssignments['Catcher'] != null);
 {% endprettify %}
 
-Refer to the [Map API docs]({{site.dart_api}}/dart-core/Map-class.html)
-for a full list of methods.
+详细信息请参考
+ [Map API 文档]({{site.dart_api}}/dart-core/Map-class.html)。
 
-#### Common collection methods
+#### Common collection methods（常用的集合函数）
 
-List, Set, and Map share common functionality found in many collections.
-Some of this common functionality is defined by the Iterable class,
-which List and Set implement.
+List, Set, 和 Map 上可以使用很多常用的集合函数。
+Iterable 类定义了一些常用的功能，
+List 和 Set 实现了 Iterable 。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-Although Map doesn’t implement Iterable, you can get Iterables from it
-using the Map `keys` and `values` properties.
+**注意：**
+虽然 Map 没有实现 Iterable，但是 Map 的
+ `keys` 和 `values` 属性实现了 Iterable。
 </div>
 
-Use `isEmpty` to check whether a list, set, or map has no items:
+可以使用 `isEmpty` 函数来判断集合是否为空的：
 
 <!-- library-tour/collection-is-empty/bin/main.dart -->
 {% prettify dart %}
@@ -538,8 +537,8 @@ var teas = ['green', 'black', 'chamomile', 'earl grey'];
 assert(!teas.isEmpty);
 {% endprettify %}
 
-To apply a function to each item in a list, set, or map, you can use
-`forEach()`:
+使用 `forEach()` 函数可以对集合中的每个数据都应用
+一个方法：
 
 <!-- library-tour/collection-apply-function/bin/main.dart -->
 {% prettify dart %}
@@ -548,8 +547,8 @@ var teas = ['green', 'black', 'chamomile', 'earl grey'];
 teas.forEach((tea) => print('I drink $tea'));
 {% endprettify %}
 
-When you invoke `forEach()` on a map, your function must take two
-arguments (the key and value):
+在 Map 上使用 `forEach()` 的时候，方法需要能
+接收两个参数（key 和 value）：
 
 <!-- library-tour/map-1/bin/main.dart -->
 {% prettify dart %}
@@ -560,8 +559,8 @@ hawaiianBeaches.forEach((k, v) {
 });
 {% endprettify %}
 
-Iterables provide the `map()` method, which gives you all the results in
-a single object:
+Iterables 也有一个 `map()` 
+函数，这个函数返回一个包含所有数据的对象：
 
 <!-- library-tour/collection-apply-function/bin/main.dart -->
 {% prettify dart %}
@@ -572,14 +571,14 @@ loudTeas.forEach(print);
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-The object returned by `map()` is an Iterable that’s *lazily
-evaluated*: your function isn’t called until you ask for an item from
-the returned object.
+**注意：**
+`map()` 函数返回的对象也是一个 Iterable，该对象是*懒求值（lazily 
+evaluated）* 的，只有当访问里面的值的时候，
+map 的方法才被调用。
 </div>
 
-To force your function to be called immediately on each item, use
-`map().toList()` or `map().toSet()`:
+可以使用 `map().toList()` 或者  `map().toSet()` 来
+强制立刻执行 map 的方法：
 
 <!-- library-tour/collection-apply-function/bin/main.dart -->
 {% prettify dart %}
@@ -588,9 +587,9 @@ var loudTeaList = teas
     .toList();
 {% endprettify %}
 
-Use Iterable’s `where()` method to get all the items that match a
-condition. Use Iterable’s `any()` and `every()` methods to check whether
-some or all items match a condition.
+Iterable 的 `where()` 函数可以返回所有满足特定条件的数据。
+`any()` 判断是否有数据满足特定条件， `every()` 判断是否所有数据都满足
+特定条件。
 {% comment %}
 PENDING: Change example as suggested by floitsch to have (maybe)
 cities instead of isDecaffeinated.
@@ -620,29 +619,29 @@ assert(teas.any(isDecaffeinated));
 assert(!teas.every(isDecaffeinated));
 {% endprettify %}
 
-For a full list of methods, refer to the [Iterable API
-docs,]({{site.dart_api}}/dart-core/Iterable-class.html) as well as those
-for List, Set, and Map.
+更多信息请参考 [Iterable API
+文档]({{site.dart_api}}/dart-core/Iterable-class.html)，以及 
+List, Set, 和 Map 的文档。
 
 
 ### URIs
 
-The [Uri class]({{site.dart_api}}/dart-core/Uri-class.html) provides
-functions to encode and decode strings for use in URIs (which you might
-know as *URLs*). These functions handle characters that are special for
-URIs, such as `&` and `=`. The Uri class also parses and exposes the
-components of a URI—host, port, scheme, and so on.
+[Uri 类]({{site.dart_api}}/dart-core/Uri-class.html) 提供了
+编码和解码 URI（URL） 字符的功能。 
+这些函数处理 URI 特殊的字符，例如 `&` 和 `=`。
+Uri 类还可以解析和处理 URI 的每个部分，比如
+host, port, scheme 等。
 {% comment %}
 {PENDING: show
 constructors: Uri.http, Uri.https, Uri.file, per floitsch's suggestion}
 {% endcomment %}
 
-#### Encoding and decoding fully qualified URIs
+#### Encoding and decoding fully qualified URIs（编码解码URI）
 
-To encode and decode characters *except* those with special meaning in a
-URI (such as `/`, `:`, `&`, `#`), use the `encodeFull()` and
-`decodeFull()` methods. These methods are good for encoding or decoding
-a fully qualified URI, leaving intact special URI characters.
+要编码和解码*除了* URI 中特殊意义（例如 `/`, `:`, `&`, `#`）的字符，
+则可以使用 `encodeFull()` 和
+`decodeFull()` 函数。这两个函数可以用来编码和解码整个
+URI，并且保留 URI 特殊意义的字符不变。
 
 <!-- library-tour/encode-uri/bin/main.dart -->
 {% prettify dart %}
@@ -656,13 +655,13 @@ var decoded = Uri.decodeFull(encoded);
 assert(uri == decoded);
 {% endprettify %}
 
-Notice how only the space between `some` and `message` was encoded.
+注意上面 `some` 和 `message` 之间的空格被编码了。  
 
-#### Encoding and decoding URI components
+#### Encoding and decoding URI components（编码解码URI组件）
 
-To encode and decode all of a string’s characters that have special
-meaning in a URI, including (but not limited to) `/`, `&`, and `:`, use
-the `encodeComponent()` and `decodeComponent()` methods.
+使用 `encodeComponent()` 和 `decodeComponent()` 可以编码
+和解码 URI 中的所有字符，特殊意义的字符（`/`, `&`, 和 `:` 等）
+也会编码，
 
 <!-- library-tour/encode-uri-components/bin/main.dart -->
 {% prettify dart %}
@@ -676,14 +675,14 @@ var decoded = Uri.decodeComponent(encoded);
 assert(uri == decoded);
 {% endprettify %}
 
-Notice how every special character is encoded. For example, `/` is
-encoded to `%2F`.
+注意上面特殊字符也被编码了，比如 `/`
+编码为 `%2F`。
 
 #### Parsing URIs
 
-If you have a Uri object or a URI string, you can get its parts using
-Uri fields such as `path`. To create a Uri from a string, use the
-`parse()` static method:
+如果有个 Uri 对象或者 URI 字符串，使用 Uri 的属性
+可以获取每个部分，比如 `path`。使用 `parse()` 静态
+函数可以从字符串中解析一个 Uri 对象：
 
 <!-- library-tour/parse-uri/bin/main.dart -->
 {% prettify dart %}
@@ -696,13 +695,10 @@ assert(uri.fragment == 'frag');
 assert(uri.origin   == 'http://example.org:8080');
 {% endprettify %}
 
-See the [Uri API docs]({{site.dart_api}}/dart-core-Uri-class.html) for
-more URI components that you can get.
-
 #### Building URIs
 
-You can build up a URI from individual parts using the `Uri()`
-constructor:
+使用 `Uri()` 构造函数可以从 URI 的
+各个部分来构造一个 Uri 对象：
 
 <!-- library-tour/uri_from_components/bin/main.dart -->
 {% prettify dart %}
@@ -712,13 +708,15 @@ assert(uri.toString() ==
     'http://example.org/foo/bar#frag');
 {% endprettify %}
 
+更多信息参考
+ [Uri API 文档]({{site.dart_api}}/dart-core-Uri-class.html) 。
 
 ### Dates and times
 
-A DateTime object is a point in time. The time zone is either UTC or the
-local time zone.
+DateTime 对象代表某个时刻。时区是 UTC 或者
+本地时区。
 
-You can create DateTime objects using several constructors:
+一些构造函数可以创建 DateTime 对象：
 
 <!-- library-tour/date/bin/main.dart -->
 {% prettify dart %}
@@ -742,8 +740,8 @@ y2k = new DateTime.fromMillisecondsSinceEpoch(
 y2k = DateTime.parse('2000-01-01T00:00:00Z');
 {% endprettify %}
 
-The `millisecondsSinceEpoch` property of a date returns the number of
-milliseconds since the “Unix epoch”—January 1, 1970, UTC:
+`millisecondsSinceEpoch` 属性返回自从 “Unix epoch”—January 1, 1970, UTC
+以来的毫秒数值：
 
 <!-- library-tour/date/bin/main.dart -->
 {% prettify dart %}
@@ -756,8 +754,8 @@ var unixEpoch = new DateTime.utc(1970);
 assert(unixEpoch.millisecondsSinceEpoch == 0);
 {% endprettify %}
 
-Use the Duration class to calculate the difference between two dates and
-to shift a date forward or backward:
+使用 Duration 类可以计算两个日期之间的间隔，
+还可以前后位移日期：
 
 <!-- library-tour/date/bin/main.dart -->
 {% prettify dart %}
@@ -780,30 +778,30 @@ assert(duration.inDays == 366); // y2k was a leap year.
 {% endprettify %}
 
 <div class="alert alert-warning" markdown="1">
-**Warning:**
-Using a Duration to shift a DateTime by days can be problematic, due
-to clock shifts (to daylight saving time, for example). Use UTC dates
-if you must shift days.
+**警告：**
+使用 Duration 来在 DateTime 对象上前后移动数天可能会有问题，
+比如像夏令时等时间问题。如果要按照天数来位移时间，则
+需要使用 UTC 日期。
 </div>
 
-Refer to the API docs for
-[DateTime]({{site.dart_api}}/dart-core/DateTime-class.html) and
-[Duration]({{site.dart_api}}/dart-core/Duration-class.html) for a full
-list of methods.
+更多详细信息参考
+[DateTime]({{site.dart_api}}/dart-core/DateTime-class.html) 和
+[Duration]({{site.dart_api}}/dart-core/Duration-class.html) 的 API
+文档。
 
 
-### Utility classes
+### Utility classes（工具类）
 
-The core library contains various utility classes, useful for sorting,
-mapping values, and iterating.
+核心库还包含了一些常用的工具类，比如排序、
+值映射以及遍历数据等。
 
-#### Comparing objects
+#### Comparing objects（比较对象）
 
-Implement the
+实现
 [Comparable]({{site.dart_api}}/dart-core/Comparable-class.html)
-interface to indicate that an object can be compared to another object,
-usually for sorting. The `compareTo()` method returns \< 0 for
-*smaller*, 0 for the *same*, and \> 0 for *bigger*.
+接口表明该对象可以相互比较，通常用来
+排序。`compareTo()` 函数对于 *小于的值*返回 \< 0 ；
+*相同的值*返回 0 ； *大于的值*返回 \> 0、
 
 <!-- library-tour/comparable/bin/main.dart -->
 {% prettify dart %}
@@ -822,12 +820,12 @@ main() {
 
 #### Implementing map keys
 
-Each object in Dart automatically provides an integer hash code, and
-thus can be used as a key in a map. However, you can override the
-`hashCode` getter to generate a custom hash code. If you do, you might
-also want to override the `==` operator. Objects that are equal (via
-`==`) must have identical hash codes. A hash code doesn’t have to be
-unique, but it should be well distributed.
+Dart 中的每个对象都有一个整数 hash 码，这样每个对象都
+可以当做 map 的 key 来用。但是，你可以覆写
+`hashCode` getter 来自定义 hash 码的实现，如果你这样做了，你也需要
+同时覆写 `==` 操作符。相等的对象（使用 `==` 比较）的
+ hash 码应该一样。Hasm 码并不要求是唯一的，
+ 但是应该具有良好的分布形态。
 
 {% comment %}
 Note: There’s disagreement over whether to include identical() in the ==
@@ -874,11 +872,11 @@ main() {
 
 #### Iteration
 
-The [Iterable]({{site.dart_api}}/dart-core/Iterable-class.html) and
-[Iterator]({{site.dart_api}}/dart-core/Iterator-class.html) classes
-support for-in loops. Extend (if possible) or implement Iterable
-whenever you create a class that can provide Iterators for use in for-in
-loops. Implement Iterator to define the actual iteration ability.
+[Iterable]({{site.dart_api}}/dart-core/Iterable-class.html) 和
+[Iterator]({{site.dart_api}}/dart-core/Iterator-class.html) 类支持
+for-in 循环。当你创建一个类的时候，继承或者实现 Iterable 可以
+提供一个用于 for-in 循环的 Iterators。
+实现 Iterator 来定义实际的遍历操作。
 
 <!-- library-tour/iterator/bin/main.dart -->
 {% prettify dart %}
@@ -911,24 +909,24 @@ main() {
 
 ### Exceptions
 
-The Dart core library defines many common exceptions and errors.
-Exceptions are considered conditions that you can plan ahead for and
-catch. Errors are conditions that you don’t expect or plan for.
+Dart 核心库定义了很多常见的异常和错误类。
+异常通常是一些可以预知和预防的例外情况。
+错误这是无法预料的并且不需要预防的情况。
 
-A couple of the most common errors are:
+下面是一些常见的错误：
 
 [NoSuchMethodError]({{site.dart_api}}/dart-core/NoSuchMethodError-class.html)
 
-:   Thrown when a receiving object (which might be null) does not
-    implement a method.
+:   当在一个对象上调用一个该对象没有
+    实现的函数会抛出该错误。
 
 [ArgumentError]({{site.dart_api}}/dart-core/ArgumentError-class.html)
 
-:   Can be thrown by a method that encounters an unexpected argument.
+:   调用函数的参数不合法会抛出这个错误。
 
-Throwing an application-specific exception is a common way to indicate
-that an error has occurred. You can define a custom exception by
-implementing the Exception interface:
+抛出一个应用相关的异常是一种用来表明有错误发生的常见
+方法。你还可以通过实现 Exception 接口来自定义
+一些异常。
 
 <!-- library-tour/reference/exceptions.dart -->
 {% prettify dart %}
@@ -939,32 +937,32 @@ class FooException implements Exception {
 }
 {% endprettify %}
 
-For more information, see [Exceptions](#exceptions) and the [Exception API
-docs.]({{site.dart_api}}/dart-core/Exception-class.html)
+更多信息，请参考 [Exceptions](#exceptions) 和 [Exception API
+文档]({{site.dart_api}}/dart-core/Exception-class.html)。
 
 
 ## dart:async - asynchronous programming
 
-Asynchronous programming often uses callback functions, but Dart
-provides alternatives:
-[Future]({{site.dart_api}}/dart-async/Future-class.html) and
-[Stream]({{site.dart_api}}/dart-async/Stream-class.html) objects. A
-Future is like a promise for a result to be provided sometime in the
-future. A Stream is a way to get a sequence of values, such as events.
-Future, Stream, and more are in the
-[dart:async]({{site.dart_api}}/dart-async/dart-async-library.html) library.
+异步编程通常使用回调函数，但是 Dart 提供了另外的
+选择：
+[Future]({{site.dart_api}}/dart-async/Future-class.html) 和
+[Stream]({{site.dart_api}}/dart-async/Stream-class.html) 对象。
+Future 和 JavaScript 中的 Promise 类似，代表在将来某个时刻会返回一个
+结果。Stream 是一种用来获取一些列数据的方式，例如 事件流。
+Future, Stream, 以及其他异步操作的类在 
+[dart:async]({{site.dart_api}}/dart-async/dart-async-library.html) 库中。
 
 <div class="alert alert-info" markdown="1">
-**Note:**
-You don't always need to use the Future or Stream APIs directly.
-The Dart language supports asynchronous coding
-using keywords such as `async` and `await`.
-See [Asynchrony support](/guides/language/language-tour#asynchrony-support)
-in the language tour for details.
+**注意：**
+你并不是都需要直接使用 Future 和 Stream。
+Dart 语言有一些异步功能的关键字，例如
+`async` 和 `await`。
+详细信息
+ 请参考 [异步支持](/guides/language/language-tour#asynchrony-support)。
 </div>
 
-The dart:async library works in both web apps and command-line apps. To
-use it, import dart:async:
+dart:async 库在 web app 和命令行 app 都可以使用。
+只需要导入 dart:async 即可使用：
 
 <!-- library-tour/futures/bin/main.dart -->
 {% prettify dart %}
@@ -974,19 +972,19 @@ import 'dart:async';
 
 ### Future
 
-Future objects appear throughout the Dart libraries, often as the object
-returned by an asynchronous method. When a future *completes*, its value
-is ready to use.
+在 Dart 库中随处可见 Future 对象，通常异步函数返回的对象就是一个 Future。
+当一个 future *执行完后*，他里面的值
+就可以使用了。
 
 #### Using await
 
-Before you directly use the Future API, consider using `await` instead.
-Code that uses `await` expressions can be easier to understand
-than code that uses the Future API.
+在直接使用 Future api 之前，你可以考虑先使用 `await`。
+使用 `await` 的表达式比直接使用 Future api 的代码要更加
+容易理解。
 
-Consider the following function.  It uses Future's `then()` method
-to execute three asynchronous functions in a row,
-waiting for each one to complete before executing the next one.
+例如下面的方法。使用 Future 的 `then()` 函数来
+执行三个异步方法，
+每个方法执行完后才继续执行后一个方法。
 
 <!-- library-tour/async-await/bin/main.dart -->
 {% prettify dart %}
@@ -998,8 +996,8 @@ runUsingFuture() {
 }
 {% endprettify %}
 
-The equivalent code with await expressions
-looks more like synchronous code:
+下面是使用 await 表达式实现的同样功能的代码，
+看起来更像是同步代码，更加容易理解：
 
 <!-- library-tour/async-await/bin/main.dart -->
 {% prettify dart %}
@@ -1011,8 +1009,8 @@ runUsingAsyncAwait() async {
 }
 {% endprettify %}
 
-An async function can treat errors from Futures as exceptions.
-For example:
+异步方法可以把 Future 中的错误当做 异常来处理。
+例如：
 
 <!-- dart-tutorials-samples/count_down/tute_countdown.dart -->
 <!-- This Polymer example has been removed, but I'll leave this code... -->
@@ -1028,15 +1026,15 @@ attached() async {
 {% endprettify %}
 
 <div class="alert alert-warning" markdown="1">
-**Important:**
-Async functions return Futures.
-If you don't want your function to return a future,
-then use a different solution.
-For example, you might call an async function from your function.
+**重要：**
+异步方法（带有关键字 async 的方法）会返回 Future。
+如果你不想让你的方法返回 future，则
+不要使用 async 关键字。
+例如，你可以在你的方法里面调用一个 异步方法。
 </div>
 
-For more information on using `await` and related Dart language features,
-see [Asynchrony support](/guides/language/language-tour#asynchrony-support).
+关于使用 `await` 和相关 Dart 语言的其他特性，请参考
+[异步支持](/guides/language/language-tour#asynchrony-support)。
 
 
 #### Basic usage
@@ -1045,10 +1043,10 @@ see [Asynchrony support](/guides/language/language-tour#asynchrony-support).
 [PENDING: Delete much of the following content in favor of the tutorial coverage?]
 {% endcomment %}
 
-You can use `then()` to schedule code that runs when the future completes. For
-example, `HttpRequest.getString()` returns a Future, since HTTP requests
-can take a while. Using `then()` lets you run some code when that Future
-has completed and the promised string value is available:
+可以使用 `then()` 来在 future 完成的时候执行其他代码。例如
+`HttpRequest.getString()` 返回一个Future，由于 HTTP 请求是一个
+耗时操作。使用 `then()` 可以在 Future 完成的时候执行其他代码
+来解析返回的数据：
 
 <!-- library-tour/async-await/async-await-web/web/main.dart -->
 {% prettify dart %}
@@ -1058,8 +1056,8 @@ HttpRequest.getString(url).then((String result) {
 // Should handle errors here.
 {% endprettify %}
 
-Use `catchError()` to handle any errors or exceptions that a Future
-object might throw.
+使用 `catchError()` 来处理 Future 对象可能抛出的
+各种异常和错误：
 
 <!-- library-tour/async-await/async-await/web/web/main.dart -->
 {% prettify dart %}
@@ -1070,24 +1068,24 @@ HttpRequest.getString(url).then((String result) {
 });
 {% endprettify %}
 
-The `then().catchError()` pattern is the asynchronous version of
-`try`-`catch`.
+`then().catchError()`  模式就是异步版本的
+`try`-`catch`。
 
 <div class="alert alert-warning" markdown="1">
-**Important:**
-Be sure to invoke `catchError()` on the result of `then()`—not on the
-result of the original Future. Otherwise, the `catchError()` can
-handle errors only from the original Future's computation, but not
-from the handler registered by `then()`.
+**重要：**
+确保是在 `then()` 返回的 Future 上调用 `catchError()`，
+而不是在 原来的 Future 对象上调用。否则的话，`catchError()`
+就只能处理原来 Future 对象抛出的异常而无法处理  `then()` 代码
+里面的异常。
 </div>
 
 #### Chaining multiple asynchronous methods
 
-The `then()` method returns a Future, providing a useful way to run
-multiple asynchronous functions in a certain order. If the callback
-registered with `then()` returns a Future, `then()` returns an
-equivalent Future. If the callback returns a value of any other type,
-`then()` creates a new Future that completes with the value.
+`then()` 函数返回值为 Future，可以把多个异步调用给串联起来。
+如果 `then()` 函数注册的回调函数也返回一个 Future，而 `then()` 
+返回一个同样的 Future。如果回调函数返回的是一个其他类型的值，
+则 `then()` 会创建一个新的 Future 对象
+并完成这个 future。
 
 <!-- library-tour/futures/bin/main.dart -->
 {% prettify dart %}
@@ -1099,7 +1097,7 @@ return result.then((value) => expensiveWork())
              .catchError((exception) => print('DOH!'));
 {% endprettify %}
 
-In the preceding example, the methods run in the following order:
+上面的示例中，代码是按照如下顺序执行的：
 
 1.  `costlyQuery()`
 2.  `expensiveWork()`
@@ -1108,10 +1106,10 @@ In the preceding example, the methods run in the following order:
 
 #### Waiting for multiple futures
 
-Sometimes your algorithm needs to invoke many asynchronous functions and
-wait for them all to complete before continuing. Use the
+有时候，你的算法要求调用很多异步方法，并且等待
+所有方法完成后再继续执行。使用
 [`Future.wait()`]({{site.dart_api}}/dart-async/Future/wait.html)
-static method to manage multiple Futures and wait for them to complete:
+这个静态函数来管理多个 Future 并等待所有 Future 执行完成。
 
 <!-- library-tour/futures/bin/main.dart -->
 {% prettify dart %}
@@ -1128,20 +1126,20 @@ Future.wait([deleteDone, copyDone, checksumDone])
 
 ### Stream
 
-Stream objects appear throughout Dart APIs, representing sequences of
-data. For example, HTML events such as button clicks are delivered using
-streams. You can also read a file as a stream.
+Stream 在 Dart API 中也经常出现，代表一些列数据。
+例如， HTML 按钮点击事件就可以使用 stream 来表示。
+还可以把读取文件内容当做一个 Stream。
 
 
 #### Using an asynchronous for loop
 
-Sometimes you can use an asynchronous for loop (`await for`)
-instead of using the Stream API.
+有时候可以使用异步 for 循环(`await for`)来
+替代 Stream API。
 
-Consider the following function.
-It uses Stream's `listen()` method
-to subscribe to a list of files,
-passing in a function literal that searches each file or directory.
+例如下面的示例中，使用
+Stream 的 `listen()` 函数来订阅
+一些文件，然后使用一个方法参数来
+搜索每个文件和目录。
 
 <!-- OLD dart-tutorials-samples/cmdline/bin/dgrep.dart -->
 {% prettify dart %}
@@ -1166,9 +1164,9 @@ void main(List<String> arguments) {
 }
 {% endprettify %}
 
-The equivalent code with await expressions,
-including an asynchronous for loop (`await for`),
-looks more like synchronous code:
+下面是使用 await 表达式和异步 for 循环
+实现的等价的代码，
+看起来更像是同步代码：
 
 <!-- dart-tutorials-samples/cmdline/bin/dgrep.dart -->
 {% prettify dart %}
@@ -1190,24 +1188,24 @@ main(List<String> arguments) async {
 {% endprettify %}
 
 <div class="alert alert-warning" markdown="1">
-**Important:**
-Before using `await for`, make sure that it makes the code clearer
-and that you really do want to wait for all of the stream's results.
-For example, you usually should **not** use `await for` for DOM event listeners,
-because the DOM sends endless streams of events.
-If you use `await for` to register two DOM event listeners in a row,
-then the second kind of event is never handled.
+**重要：**
+在使用 `await for` 之前请确保使用之后的代码看起来确实是
+更加清晰易懂了。例如，对于 DOM时间监听器通常
+**不会**使用 `await for`，原因在于 DOM 发送
+无尽的事件流。
+如果使用 `await for` 来在同一行注册两个 DOM 事件监听器，
+则第二个事件在不会被处理。
 </div>
 
-For more information on using `await` and related
-Dart language features, see
-[Asynchrony support](/guides/language/language-tour#asynchrony-support).
+关于使用 `await` 和相关 Dart 语言的其他特性，
+请参考
+[异步支持](/guides/language/language-tour#asynchrony-support)。
 
 
 #### Listening for stream data
 
-To get each value as it arrives, either use `await for` or
-subscribe to the stream using the `listen()` method:
+要想在每个数据到达的时候就去处理，则可以选择使用 `await for` 或者
+使用 `listen()` 函数来订阅事件：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1218,18 +1216,18 @@ querySelector('#submitInfo').onClick.listen((e) {
 });
 {% endprettify %}
 
-In this example, the `onClick` property is a Stream object provided by
-the "submitInfo" button.
+上面的示例中， `onClick` 属性是 "submitInfo" 按钮提供的一个
+Stream 对象。
 
-If you care about only one event, you can get it using a property such
-as `first`, `last`, or `single`. To test the event before handling it,
-use a method such as `firstWhere()`, `lastWhere()`, or `singleWhere()`.
+如果你只关心里面其中一个事件，则可以使用这些属性：
+ `first`, `last`, 或者 `single`。要想在处理事件之前先测试是否满足条件，则
+使用 `firstWhere()`, `lastWhere()`, 或者 `singleWhere()` 函数。
 {% comment %}
 {PENDING: example}
 {% endcomment %}
 
-If you care about a subset of events, you can use methods such as
-`skip()`, `skipWhile()`, `take()`, `takeWhile()`, and `where()`.
+如果你关心一部分事件，则可以使用
+`skip()`, `skipWhile()`, `take()`, `takeWhile()`, 和 `where()` 这些函数。
 {% comment %}
 {PENDING: example}
 {% endcomment %}
@@ -1237,9 +1235,9 @@ If you care about a subset of events, you can use methods such as
 
 #### Transforming stream data
 
-Often, you need to change the format of a stream's data before you can
-use it. Use the `transform()` method to produce a stream with a
-different type of data:
+经常你需要先转换 stream 里面的数据才能使用。
+使用 `transform()` 函数可以生产另外一个数据类型
+的 Stream 对象：
 
 <!-- library-tour/read-file/read_file.dart -->
 {% prettify dart %}
@@ -1248,11 +1246,11 @@ var stream = inputStream
     .transform(new LineSplitter());
 {% endprettify %}
 
-This example uses two transformers. First it uses UTF8.decoder to
-transform the stream of integers into a stream of strings. Then it uses
-a LineSplitter to transform the stream of strings into a stream of
-separate lines. These transformers are from the dart:convert library (see the
-[dart:convert section](#dartconvert---decoding-and-encoding-json-utf-8-and-more)).
+上面的代码使用两种转换器（transformer）。第一个使用 UTF8.decoder 
+来把整数类型的数据流转换为字符串类型的数据流。然后使用
+LineSplitter 把字符串类型数据流转换为按行分割的数据流。
+这些转换器都来至于  dart:convert 库。
+参考 [dart:convert ](#dartconvert---decoding-and-encoding-json-utf-8-and-more)) 了解详情。
 {% comment %}
   PENDING: add onDone and onError. (See "Streaming file contents".)
 {% endcomment %}
@@ -1260,14 +1258,15 @@ separate lines. These transformers are from the dart:convert library (see the
 
 #### Handling errors and completion
 
-How you specify error and completion handling code
-depends on whether you use an asynchronous for loop (`await for`)
-or the Stream API.
+使用异步 for 循环 (`await for`) 和使用 Stream API 的
+异常处理情况是有
+区别的。
 
-If you use an asynchronous for loop,
-then use try-catch to handle errors.
-Code that executes after the stream is closed
-goes after the asynchronous for loop.
+如果是异步 for 循环，则可以
+使用 try-catch 来处理异常。
+
+在 stream 关闭后执行的代码位于异步 for 循环
+之后。
 
 <!-- library-tour/read-file/read_file.dart -->
 {% prettify dart %}
@@ -1363,7 +1362,7 @@ assert((sinOf30degrees - 0.5).abs() < 0.01);
 {% endprettify %}
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 These functions use radians, not degrees!
 </div>
 
@@ -1439,7 +1438,7 @@ additional APIs that this section doesn’t cover. Only web apps can use
 dart:html, not command-line apps.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 For higher level approaches to web app UIs, see
 [Polymer Dart](https://github.com/dart-lang/polymer-dart/wiki) and
 [Angular 2 for Dart](https://angular.io/dart).
@@ -2044,7 +2043,7 @@ The few synchronous methods in the dart:io library are clearly marked
 with a Sync suffix on the method name. We don’t cover them here.
 
 <div class="alert alert-info" markdown="1">
-**Note:**
+**注意：**
 Only command-line apps can import and use `dart:io`.
 </div>
 
@@ -2461,7 +2460,7 @@ The dart:mirrors library works in both web apps and command-line apps.
 To use it, import dart:mirrors.
 
 <div class="alert alert-warning" markdown="1">
-**Warning:**
+**警告：**
 Using dart:mirrors can cause dart2js to generate very large JavaScript
 files.
 
