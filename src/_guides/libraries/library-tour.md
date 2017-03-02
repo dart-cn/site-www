@@ -1287,10 +1287,10 @@ readFileAwaitFor() async {
   [[highlight]]}[[/highlight]]
 }{% endprettify %}
 
-If you use the Stream API,
-then handle errors by registering an `onError` listener.
-Run code after the stream is closed by registering
-an `onDone` listener.
+如果你使用 Stream API，则需要
+使用 `onError` 函数来处理异常。
+stream 完成后执行的代码要通过 `onDone` 函数
+来执行。
 
 <!-- library-tour/read-file/read_file.dart -->
 {% prettify dart %}
@@ -1312,9 +1312,9 @@ inputStream
 
 ### More information
 
-For some examples of using Future and Stream in command-line apps, see the
-[dart:io section](#dartio---io-for-command-line-apps).
-Also see these articles and tutorials:
+关于在命令行应用中使用 Future 和 Stream 的更多示例，请参考 
+[dart:io 里面的内容](#dartio---io-for-command-line-apps)。
+下面也是一些可以参考的文章和教程：
 
 -   [Asynchronous Programming: Futures](/tutorials/language/futures)
 
@@ -1329,13 +1329,13 @@ Also see these articles and tutorials:
 
 ## dart:math - math and random
 
-The Math library provides common functionality such as sine and cosine,
-maximum and minimum, and constants such as *pi* and *e*. Most of the
-functionality in the Math library is implemented as top-level functions.
+Math 库提供了常见的数学运算功能，例如 sine 和 cosine，
+最大值、最小值等，还有各种常量 例如 *pi* 和 *e* 等。Math 库中
+的大部分函数都是顶级方法。
 
-To use the Math library in your app, import dart:math. The following
-examples use the prefix `math` to make clear which top-level functions
-and constants are from the Math library:
+导入 dart:math 就可以使用 Math 库了。
+下面的示例代码使用前缀 `math` 来引用库中的顶级
+方法和常量：
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1345,7 +1345,7 @@ import 'dart:math' as math;
 
 ### Trigonometry
 
-The Math library provides basic trigonometric functions:
+Math 库中提供了常见的三角运算功能：
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1363,13 +1363,13 @@ assert((sinOf30degrees - 0.5).abs() < 0.01);
 
 <div class="alert alert-info" markdown="1">
 **注意：**
-These functions use radians, not degrees!
+上面这些函数是基于弧度的不是基于角度的。
 </div>
 
 
 ### Maximum and minimum
 
-The Math library provides `max()` and `min()` methods:
+Math 库提供了 `max()` 和 `min()` 函数用来计算最大值和最小值：
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1380,7 +1380,7 @@ assert(math.min(1, -1000) == -1000);
 
 ### Math constants
 
-Find your favorite constants—*pi*, *e*, and more—in the Math library:
+Math 库中提供各种数学常量，例如 *pi*, *e* 等。
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1393,9 +1393,9 @@ print(math.SQRT2); // 1.4142135623730951
 
 ### Random numbers
 
-Generate random numbers with the
-[Random]({{site.dart_api}}/dart-math/Random-class.html) class. You can
-optionally provide a seed to the Random constructor.
+使用
+[Random]({{site.dart_api}}/dart-math/Random-class.html) 类可以生成随机数。
+在 Random 构造函数中还可以提供一个随机种子：
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1404,7 +1404,7 @@ random.nextDouble(); // Between 0.0 and 1.0: [0, 1)
 random.nextInt(10);  // Between 0 and 9.
 {% endprettify %}
 
-You can even generate random booleans:
+也可以生成随机的布尔值：
 
 <!-- library-tour/math-tests/bin/main.dart -->
 {% prettify dart %}
@@ -1415,36 +1415,36 @@ random.nextBool();  // true or false
 
 ### More information
 
-Refer to the [Math API
-docs]({{site.dart_api}}/dart-math/dart-math-library.html) for a full list of
-methods. Also see the API docs for
+详细的信息可以参考 [Math API
+文档]({{site.dart_api}}/dart-math/dart-math-library.html) 来了解。
+还可以参考下面这些类的 API 文档 
 [num,]({{site.dart_api}}/dart-core/num-class.html)
-[int,]({{site.dart_api}}/dart-core/int-class.html) and
-[double.]({{site.dart_api}}/dart-core/double-class.html)
+[int,]({{site.dart_api}}/dart-core/int-class.html) 和
+[double。]({{site.dart_api}}/dart-core/double-class.html)
 
 
 ## dart:html - browser-based apps
 
-Use the [dart:html library]({{site.dart_api}}/dart-html/dart-html-library.html) to
-program the browser, manipulate objects and elements in the DOM, and
-access HTML5 APIs. DOM stands for *Document Object Model*, which
-describes the hierarchy of an HTML page.
+如果要和浏览器打交道则需要使用 [dart:html 库]({{site.dart_api}}/dart-html/dart-html-library.html)，
+访问 DOM 元素和使用 HTML5
+API。 DOM 是 *Document Object Model* 的缩写，用来
+描述 HTML 页面的结构。
 
-Other common uses of dart:html are manipulating styles (*CSS*), getting
-data using HTTP requests, and exchanging data using
-[WebSockets](#sending-and-receiving-real-time-data-with-websockets).
-HTML5 (and dart:html) has many
-additional APIs that this section doesn’t cover. Only web apps can use
-dart:html, not command-line apps.
+dart:html 还可以用来操作样式表（*CSS*）、用 HTTP 请求
+来获取数据，使用
+[WebSockets](#sending-and-receiving-real-time-data-with-websockets) 来获取数据。
+HTML5 (和 dart:html) 具有很多其他的 API 在这里并没有介绍。
+只有 Web 应用可以使用
+dart:html，命令行应用无法使用该库。
 
 <div class="alert alert-info" markdown="1">
 **注意：**
-For higher level approaches to web app UIs, see
-[Polymer Dart](https://github.com/dart-lang/polymer-dart/wiki) and
-[Angular 2 for Dart](https://angular.io/dart).
+关于构建 Web 应用的更高层级的框架，请参考
+[Polymer Dart](https://github.com/dart-lang/polymer-dart/wiki) 和
+[Angular 2 for Dart](https://angular.io/dart)。
 </div>
 
-To use the HTML library in your web app, import dart:html:
+在 web 应用中导入 dart:html 就可以使用 HTML 相关的功能了：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1453,44 +1453,44 @@ import 'dart:html';
 
 ### Manipulating the DOM
 
-To use the DOM, you need to know about *windows*, *documents*,
-*elements*, and *nodes*.
+要使用 DOM 你需要了解 *windows*, *documents*,
+*elements*, 和 *nodes* 等概念。
 
-A [Window]({{site.dart_api}}/dart-html/Window-class.html) object represents
-the actual window of the web browser. Each Window has a Document object,
-which points to the document that's currently loaded. The Window object
-also has accessors to various APIs such as IndexedDB (for storing data),
-requestAnimationFrame (for animations), and more. In tabbed browsers,
-each tab has its own Window object.
+一个 [Window]({{site.dart_api}}/dart-html/Window-class.html) 对象代表
+ 浏览器实际的窗口。每个窗口都有一个文档（Document）对象，
+ 文档对象是当前正在加载的界面。Window 对象还可以访问各种 API，例如
+ 用于存储数据的 IndexedDB、用于动画的 requestAnimationFrame 等。
+ 在多窗口浏览器中，每个窗口（tab 也）都有
+ 自己的 Window 对象。
 
-With the [Document]({{site.dart_api}}/dart-html/Document-class.html) object,
-you can create and manipulate
-[Elements]({{site.dart_api}}/dart-html/Element-class.html) within the
-document. Note that the document itself is an element and can be
-manipulated.
+使用 [Document]({{site.dart_api}}/dart-html/Document-class.html) 对象，
+可以创建和操纵 document 中的
+[Elements]({{site.dart_api}}/dart-html/Element-class.html) 对象。
+注意 Document 本身也是一个 element，也是可以
+被修改的。
 
-The DOM models a tree of
-[Nodes.]({{site.dart_api}}/dart-html/Node-class.html) These nodes are often
-elements, but they can also be attributes, text, comments, and other DOM
-types. Except for the root node, which has no parent, each node in the
-DOM has one parent and might have many children.
+DOM 模型是很多
+[Nodes]({{site.dart_api}}/dart-html/Node-class.html) 组成的树状结构。这些 nodes 通常
+是 elements，但是也可以是 attributes、 text、 comments、 和其他 DOM 类型。
+除了跟节点没有父节点以外，其他 DOM 中的节点都有一个
+父节点，还有可能带有很多子节点。
 
 #### Finding elements
 
-To manipulate an element, you first need an object that represents it.
-You can get this object using a query.
+在操作一个 element 之前，你需要先找到这个 element。
+使用查询语法可以查找所需要的 element。
 
-Find one or more elements using the top-level functions
-`querySelector()` and`
-        querySelectorAll()`. You can query by ID, class, tag, name, or
-any combination of these. The [CSS Selector Specification
-guide](http://www.w3.org/TR/css3-selectors/) defines the formats of the
-selectors such as using a \# prefix to specify IDs and a period (.) for
-classes.
+使用顶级方法 
+`querySelector()` 和`
+        querySelectorAll()` 可以查找一个或者多个符合条件的 element。可以根据 ID、class、tag、name 或者
+这些的组合来查询 element。 [CSS 选择器
+规范](http://www.w3.org/TR/css3-selectors/) 定义了选择器的形式，
+例如使用 \# 前缀代表 ID，英文句号 (.) 代表
+classes。
 
-The `querySelector()` function returns the first element that matches
-the selector, while `querySelectorAll()`returns a collection of elements
-that match the selector.
+使用 `querySelector()` 方法可以获取第一个符合选择器要求的元素；
+而 `querySelectorAll()` 返回所有符合
+选择器要求的元素结合。
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1515,34 +1515,35 @@ List<Element> elems3 = querySelectorAll('#id p.class');
 
 #### Manipulating elements
 
-You can use properties to change the state of an element. Node and its
-subtype Element define the properties that all elements have. For
-example, all elements have `classes`, `hidden`, `id`, `style`, and
-`title` properties that you can use to set state. Subclasses of Element
-define additional properties, such as the `href` property of
-[AnchorElement.]({{site.dart_api}}/dart-html/AnchorElement-class.html)
+可以使用属性（properties）来修改 element 的状态。 Node 和子类型
+Element 定义了所有 element 都具有的属性。例如，
+所有 element 都有 `classes`, `hidden`, `id`, `style`, 和
+`title` 属性，你可以使用这些属性来修改 element 的状态。 Element 的
+子类还定义了其他属性，比如 
+[AnchorElement]({{site.dart_api}}/dart-html/AnchorElement-class.html)
+定义了 `href` 属性。
 
-Consider this example of specifying an anchor element in HTML:
+例如下面的示例在 HTML 中设置一个锚链接：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify html %}
 <a id="example" href="http://example.com">link text</a>
 {% endprettify %}
 
-This \<a\> tag specifies an element with an `href` attribute and a text
-node (accessible via a `text` property) that contains the string
-“linktext”. To change the URL that the link goes to, you can use
-AnchorElement’s `href` property:
+\<a\> 标签使用 `href`  定义了一个 element 和一个包含文字
+“linktext” 的
+text node（使用  `text` 属性访问）。使用 AnchorElement 的 `href` 属性
+可以修改点击该链接跳转的地址：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
 querySelector('#example').href = 'http://dartlang.org';
 {% endprettify %}
 
-Often you need to set properties on multiple elements. For example, the
-following code sets the `hidden` property of all elements that have a
-class of “mac”, “win”, or “linux”. Setting the `hidden` property to true
-has the same effect as adding `display:none` to the CSS.
+通常你需要在多个 element 上设置属性。例如，下面的示例在
+所有 class 样式带有 “mac”, “win”, 或者 “linux” 的 element 上设置
+`hidden` 属性。设置 `hidden`  属性为 true 和 设置 
+CSS 样式 `display:none`  是同样的效果。
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1572,12 +1573,12 @@ for (var os in osList) { // For each possible OS...
 }
 {% endprettify %}
 
-When the right property isn’t available or convenient, you can use
-Element’s `attributes` property. This property is a
-`Map<String, String>`, where the keys are attribute names. For a list of
-attribute names and their meanings, see the [MDN Attributes
-page.](https://developer.mozilla.org/en/HTML/Attributes) Here’s an
-example of setting an attribute’s value:
+当属性不能访问或者不方便访问的时候，可以使用 Element 的 `attributes` 属性。
+这个属性是一个
+`Map<String, String>`，里面的 key 为属性名字。所有 HTML 元素的
+属性名字以及意义，请参考 [MDN Attributes
+网页。](https://developer.mozilla.org/en/HTML/Attributes)下面是一个设置
+属性值的示例：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1586,9 +1587,9 @@ elem.attributes['someAttribute'] = 'someValue';
 
 #### Creating elements
 
-You can add to existing HTML pages by creating new elements and
-attaching them to the DOM. Here’s an example of creating a paragraph
-(\<p\>) element:
+还可以创建新的 element 然后添加到 HTML 页面的
+DOM 中。下面的示例创建了一个 段落
+(\<p\>) 元素：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1596,8 +1597,8 @@ var elem = new ParagraphElement();
 elem.text = 'Creating is easy!';
 {% endprettify %}
 
-You can also create an element by parsing HTML text. Any child elements
-are also parsed and created.
+使用 HTML 文本也可以创建 element。所包含的子元素
+也一起被创建：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1605,13 +1606,13 @@ var elem2 =
     new Element.html('<p>Creating <em>is</em> easy!</p>');
 {% endprettify %}
 
-Note that elem2 is a ParagraphElement in the preceding example.
+注意上面的 elem2 对象是一个 ParagraphElement 。
 
-Attach the newly created element to the document by assigning a parent
-to the element. You can add an element to any existing element’s
-children. In the following example, `body` is an element, and its child
-elements are accessible (as a List\<Element\>) from the `children`
-property.
+给新创建的 Element 指定一个父节点可以把这个 Element 添加到 DOM 中。
+可以把 Element 添加到任何已经存在于 DOM 中的其他 Element 的 children 中。
+例如，下面的示例，`body`  是一个 element，使用 `children` 属性来
+访问该元素的所有子元素（返回的是一个  List\<Element\>），然后把新的 elem2 添加
+到子元素集合中。
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1620,14 +1621,14 @@ document.body.children.add(elem2);
 
 #### Adding, replacing, and removing nodes
 
-Recall that elements are just a kind of node. You can find all the
-children of a node using the `nodes` property of Node, which returns a
-List\<Node\> (as opposed to `children`, which omits non-Element nodes).
-Once you have this list, you can use the usual List methods and
-operators to manipulate the children of the node.
+之前说过，element 也是 node 的一种。使用 Node 的 `nodes` 属性可以
+获取到当前 node 的所有子元素，`nodes` 返回的是 
+List\<Node\> (  `children` 属性只包含 Element 类型的 nodes)。
+获取到这个 Node list 后，就可以使用 List 的各种函数来
+处理这些 Node 对象了。
 
-To add a node as the last child of its parent, use the List `add()`
-method:
+使用 List 的`add()` 函数可以把一个 node 添加到所有子元素的
+最后：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1635,7 +1636,7 @@ method:
 querySelector('#inputs').nodes.add(elem);
 {% endprettify %}
 
-To replace a node, use the Node `replaceWith()` method:
+使用 Node 的  `replaceWith()` 函数可以替换一个 Node：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1643,7 +1644,7 @@ To replace a node, use the Node `replaceWith()` method:
 querySelector('#status').replaceWith(elem);
 {% endprettify %}
 
-To remove a node, use the Node `remove()` method:
+使用 Node 的 `remove()` 函数来删除 node：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1653,13 +1654,13 @@ querySelector('#expendable').remove();
 
 #### Manipulating CSS styles
 
-CSS, or *cascading style sheets*, defines the presentation styles of DOM
-elements. You can change the appearance of an element by attaching ID
-and class attributes to it.
+CSS（*cascading style sheets* 的缩写）定义了 DOM 元素的 UI 样式。
+在一个 element 上附加 ID 和 class 属性可以修改
+其应用的 CSS 样式。
 
-Each element has a `classes` field, which is a list. Add and remove CSS
-classes simply by adding and removing strings from this collection. For
-example, the following sample adds the `warning` class to an element:
+没有 element 都有一个 `classes`  属性（field），该属性的类型为 List。
+添加和移除上面的 CSS 类就是向这个集合中添加和删除字符串。
+流入，下面的示例中给 element 添加了 `warning` CSS 类样式。 
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1667,8 +1668,8 @@ var element = querySelector('#message');
 element.classes.add('warning');
 {% endprettify %}
 
-It’s often very efficient to find an element by ID. You can dynamically
-set an element ID with the `id` property:
+通过 ID 来查找元素非常高效。通过 `id`  属性你可以动态给一个 Element 指定
+一个 ID 值。
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1677,8 +1678,8 @@ message.id = 'message2';
 message.text = 'Please subscribe to the Dart mailing list.';
 {% endprettify %}
 
-You can reduce the redundant text in this example by using method
-cascades:
+使用级联调用可以减少
+需要编写的代码：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1687,9 +1688,9 @@ var message = new DivElement()
     ..text = 'Please subscribe to the Dart mailing list.';
 {% endprettify %}
 
-While using IDs and classes to associate an element with a set of styles
-is best practice, sometimes you want to attach a specific style directly
-to the element:
+使用 ID 和 CSS 的 classes 来应用样式是最佳的方式，但是有时候
+你还是希望直接在 element 上应用具体的样式，则
+可以直接使用 style 属性：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1700,19 +1701,19 @@ message.style
 
 #### Handling events
 
-To respond to external events such as clicks, changes of focus, and
-selections, add an event listener. You can add an event listener to any
-element on the page. Event dispatch and propagation is a complicated
-subject; [research the
-details](http://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture)
-if you’re new to web programming.
+要响应像点击、聚焦等外部事件，你需要使用事件监听器。
+在页面上的任何 element 上都可以注册事件监听器。
+ 事件分发和传递是一个很复杂的议题：
+如果你是 Web 开发新手，
+请到 [这里来
+详细研究这个事件分发机制](http://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture)。
 
-Add an event handler using
-<code><em>element</em>.on<em>Event</em>.listen(<em>function</em>)</code>,
-where <code><em>Event</em></code> is the event
-name and <code><em>function</em></code> is the event handler.
+使用
+<code><em>element</em>.on<em>Event</em>.listen(<em>function</em>)</code>来添加事件监听器，
+这里的 <code><em>Event</em></code> 是事件的名字，而
+ <code><em>function</em></code> 是事件处理器。
 
-For example, here’s how you can handle clicks on a button:
+例如，下面是处理按钮点击的事件：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1723,8 +1724,8 @@ querySelector('#submitInfo').onClick.listen((e) {
 });
 {% endprettify %}
 
-Events can propagate up and down through the DOM tree. To discover which
-element originally fired the event, use `e.target`:
+事件可以通过 DOM 树来向上或者向下传递。
+通过 `e.target` 可以获取是那个 element 触发该事件的：
 
 <!-- library-tour/future-then/web/main.dart -->
 {% prettify dart %}
@@ -1734,10 +1735,10 @@ document.body.onClick.listen((e) {
 });
 {% endprettify %}
 
-To see all the events for which you can register an event listener, look
-for "onEventType" properties in the API docs for
-[Element]({{site.dart_api}}/dart-html/Element-class.html) and its
-subclasses. Some common events include:
+要查看所有可以注册的事件名字，可以查看
+[Element]({{site.dart_api}}/dart-html/Element-class.html) 文档中的
+"onEventType" 属性。
+下面是一些常见的事件：
 
 -   change
 
@@ -1754,26 +1755,25 @@ subclasses. Some common events include:
 
 ### Using HTTP resources with HttpRequest
 
-Formerly known as XMLHttpRequest, the
-[HttpRequest]({{site.dart_api}}/HttpRequest-class.html) class
-gives you access to HTTP resources from within your browser-based app.
-Traditionally, AJAX-style apps make heavy use of HttpRequest. Use
-HttpRequest to dynamically load JSON data or any other resource from a
-web server. You can also dynamically send data to a web server.
+[HttpRequest]({{site.dart_api}}/HttpRequest-class.html) 类是之前
+大家耳熟能详的 XMLHttpRequest 的功能一样，使用该类
+可以在 web 应用总访问 HTTP 资源。
+一般而言， AJAX 风格的应用会很依赖 HttpRequest。使用 HttpRequest 来
+动态的加载 JSON 数据或者其他资源。
+还可以动态的向服务器发送数据。
 
-The following examples assume all resources are served from the same web
-server that hosts the script itself. Due to security restrictions in the
-browser, the HttpRequest class can’t easily use resources that are
-hosted on an origin that is different from the origin of the app. If you
-need to access resources that live on a different web server, you need
-to either use a technique called JSONP or enable CORS headers on the
-remote resources.
+下面的示例假设所有的资源都是来至于和当前脚本文件位于
+同一个 web 服务器。由于浏览器的安全限制， HttpRequest 要使用
+其他服务器的资源是比较麻烦的。如果你需要访问
+其他服务器上的资源，
+你需要使用 JSONP 技术或者
+启用另外一个资源服务器的 CORS header。
 
 #### Getting data from the server
 
-The HttpRequest static method `getString()` is an easy way to get data
-from a web server. Use `await` with the `getString()` call
-to ensure that you have the data before continuing execution.
+HttpRequest 的静态函数 `getString()` 可以很方便的从服务器获取资源。
+使用  `await`  来确保 `getString()` 调用资源返回后再
+在继续执行后面的代码：
 
 <!-- library-tour/get-data-from-server/web/main.dart -->
 {% prettify dart %}
@@ -1794,14 +1794,14 @@ processString(String jsonText) {
 }
 {% endprettify %}
 
-Information about the JSON API is in the
-[dart:convert section](#dartconvert---decoding-and-encoding-json-utf-8-and-more).
+在 [dart:convert 中](#dartconvert---decoding-and-encoding-json-utf-8-and-more)会介绍
+JSON API 相关的内容。
 
 {% comment %}
 {PENDING: convert to async exception catcher?}
 {% endcomment %}
 
-Use try-catch to specify an error handler:
+使用 try-catch  来指定异常处理代码：
 
 <!-- library-tour/get-data-from-server/web/main.dart -->
 {% prettify dart %}
@@ -1818,9 +1818,9 @@ handleError(error) {
 }
 {% endprettify %}
 
-If you need access to the HttpRequest, not just the text data it
-retrieves, you can use the `request()` static method instead of
-`getString()`. Here’s an example of reading XML data:
+如果除了返回的文本数据以外你还需要
+访问 HttpRequest，你可以使用 `request()` 静态函数。下面
+是一个读取 XML 数据的示例：
 
 <!-- library-tour/get-data-from-server/web/main.dart -->
 {% prettify dart %}
@@ -1851,17 +1851,17 @@ processRequest(HttpRequest request) {
 }
 {% endprettify %}
 
-You can also use the full API to handle more interesting cases. For
-example, you can set arbitrary headers.
+可以使用 full API 来处理各种情况。例如，
+设置请求 header 信息。
 
-The general flow for using the full API of HttpRequest is as follows:
+下面是使用 HttpRequest full API 的常用流程：
 
-1.  Create the HttpRequest object.
-2.  Open the URL with either `GET` or `POST`.
-3.  Attach event handlers.
-4.  Send the request.
+1.  创建 HttpRequest 对象。
+2.  使用 `GET` 或者 `POST` 打开一个 URL。
+3.  添加事件处理器。
+4.  发送请求。
 
-For example:
+例如：
 
 <!-- dart-tutorials-samples/web/portmanteaux/portmanteaux.dart -->
 {% prettify dart %}
@@ -1875,16 +1875,16 @@ var request = new HttpRequest()
 
 #### Sending data to the server
 
-HttpRequest can send data to the server using the HTTP method POST. For
-example, you might want to dynamically submit data to a form handler.
-Sending JSON data to a RESTful web service is another common example.
+HttpRequest 还可以使用 HTTP POST 函数来向服务器发送数据。
+例如，你可能希望动态的提交数据到服务器。
+向 RESTful web 服务器发送 JSON 数据是一种非常常见的情况。
 
-Submitting data to a form handler requires you to provide name-value
-pairs as URI-encoded strings. (Information about the URI class is in
-the [URIs section](#uris).)
-You must also set the `Content-type` header to
-`application/x-www-form-urlencode` if you wish to send data to a form
-handler.
+在表单处理中提交数据需要提供一个 name-value 数据对，该数据还需要
+使用 URI 编码（关于 URI 类的信息请
+参考 [URIs 文档](#uris)）。
+如果要在表单处理器中提交数据则还
+ 需要设置 `Content-type` header 为
+`application/x-www-form-urlencode`。
 
 <!-- library-tour/post-data-to-server/web/main.dart -->
 {% prettify dart %}
@@ -1928,15 +1928,15 @@ main() async {
 
 ### Sending and receiving real-time data with WebSockets
 
-A WebSocket allows your web app to exchange data with a server
-interactively—no polling necessary. A server creates the WebSocket and
-listens for requests on a URL that starts with **ws://**—for example,
-ws://127.0.0.1:1337/ws. The data transmitted over a WebSocket can be a
-string or a blob.  Often, the data is a JSON-formatted string.
+WebSocket 可以让你的 web 应用和服务器持续的交互数据，不用
+一直的轮询。创建 WebSocket 的服务器会监听 **ws://** 开头的 URL，
+例如 ws://127.0.0.1:1337/ws。
+通过 WebSocket 发送的数据可以是字符串或者 blob。
+通常都是使用 JSON 格式的字符串。
 
-To use a WebSocket in your web app, first create a
-[WebSocket]({{site.dart_api}}/dart-html/WebSocket-class.html) object, passing
-the WebSocket URL as an argument:
+要在 web 应用中使用 WebSocket，需要先创建 
+[WebSocket]({{site.dart_api}}/dart-html/WebSocket-class.html) 对象，把
+WebSocket URL 作为该对象的参数。
 
 <!-- github.com/dart-lang/dart-samples/html5/web/websockets/basics/websocket_sample.dart -->
 {% prettify dart %}
@@ -1945,7 +1945,7 @@ var ws = new WebSocket('ws://echo.websocket.org');
 
 #### Sending data
 
-To send string data on the WebSocket, use the `send()` method:
+使用 `send()` 函数向 WebSocket 发送数据：
 
 <!-- github.com/dart-lang/dart-samples/html5/web/websockets/basics/websocket_sample.dart -->
 {% prettify dart %}
@@ -1954,8 +1954,8 @@ ws.send('Hello from Dart!');
 
 #### Receiving data
 
-To receive data on the WebSocket, register a listener for message
-events:
+要从 WebSocket 接收数据，需要注册一个事件
+监听器：
 
 <!-- github.com/dart-lang/dart-samples/html5/web/websockets/basics/websocket_sample.dart -->
 {% prettify dart %}
@@ -1964,16 +1964,16 @@ ws.onMessage.listen((MessageEvent e) {
 });
 {% endprettify %}
 
-The message event handler receives a
-[MessageEvent]({{site.dart_api}}/dart-html/MessageEvent-class.html) object.
-This object’s `data` field has the data from the server.
+消息事件处理函数的参数为
+[MessageEvent]({{site.dart_api}}/dart-html/MessageEvent-class.html) 对象。
+该对象的 `data` 变量保存了服务器返回的数据。
 
 #### Handling WebSocket events
 
-Your app can handle the following WebSocket events: open, close, error,
-and (as shown earlier) message. Here’s an example of a method that
-creates a WebSocket object and registers handlers for open, close,
-error, and message events:
+你的应用可以处理如下的 WebSocket 事件：open, close, error,
+和 (前面演示的) message。下面是演示各种事件
+ 的
+ 示例：
 
 <!-- https://github.com/dart-lang/dart-samples/blob/master/html5/web/websockets/basics/websocket_sample.dart -->
 {% prettify dart %}
@@ -2017,13 +2017,13 @@ void initWebSocket([int retrySeconds = 2]) {
 
 ### More information
 
-This section barely scratched the surface of using the dart:html
-library. For more information, see the documentation for
-[dart:html]({{site.dart_api}}/dart-html/dart-html-library.html).
-Dart has additional libraries for more specialized web APIs, such as [web
+上面只是简单的介绍了 dart:html 库。更多信息
+请参考
+[dart:html]({{site.dart_api}}/dart-html/dart-html-library.html)。
+Dart 还有一些 web 特殊领域的 api，例如 [web
 audio,]({{site.dart_api}}/dart-web_audio/dart-web_audio-library.html)
-[IndexedDB]({{site.dart_api}}/dart-indexed_db/dart-indexed_db-library.html), and
-[WebGL]({{site.dart_api}}/dart-web_gl/dart-web_gl-library.html).
+[IndexedDB]({{site.dart_api}}/dart-indexed_db/dart-indexed_db-library.html), 和
+[WebGL]({{site.dart_api}}/dart-web_gl/dart-web_gl-library.html)。
 
 
 ## dart:io - I/O for command-line apps
