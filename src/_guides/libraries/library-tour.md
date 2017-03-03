@@ -2028,43 +2028,43 @@ audio,]({{site.dart_api}}/dart-web_audio/dart-web_audio-library.html)
 
 ## dart:io - I/O for command-line apps
 
-The [dart:io library]({{site.dart_api}}/dart-io/dart-io-library.html) provides APIs to
-deal with files, directories, processes, sockets, WebSockets, and HTTP
-clients and servers. Only command-line apps can use dart:io—not web
-apps.
+[dart:io 库]({{site.dart_api}}/dart-io/dart-io-library.html) 提供了一些和
+文件、目录、进程、sockets、 WebSockets、和 HTTP 客户端以及服务器的 API。
+只有命令行应用可以使用 dart:io 库，web app
+无法使用。
 
-In general, the dart:io library implements and promotes an asynchronous
-API. Synchronous methods can easily block an application, making it
-difficult to scale. Therefore, most operations return results via Future
-or Stream objects, a pattern common with modern server platforms such as
-Node.js.
+一般而言，dart:io 库实现和提供的是异步 API。
+同步函数很容易阻塞应用，后期扩展起来非常麻烦。
+因此，大部分的操作返回值都是 Future 或者 Stream 对象，
+如果你熟悉 Node.js 则对这种
+模式会有所了解。
 
-The few synchronous methods in the dart:io library are clearly marked
-with a Sync suffix on the method name. We don’t cover them here.
+dart:io 里面也有一小部分同步方法，这些方法都使用 sync 前缀命名方法名字。
+这里就不再介绍这些同步方法了。
 
 <div class="alert alert-info" markdown="1">
 **注意：**
-Only command-line apps can import and use `dart:io`.
+只有命令行应用才能导入 `dart:io`。
 </div>
 
 
 ### Files and directories
 
-The I/O library enables command-line apps to read and write files and
-browse directories. You have two choices for reading the contents of a
-file: all at once, or streaming. Reading a file all at once requires
-enough memory to store all the contents of the file. If the file is very
-large or you want to process it while reading it, you should use a
-Stream, as described in
-[Streaming file contents](#streaming-file-contents).
+I/O 库可以让命令行应用读写文件和查看目录。
+读取文件有两种方式：一次读完或者通过流的方式来读取。
+一次读完需要把文件内容读到内存中，如果文件
+非常大或者你希望一边读文件一边处理，则应该
+使用 Stream，
+在
+[流式读取文件](#streaming-file-contents)中介绍。
 
 #### Reading a file as text
 
-When reading a text file encoded using UTF-8, you can read the entire
-file contents with `readAsString()`. When the individual lines are
-important, you can use `readAsLines()`. In both cases, a Future object
-is returned that provides the contents of the file as one or more
-strings.
+对于编码为 UTF-8 的文本，可以使用函数 `readAsString()` 一次性
+的读取整个文本。如果单行文字比较重要，则可以
+使用 `readAsLines()` 来读取。
+这两个函数返回一个 Future 对象，当文件
+读取完的时候，可以从 Future 对象获取一个或者多个字符串。
 
 <!-- library-tour/read-file/bin/text_read.dart -->
 {% prettify dart %}
@@ -2087,9 +2087,9 @@ main() async {
 
 #### Reading a file as binary
 
-The following code reads an entire file as bytes into a list of ints.
-The call to `readAsBytes()` returns a Future, which provides the result
-when it’s available.
+下面的示例把文件数据读取为字节流。
+同样 `readAsBytes()`  函数返回值为 Future，
+当读完文件后，可以从 Future 中获取数据。
 
 <!-- library-tour/read-file/bin/binary_read.dart -->
 {% prettify dart %}
