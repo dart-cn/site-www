@@ -2105,9 +2105,9 @@ main() async {
 
 #### Handling errors
 
-To capture errors so they don't result in uncaught exceptions, you can
-register a `catchError` handler on the Future,
-or (in an async function) use try-catch:
+在 Future 上注册一个 `catchError` 来处理异常，
+还可以在 async 方法中使用 try-catch 来
+处理异常：
 
 <!-- library-tour/read-file/bin/file_errors.dart -->
 {% prettify dart %}
@@ -2126,9 +2126,9 @@ main() async {
 
 #### Streaming file contents
 
-Use a Stream to read a file, a little at a time.
-You can use either the [Stream API](#stream) or `await for`,
-part of Dart's [asynchrony support](/guides/language/language-tour#asynchrony-support).
+使用 Stream 读取文件的时候，
+使用 [Stream API](#stream) 或者 `await for` 可以一点点的读取，
+详情参考 [异步支持](/guides/language/language-tour#asynchrony-support)。
 
 <!-- library-tour/read-file/bin/read_file.dart -->
 {% prettify dart %}
@@ -2156,10 +2156,10 @@ main() async {
 
 #### Writing file contents
 
-You can use an [IOSink]({{site.dart_api}}/dart-io/IOSink-class.html) to
-write data to a file. Use the File `openWrite()` method to get an IOSink
-that you can write to. The default mode, `FileMode.WRITE`, completely
-overwrites existing data in the file.
+使用 [IOSink]({{site.dart_api}}/dart-io/IOSink-class.html) 可以往文件
+写入内容。使用 File 的 `openWrite()` 函数获取到一个 IOSink。
+默认的写模式为 `FileMode.WRITE`，新写入的数据会完全覆盖
+文件之前的内容。
 
 <!-- library-tour/write-file/bin/main.dart -->
 {% prettify dart %}
@@ -2169,22 +2169,22 @@ sink.write('FILE ACCESSED ${new DateTime.now()}\n');
 sink.close();
 {% endprettify %}
 
-To add to the end of the file, use the optional `mode` parameter to
-specify `FileMode.APPEND`:
+如果想在文件末尾追加内容，则可以使用 `mode` 可选参数，参数取值
+为 `FileMode.APPEND`：
 
 <!-- library-tour/write_file/bin/main.dart -->
 {% prettify dart %}
 var sink = logFile.openWrite(mode: FileMode.APPEND);
 {% endprettify %}
 
-To write binary data, use `add(List<int> data)`.
+使用 `add(List<int> data)` 函数可以写二进制数据到文件。
 
 
 #### Listing files in a directory
 
-Finding all files and subdirectories for a directory is an asynchronous
-operation. The `list()` method returns a Stream that emits an object
-when a file or directory is encountered.
+查找目录中的所有文件和子目录是一个异步操作。
+`list()` 函数返回一个 Stream，当遇到文件或者子目录的时候，
+Stream 就发射一个对象。
 
 <!-- library-tour/list-files/bin/main.dart -->
 {% prettify dart %}
@@ -2211,38 +2211,37 @@ main() async {
 
 #### Other common functionality
 
-The File and Directory classes contain other functionality, including
-but not limited to:
+File 和 Directory 类包含其他的一些文件操作，
+下面只是一些常见的函数：
 
--   Creating a file or directory: `create()` in File and Directory
+-   创建文件或者目录： `create()` in File and Directory
 
--   Deleting a file or directory: `delete()` in File and Directory
+-   删除文件或者目录： `delete()` in File and Directory
 
--   Getting the length of a file: `length()` in File
+-   获取文件的长度： `length()` in File
 
--   Getting random access to a file: `open()` in File
+-   随机位置访问文件： `open()` in File
 
-Refer to the API docs for [File]({{site.dart_api}}/dart-io/File-class.html)
-and [Directory]({{site.dart_api}}/dart-io/Directory-class.html) for a full
-list of methods.
-
+参考 [File]({{site.dart_api}}/dart-io/File-class.html)
+和 [Directory]({{site.dart_api}}/dart-io/Directory-class.html) 的 API 文档来
+查看所有的函数。
 
 ### HTTP clients and servers
 
-The dart:io library provides classes that command-line apps can use for
-accessing HTTP resources, as well as running HTTP servers.
+dart:io 库提供了一些命令行应用可以用来访问 HTTP 资源
+和运行 HTTP 服务器的类。
 
 #### HTTP server
 
-The [HttpServer]({{site.dart_api}}/dart-io/HttpServer-class.html) class
-provides the low-level functionality for building web servers. You can
-match request handlers, set headers, stream data, and more.
+[HttpServer]({{site.dart_api}}/dart-io/HttpServer-class.html) 类
+提供了用来建构 Web 服务器的底层方法。可以匹配
+请求处理、设置 header、处理数据等。
 
-The following sample web server can return only simple text information.
-This server listens on port 8888 and address 127.0.0.1 (localhost),
-responding to requests for the path `/languages/dart`. All other
-requests are handled by the default request handler, which returns a
-response code of 404 (not found).
+下面的示例项目只能返回简单的文本信息。
+服务器监听本机地址 127.0.0.1 的 8888 端口，
+响应来自于 `/languages/dart` 路径的请求。所有其他的
+请求都有默认的请求处理器处理（返回 404
+页面没发现的错误提示）。
 
 <!-- library-tour/client-server/bin/http_server.dart -->
 {% prettify dart %}
@@ -2271,13 +2270,13 @@ main() async {
 
 #### HTTP client
 
-The [HttpClient]({{site.dart_api}}/dart-io/HttpClient-class.html) class
-helps you connect to HTTP resources from your Dart command-line or
-server-side application. You can set headers, use HTTP methods, and read
-and write data. The HttpClient class does not work in browser-based
-apps. When programming in the browser, use the [HttpRequest
-class](#using-http-resources-with-httprequest).
-Here’s an example of using HttpClient:
+[HttpClient]({{site.dart_api}}/dart-io/HttpClient-class.html) 类可以
+在命令行应用程序或者服务器应用程序中使用，用来请求 HTTP 资源。
+可以设置请求头、HTTP 请求方式和读写
+数据。HttpClient 无法在 web 应用中使用。
+在 web 应用中可以使用  [HttpRequest
+class](#using-http-resources-with-httprequest)。
+下面是使用 HttpClient 的一个示例：
 
 <!-- library-tour/client-server/bin/main.dart -->
 {% prettify dart %}
@@ -2302,27 +2301,27 @@ main() async {
 
 ### More information
 
-Besides the APIs discussed in this section, the dart:io library also
-provides APIs for [processes,]({{site.dart_api}}/dart-io/Process-class.html)
-[sockets,]({{site.dart_api}}/dart-io/Socket-class.html) and [web
-sockets.]({{site.dart_api}}/dart-io/Socket-class.html)
+除了上面提到的几个功能外，dart:io 库还包含
+[processes,]({{site.dart_api}}/dart-io/Process-class.html)
+[sockets,]({{site.dart_api}}/dart-io/Socket-class.html) 和 [web
+sockets]({{site.dart_api}}/dart-io/Socket-class.html) 等相关的 API。
 
 ## dart:convert - decoding and encoding JSON, UTF-8, and more
 
-The [dart:convert library]({{site.dart_api}}/dart-convert/dart-convert-library.html)
-has converters for JSON and UTF-8, as well as support for creating
-additional converters. JSON is a simple text format for representing
-structured objects and collections. UTF-8 is a common variable-width
-encoding that can represent every character in the Unicode character
-set.
+[dart:convert 库]({{site.dart_api}}/dart-convert/dart-convert-library.html)
+里面有一些用来转换 JSON 和 UTF-8 的转换器，还可以自定义 新的转换器。
+JSON 是非常流行的数据格式。
+UTF-8 是一种非常流行的编码格式，
+能够代表所有 Unicode 字符
+集。
 
-The dart:convert library works in both web apps and command-line apps.
-To use it, import dart:convert.
+命令行应用和 web 应用都可以使用 dart:convert 库。
+导入 dart:convert 就可以使用该库了。
 
 
 ### Decoding and encoding JSON
 
-Decode a JSON-encoded string into a Dart object with `JSON.decode()`:
+使用 `JSON.decode()` 函数把 JSON 字符串解码为 Dart 对象：
 
 <!-- library-tour/json-parse/bin/main.dart -->
 {% prettify dart %}
@@ -2348,8 +2347,8 @@ main() {
 }
 {% endprettify %}
 
-Encode a supported Dart object into a JSON-formatted string with
-`JSON.encode()`:
+使用 `JSON.encode()` 可以把 Dart 对象
+编码为 JSON 字符串：
 
 <!-- library-tour/json_stringify/bin/main.dart -->
 {% prettify dart %}
@@ -2369,20 +2368,20 @@ main() {
 }
 {% endprettify %}
 
-Only objects of type int, double, String, bool, null, List, or Map (with
-string keys) are directly encodable into JSON. List and Map objects are
-encoded recursively.
+默认只支持 int、double、String、bool、null、List或者 Map（key 需要为 string）
+这些类型转换为 JSON。
+集合对象会使用递归的形式来转换每个对象。
 
-You have two options for encoding objects that aren't directly
-encodable. The first is to invoke `encode()` with a second argument: a
-function that returns an object that is directly encodable. Your second
-option is to omit the second argument, in which case the encoder calls
-the object's `toJson()` method.
+对于默认不支持的对象，可以有两种选择：
+一，调用 `encode()`  并指定第二个参数，
+该参数是一个函数用来返回一个默认支持的对象；
+二，不指定第二个参数，则会
+调用该对象的 `toJson()` 函数。
 
 
 ### Decoding and encoding UTF-8 characters
 
-Use `UTF8.decode()` to decode UTF8-encoded bytes to a Dart string:
+使用 `UTF8.decode()` 来解码 UTF8-encoded 字节流为 Dart 字符串：
 
 <!-- library-tour/decode_utf-8/bin/main.dart -->
 {% prettify dart %}
@@ -2400,8 +2399,8 @@ main() {
 }
 {% endprettify %}
 
-To convert a stream of UTF-8 characters into a Dart string, specify
-`UTF8.decoder` to the Stream `transform()` method:
+如果是 stream 字节流则可以在
+Stream 的 `transform()` 函数上指定 `UTF8.decoder` ：
 
 <!-- library-tour/read-file/read_file.dart -->
 {% prettify dart %}
@@ -2414,8 +2413,8 @@ try {
   }
 {% endprettify %}
 
-Use `UTF8.encode()` to encode a Dart string as a list of UTF8-encoded
-bytes:
+使用 `UTF8.encode()` 把字符串编码为 UTF8 字节
+流：
 
 <!-- library-tour/encode_utf-8/bin/main.dart -->
 {% prettify dart %}
@@ -2445,44 +2444,44 @@ main() {
 
 ### Other functionality
 
-The dart:convert library also has converters for ASCII and ISO-8859-1
-(Latin1). For details, see the [API docs for the dart:convert
-library.]({{site.dart_api}}/dart-convert/dart-convert-library.html)
+dart:convert 来包含转换 ASCII 和 ISO-8859-1（Latin1）
+的转换器。详情请参考 [dart:convert
+库的 API 文档。]({{site.dart_api}}/dart-convert/dart-convert-library.html)
 
 
 ## dart:mirrors - reflection
 
-The dart:mirrors library provides basic reflection abilities to Dart.
-Use mirrors to query the structure of your program and to dynamically
-invoke functions or methods at runtime.
+dart:mirrors 库提供了基本的反射支持。
+使用 mirror 来查询程序的结构，也可以
+在运行时动态的调用方法或者函数。
 
-The dart:mirrors library works in both web apps and command-line apps.
-To use it, import dart:mirrors.
+dart:mirrors 库在命令行和 web 应用中均可使用。
+导入 dart:mirrors  即可开始使用。
 
 <div class="alert alert-warning" markdown="1">
 **警告：**
-Using dart:mirrors can cause dart2js to generate very large JavaScript
-files.
+使用 dart:mirrors 可能会导致 dart2js 生成的 JavaScript 代码
+文件非常大！
 
-The current workaround is to add a `@MirrorsUsed` annotation before
-the import of dart:mirrors. For details, see the
+目前的解决方式是在导入 dart:mirrors  之前添加一个 `@MirrorsUsed` 注解。
+详情请参考 
 [MirrorsUsed]({{site.dart_api}}/dart-mirrors/MirrorsUsed-class.html)
-API documentation. This workaround is very likely to change, as the
-dart:mirrors library is still under development.
+API 文档。由于 dart:mirrors 库依然还在
+开发中，所以这个解决方案以后很有可能发生变化。
 </div>
 
 
 ### Symbols
 
-The mirror system represents the names of Dart declarations (classes,
-fields, and so on) by instances of the class
-[Symbol]({{site.dart_api}}/dart-core/Symbol-class.html). Symbols work
-even in code where names have changed due to minification.
+mirror 系统使用 [Symbol]({{site.dart_api}}/dart-core/Symbol-class.html) 类对象
+来表达定义的 Dart 标识符名字。
+Symbols 在混淆后的代码也可以
+使用。
 
-When you know the name of the symbol ahead of time, use a symbol
-literal. This way, repeated uses of the same symbol can use the same
-canonicalized instance. If the name of the symbol is determined
-dynamically at runtime, use the Symbol constructor.
+如果在写代码的时候，已经知道 symbol 的名字了，则可以使用 #符号名字 的方式直接使用。
+直接使用的 symbol 对象是编译时常量，多次定义引用的是同一个对象。
+如果名字不知道，则可以通过 Symbol 构造函数来
+创建：
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2496,10 +2495,10 @@ var userInput = askUserForNameOfFunction();
 var functionName = new Symbol(userInput);
 {% endprettify %}
 
-During minification, a compiler might replace a symbol name with a
-different (often smaller) name. To convert from a symbol back to a
-string, use `MirrorSystem.getName()`. This function returns the correct
-name, even if the code was minified.
+在混淆代码的时候，编译器可能使用更加简短的名字来替代原来的符号（symbol）名字。
+要获取原来的 symbol 名字，使用
+`MirrorSystem.getName()` 函数。该函数
+在代码混淆的情况下，也能返回正确的 symbol 名字。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2512,10 +2511,10 @@ assert('MyClass' == MirrorSystem.getName(className));
 
 ### Introspection
 
-Use mirrors to introspect the running program's structure. You can
-inspect classes, libraries, instances, and more.
+使用 mirror 功能来检查程序的结构。可以检查
+类、库以及对象等。
 
-The examples in this section use the following Person class:
+下面的示例使用 Person 类：
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2534,12 +2533,12 @@ class Person {
 }
 {% endprettify %}
 
-To begin, you need to *reflect* on a class or object to get its
-*mirror*.
+在开始使用之前，需要在一个类或者对象上调用 *reflect* 函数来获取
+到 *mirror*。
 
 #### Class mirrors
 
-Reflect on a Type to get its ClassMirror.
+在任何 Type 上面调用 reflect 函数来获取 ClassMirror ：
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2549,7 +2548,7 @@ assert('Person' ==
     MirrorSystem.getName(mirror.simpleName));
 {% endprettify %}
 
-You can also call `runtimeType` to get a Type from an instance.
+也可以在实例上调用 `runtimeType` 获取该对象的 Type。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2559,8 +2558,8 @@ assert('Person' ==
     MirrorSystem.getName(mirror.simpleName));
 {% endprettify %}
 
-Once you have a ClassMirror, you can get a class's constructors, fields,
-and more. Here is an example of listing the constructors of a class.
+获取到 ClassMirror 后，就可以查询类的构造函数、成员变量、等信息。
+下面是列出类的所有构造函数的示例：
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2575,7 +2574,7 @@ showConstructors(ClassMirror mirror) {
 }
 {% endprettify %}
 
-Here is an example of listing all of the fields declared by a class.
+下面是列出类的成员变量的示例：
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2595,12 +2594,12 @@ showFields(ClassMirror mirror) {
   });
 }{% endprettify %}
 
-For a full list of methods, consult the [API docs for
-ClassMirror]({{site.dart_api}}/dart-mirrors/ClassMirror-class.html).
+详情请参考 [
+ClassMirror 的 API 文档]({{site.dart_api}}/dart-mirrors/ClassMirror-class.html)。
 
 #### Instance mirrors
 
-Reflect on an object to get an InstanceMirror.
+在对象上调用 reflect 函数可以获取到一个 InstanceMirror 对象。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2608,8 +2607,8 @@ var p = new Person('Bob', 'Smith', 42);
 InstanceMirror mirror = reflect(p);
 {% endprettify %}
 
-If you have an InstanceMirror and you want to get the object that it
-reflects, use `reflectee`.
+如果你已经有个 InstanceMirror 对象了，但是想知道该对象反射的目标对象，则需要
+调用 `reflectee`。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2620,16 +2619,16 @@ assert(identical(p, person));
 
 ### Invocation
 
-Once you have an InstanceMirror, you can invoke methods and call getters
-and setters. For a full list of methods, consult the [API docs for
-InstanceMirror]({{site.dart_api}}/dart-mirrors/InstanceMirror-class.html).
+获取到 InstanceMirror 后，就可以调用里面的函数、getter和setter了。
+详细信息请参考 [API docs for
+InstanceMirror 的 API 文档]({{site.dart_api}}/dart-mirrors/InstanceMirror-class.html)。
 
 #### Invoke methods
 
-Use InstanceMirror's `invoke()` method to invoke a method on an object.
-The first parameter specifies the method to be invoked, and the second
-is a list of positional arguments to the method. An optional third
-parameter lets you specify named arguments.
+使用 InstanceMirror 的 `invoke()` 函数来调用对象的函数。
+第一个参数为要调用的函数名字，第二个参数为该函数的
+一个位置参数列表。第三个参数为可选参数，用来指定命名
+参数。
 
 <!-- library-tour/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2641,8 +2640,8 @@ mirror.invoke(#greet, ['Shailen']);
 
 #### Invoke getters and setters
 
-Use InstanceMirror's `getField()` and `setField()` methods to get and
-set properties of an object.
+使用 InstanceMirror 的 `getField()` 和 `setField()` 函数来
+查询和设置对象的属性。
 
 <!-- library-tours/mirrors/bin/main.dart -->
 {% prettify dart %}
@@ -2661,30 +2660,30 @@ assert(p.firstName == 'Mary');
 
 ### More information
 
-The article [Reflection in Dart with
-Mirrors](/articles/libraries/reflection-with-mirrors) has
-more information and examples. Also see the API docs for
-[dart:mirror,]({{site.dart_api}}/dart-mirrors/dart-mirrors-library.html) especially
+文章 [Reflection in Dart with
+Mirrors](/articles/libraries/reflection-with-mirrors) 更详细
+的介绍了反射功能。另外也可以参考
+[dart:mirror,]({{site.dart_api}}/dart-mirrors/dart-mirrors-library.html) 特别是
 [MirrorsUsed]({{site.dart_api}}/dart-mirrors/MirrorsUsed-class.html),
 [ClassMirror,]({{site.dart_api}}/dart-mirrors/ClassMirror-class.html)
-and
-[InstanceMirror.]({{site.dart_api}}/dart-mirrors/InstanceMirror-class.html)
+和
+[InstanceMirror]({{site.dart_api}}/dart-mirrors/InstanceMirror-class.html) 这些类的 API 文档。
 
 
 ## Summary
 
-This page introduced you to the most commonly used functionality in
-many of Dart’s built-in libraries. It didn’t cover all the built-in
-libraries, however. Others that you might want to look into include
+这页介绍了 Dart 应用中最常用的
+内置库，并没有介绍所有的内置库。
+下面是一些其他参考资料：
 [dart:collection,]({{site.dart_api}}/dart-collection/dart-collection-library.html)
-[dart:isolate,]({{site.dart_api}}/dart-isolate/dart-isolate-library.html) and
-[dart:typed\_data.]({{site.dart_api}}/dart-typed_data/dart-typed_data-library.html) You
-can get yet more libraries by using the pub tool, discussed in the next
-page. The [args,](https://pub.dartlang.org/packages/args)
+[dart:isolate,]({{site.dart_api}}/dart-isolate/dart-isolate-library.html) 和
+[dart:typed\_data.]({{site.dart_api}}/dart-typed_data/dart-typed_data-library.html) 使用
+pub 工具可以使用其他第三方库。
+例如 [args,](https://pub.dartlang.org/packages/args)
 [logging,](https://pub.dartlang.org/packages/logging)
-[polymer,](https://pub.dartlang.org/packages/polymer) and
-[test](https://pub.dartlang.org/packages/test) libraries are just a
-sampling of what you can install using pub.
+[polymer,](https://pub.dartlang.org/packages/polymer) 和
+[test](https://pub.dartlang.org/packages/test) 库都是第三方库，可以
+使用 pub 工具来使用。
 
-To learn more about the Dart language, see
-[A Tour of the Dart Language](/guides/language/language-tour).
+关于 Dart 语言的信息，请参考
+[Dart 语言预览](/guides/language/language-tour)。
