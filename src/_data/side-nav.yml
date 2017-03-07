@@ -1,61 +1,61 @@
-- title: Quick Start
+- title: 快速入门
   children:
-    - title: Get Started
+    - title: 起步
       permalink: /guides/get-started
-    - title: Sample Code
+    - title: 示例代码
       permalink: /samples
 
-- title: Language
+- title: Dart 语言
   children:
-    - title: "Overview"
+    - title: "概述"
       permalink: /guides/language
-    - title: "Tour"
+    - title: "预览"
       permalink: /guides/language/language-tour
     - title: "Effective Dart"
       permalink: /guides/language/effective-dart
       children:
-        - title: Style
+        - title: 代码风格
           permalink: /guides/language/effective-dart/style
-        - title: Documentation
+        - title: 文档注释
           permalink: /guides/language/effective-dart/documentation
-        - title: Usage
+        - title: 最佳实践
           permalink: /guides/language/effective-dart/usage
-        - title: Design
+        - title: 设计指南
           permalink: /guides/language/effective-dart/design
 
-- title: Libraries
+- title: 库
   children:
-    - title: Overview
+    - title: 概述
       permalink: /guides/libraries
-    - title: Tour
+    - title: 预览
       permalink: /guides/libraries/library-tour
 
-- title: "Tools"
+- title: "工具"
   children:
-  - title: "Dart Tools"
+  - title: "Dart 工具"
     permalink: /tools
 
-- title: "Community"
+- title: "社区"
   children:
-  - title: "Community and Support"
+  - title: "社区支持"
     permalink: /community
 
-- title: "Platforms"
+- title: "平台"
   children:
-    - title: "Overview"
+    - title: "概述"
       permalink: /guides/platforms
     - title: "Web"
       permalink: https://webdev.dartlang.org/
 #     permalink: http://localhost:4001/
-    - title: "Mobile (Flutter)"
+    - title: "移动开发 (Flutter)"
       permalink: https://flutter.io/
       children:
-      - title: "API Reference"
+      - title: "API 文档"
         permalink: http://docs.flutter.io/flutter/
     - title: "Dart VM"
       permalink: /dart-vm
       children:
-      - title: "Install Dart"
+      - title: "安装 Dart"
         permalink: /install
-      - title: "API Reference"
+      - title: "API 文档"
         permalink: https://api.dartlang.org
