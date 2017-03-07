@@ -1,29 +1,29 @@
 ---
 layout: default
-title: "Dart Tools"
-description: "The tools that support the Dart language."
+title: "Dart 工具"
+description: "支持 Dart 语言开发的各种工具。"
 permalink: /tools
 toc: false
 ---
 
-This page discusses tools that are useful with multiple Dart technologies.
+本页介绍一些有用的 Dart 工具。
 
 ## DartPad
 
-[DartPad](/tools/dartpad) is
-a great way to learn Dart syntax and to experiment with Dart language features
-and core libraries (_except_ for dart:io and libraries that depend on dart:io).
+[DartPad](/tools/dartpad) 是学习 Dart
+语法和尝试 Dart 语言特性的最佳方式，还
+可以体验 Dart 核心库（_除了_   dart:io 库和依赖 dart:io 的库）。
 
-To write code that uses other libraries and features,
-you need an [SDK](#sdks).
-We also recommend using an IDE.
+要编写使用其他库和具有更多功能的应用，
+你需要一个 [SDK](#sdks)。
+我们还推荐使用一个 IDE 来编写代码。
 
 
 ## IDEs
 
-Dart plugins exist for many commonly used IDEs.
-If you don't already have a favorite IDE,
-try WebStorm, which comes with Dart support.
+很多常见的 IDE 都有 Dart 的插件可以使用。
+如果你还没有使用过 IDE，推荐你使用
+ WebStorm，支持 Dart 开发。
 
 <ul class="col2">
 <li>
@@ -37,8 +37,8 @@ try WebStorm, which comes with Dart support.
 </li>
 </ul>
 
-The following Dart plugins are unsupported
-and available as open source:
+下面是其他一些开源的 
+Dart 插件：
 
 <ul class="col2">
 <li>
@@ -65,7 +65,7 @@ and available as open source:
 
 ## SDKs
 
-Which SDK you need depends on what type of app you're developing.
+开发不同类型的应用需要不同的 SDK。
 
 |------------------------+----------+-------------------------------------|
 | App type | SDK | Download instructions | More information |
@@ -79,32 +79,32 @@ Which SDK you need depends on what type of app you're developing.
 
 ## Command-line tools
 
-Most Dart-related SDKs include the following tools.
+Dart SDK 包含下面这些工具：
 
 [Pub package manager](/tools/pub)
-: Manages Dart packages,
-  making it easy for you to install, use, and share Dart libraries,
-  command-line tools, and other assets.
-  Some Dart technologies, such as Flutter, may not support
-  all of the pub commands.
-  IDEs that support Dart generally have special support for pub,
-  but you can also use it from the command line (`pub`).
+: 管理 Dart 包，
+  方便安装、使用和分享 Dart 库，
+  命令行工具和其他资源。
+  有些 Dart 框架，例如 Flutter， 可能只
+  支持部分 pub 命令。
+  支持 Dart 的 IDE 通常都支持 pub，
+  如果 IDE 不支持，则可以使用命令行 (`pub`)。
 
 [Static analyzer](https://github.com/dart-lang/sdk/tree/master/pkg/analyzer_cli#dartanalyzer)
-: Evaluates and reports any errors or warnings in your code.
-  The Dart plugin for your IDE should make use of Dart's analysis engine,
-  but you can also run the analyzer from the command line (`dartanalyzer`).
+: 检测分析代码，潜在的问题会给出警告。
+  IDE 插件通常都包含了 Dart 分析引擎，
+  当然，也可以在命令行运行  (`dartanalyzer`)。
 
-[Code formatter](https://github.com/dart-lang/dart_style#readme)
-: Formats your code, following the recommendations of the
-  [Dart Style Guide](/guides/language/effective-dart/style).
-  IDEs that support Dart generally allow you to format the code within
-  the IDE. Or you can run the formatter from the command line (`dartfmt`).
+[代码格式化](https://github.com/dart-lang/dart_style#readme)
+: 根据
+  [Dart 风格指南](/guides/language/effective-dart/style)来格式化你的代码。
+  IDE 通常也支持格式化 Dart 代码。
+  也可以通过命令行运行 (`dartfmt`)。
 
-For details about these and many other tools,
-see the tools documentation for the SDK you're using:
+关于这些命令的详细信息，请参考下面这些
+资源：
 
-* [Dart SDK](/tools/sdk) and specialized tools:
+* [Dart SDK](/tools/sdk) 和特殊的一些工具：
   * [Dart Tools for the Web]({{site.webdev}}/tools)
   * [Dart VM Tools]({{site.dart_vm}}/tools)
 * [Flutter]({{site.flutter}}/setup/)
