@@ -1,1 +1,32 @@
-# All robots welcome!
+User-agent: Googlebot
+allow: /
+
+User-agent: BaiduSpider
+allow: /
+
+User-agent: YodaoBot
+allow: /
+
+User-agent: Sosospider
+allow: /
+
+User-agent: HaoSouSpider
+allow: /
+
+User-agent: 360Spider
+allow: /
+
+User-agent: MSNBOT
+allow: /
+
+User-agent: sogou+web+spider
+allow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: *
+Disallow: /

@@ -61,7 +61,7 @@ Our wonderful community has provided these resources.
 * [Dart Academy](https://dart.academy/) - Tutorials
   and articles written by the Dart community
 * [Dartosphere blog aggregator](http://dartosphere.org)
-* [Resources for Chinese developers](http://www.dartlang.cc/support/for-chinese.html)
+* [旧的 Dart 中文网站，里面包含更多的 Dart 中文学习资料](http://old.dartlang.cc)
 
 
 Also see [Community and Support]({{site.webdev}}/community) on Dart webdev.
